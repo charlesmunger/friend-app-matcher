@@ -1,4 +1,6 @@
 FriendAppMatcher::Application.routes.draw do
+  resources :user_apps
+
   resources :apps
 
   resources :friends
