@@ -2,6 +2,11 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   setup do
+    @input_user = {
+      user_id: "Input User",
+      auth_token: "Input User Token"
+    }
+
     @user = users(:one)
   end
 
@@ -18,7 +23,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { auth_token: @user.auth_token, user_id: @user.user_id }
+      post :create, user: @input_user
     end
 
     assert_redirected_to user_path(assigns(:user))

@@ -3,6 +3,10 @@ require 'test_helper'
 class FriendsControllerTest < ActionController::TestCase
   setup do
     @friend = friends(:one)
+    @input_friend = {
+      user_id: @friend.user_id,
+      friend_id: "Some Friend"
+    }
   end
 
   test "should get index" do
@@ -18,7 +22,7 @@ class FriendsControllerTest < ActionController::TestCase
 
   test "should create friend" do
     assert_difference('Friend.count') do
-      post :create, friend: { friend_one: @friend.friend_one, friend_two: @friend.friend_two }
+      post :create, friend: @input_friend
     end
 
     assert_redirected_to friend_path(assigns(:friend))
@@ -35,7 +39,7 @@ class FriendsControllerTest < ActionController::TestCase
   end
 
   test "should update friend" do
-    put :update, id: @friend, friend: { friend_one: @friend.friend_one, friend_two: @friend.friend_two }
+    put :update, id: @friend, friend: { user_id: @friend.user_id, friend_id: @friend.friend_id }
     assert_redirected_to friend_path(assigns(:friend))
   end
 
