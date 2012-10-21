@@ -2,6 +2,11 @@ require 'test_helper'
 
 class AppsControllerTest < ActionController::TestCase
   setup do
+    @input_app = {
+      app_id: "Input App",
+      name: "Input App"
+    }
+
     @app = apps(:one)
   end
 
@@ -18,7 +23,7 @@ class AppsControllerTest < ActionController::TestCase
 
   test "should create app" do
     assert_difference('App.count') do
-      post :create, app: { app_id: @app.app_id, name: @app.name }
+      post :create, app: @input_app
     end
 
     assert_redirected_to app_path(assigns(:app))

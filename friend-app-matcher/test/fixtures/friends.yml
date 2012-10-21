@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  friend_one: MyString
-  friend_two: MyString
+  user_id: User1
+  friend_id: User2
 
 two:
-  friend_one: MyString
-  friend_two: MyString
+  user_id: User2
+  friend_id: User1
