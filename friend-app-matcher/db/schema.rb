@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021183558) do
+ActiveRecord::Schema.define(:version => 20121022025404) do
 
   create_table "apps", :force => true do |t|
     t.string   "app_id"
@@ -21,21 +21,21 @@ ActiveRecord::Schema.define(:version => 20121021183558) do
   end
 
   create_table "friends", :force => true do |t|
-    t.string   "user_id"
-    t.string   "friend_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :limit => 255
+    t.integer  "friend_id",  :limit => 255
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "user_apps", :force => true do |t|
-    t.string   "user_id"
-    t.string   "app_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :limit => 255
+    t.integer  "app_id",     :limit => 255
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string   "user_id"
+    t.string   "username"
     t.string   "auth_token"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @input_user = {
-      user_id: "Input User",
+      username: "Input User",
       auth_token: "Input User Token"
     }
 
@@ -40,7 +40,8 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    put :update, id: @user, user: { auth_token: @user.auth_token, user_id: @user.user_id }
+    put :update, id: @user, user: { auth_token: @user.auth_token, 
+                                    username: @user.username }
     assert_redirected_to user_path(assigns(:user))
   end
 
