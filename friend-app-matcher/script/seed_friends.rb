@@ -2,8 +2,8 @@
 users = User.find(:all)
 users.each do |user|
   users.each do |friend|
-    if (user.user_id != friend.user_id)
-      Friend.create(user_id: user.user_id, friend_id: friend.user_id)
+    if (user.id != friend.id)
+      Friend.create(user_id: user.id, friend_id: friend.id)
     end
   end
 end

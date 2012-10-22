@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  user_id: User1
+  username: User1
   auth_token: User1
 
 two:
-  user_id: User2
+  username: User2
   auth_token: User2

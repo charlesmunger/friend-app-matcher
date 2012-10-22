@@ -5,7 +5,7 @@ class FriendsControllerTest < ActionController::TestCase
     @friend = friends(:one)
     @input_friend = {
       user_id: @friend.user_id,
-      friend_id: "Some Friend"
+      friend_id: 3
     }
   end
 

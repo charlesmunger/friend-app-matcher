@@ -18,9 +18,10 @@
 
         <ul>
           <% 
-            current_user = User.find_by_user_id(session[:user_id])
+            current_user = User.find_by_id(session[:user_id])
             home_user_path = users_path + '/' + current_user.id.to_s
           %>
+          <li><%= link_to 'My Apps', home_user_path %></li>
           <li><%= link_to 'Reccommendations', home_user_path %></li>
           <li><%= link_to 'Top Applications', home_user_path %></li>
           <li><%= link_to 'Friends', friends_path %></li>
