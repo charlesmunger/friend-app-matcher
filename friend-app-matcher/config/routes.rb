@@ -1,4 +1,13 @@
 FriendAppMatcher::Application.routes.draw do
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+
+    get '' => :new
+    post '' => :create
+  end
+
   resources :user_apps
 
   resources :apps

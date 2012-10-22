@@ -7,8 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="hbox">
+    <h1>App Recommender</h1>
+  </div>
 
-<%= yield %>
+  <div id="columns">
+
+    <% if session[:user_id] %>
+      <div id="side">
+
+        <ul>
+          <% 
+            current_user = User.find_by_user_id(session[:user_id])
+            home_user_path = users_path + '/' + current_user.id.to_s
+          %>
+          <li><%= link_to 'Reccommendations', home_user_path %></li>
+          <li><%= link_to 'Top Applications', home_user_path %></li>
+          <li><%= link_to 'Friends', friends_path %></li>
+        </ul>
+
+        <%= button_to 'Logout', logout_path, method: :delete %>
+      </div>
+    <% end %>
+
+    <div id="main">
+      <%= yield %>
+    </div>
+
+  </div>
 
 </body>
 </html>
