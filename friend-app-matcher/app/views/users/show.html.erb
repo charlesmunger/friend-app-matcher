@@ -10,5 +10,18 @@
   <%= @user.auth_token %>
 </p>
 
+<p>
+  <b>Installed applications:</b>
+  <table>
+    <% @apps.each do |app| %>
+      <tr><td>
+        <%= render app %><br>
+      </td></tr>
+    <% end %>
+  </table>
+<script type='text/javascript' language='javascript' src='http://www.appbrain.com/api/api.nocache.js'></script>
+</p>
+
+
 
 <%= link_to 'Edit', edit_user_path(@user) %>

@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
                      :source => :friend
   has_many :user_apps
 
+  has_many :apps, through: :user_apps
+
   attr_accessible :auth_token, :username
 
   validates :username, presence: true, 

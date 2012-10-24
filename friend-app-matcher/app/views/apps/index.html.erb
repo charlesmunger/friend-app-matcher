@@ -1,24 +1,14 @@
 <h1>Listing apps</h1>
 
 <table>
-  <tr>
-    <th>App</th>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @apps.each do |app| %>
-  <tr>
-    <td><%= app.app_id %></td>
-    <td><%= app.name %></td>
-    <td><%= link_to 'Show', app %></td>
-    <td><%= link_to 'Edit', edit_app_path(app) %></td>
-    <td><%= link_to 'Destroy', app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+  <tr><td>
+    <%= render app %><br>
+  </td></tr>
 <% end %>
 </table>
+<script type='text/javascript' language='javascript' src='http://www.appbrain.com/api/api.nocache.js'></script>
 
 <br />
 
