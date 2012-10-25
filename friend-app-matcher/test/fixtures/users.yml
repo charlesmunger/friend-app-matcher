@@ -9,3 +9,8 @@ two:
   id: 2
   username: User2
   auth_token: User2
+
+three:
+  id: 3
+  username: User3
+  auth_token: User3

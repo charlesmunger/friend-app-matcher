@@ -22,8 +22,8 @@
             home_user_path = users_path + '/' + current_user.id.to_s
           %>
           <li><%= link_to 'My Apps', home_user_path %></li>
-          <li><%= link_to 'Reccommendations', home_user_path %></li>
-          <li><%= link_to 'Top Applications', home_user_path %></li>
+          <li><%= link_to 'Recommendations', recommendations_path %></li>
+          <li><%= link_to 'Top Applications', topapps_path %></li>
           <li><%= link_to 'Friends', friends_path %></li>
         </ul>
 
@@ -32,6 +32,9 @@
     <% end %>
 
     <div id="main">
+      <% if notice %>
+          <p id="notice"><%= notice %></p>
+      <% end %>
       <%= yield %>
     </div>
 

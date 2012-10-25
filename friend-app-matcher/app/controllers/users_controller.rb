@@ -15,9 +15,14 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+    if params[:id].eql? session[:user_id].to_s or
+        @user.friends.where(:id => session[:user_id]).count != 0
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @user }
+      end
+    else
+      redirect_to friends_url, notice: "Can only view a user's app's if they are your friend."
     end
   end
 

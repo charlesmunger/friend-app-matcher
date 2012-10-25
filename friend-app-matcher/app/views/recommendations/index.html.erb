@@ -1,0 +1,13 @@
+<table>
+  <tr align="center">
+    <td> Installed by: </td>
+    <td> Application</td>
+  </tr>
+  <% @appCounts.each do |appCount| %>
+    <tr>
+      <td><%= appCount[1] %> friends. </td>
+      <td> <%= render appCount[0] %></td>
+    </tr>
+  <% end %>
+</table>
+<script type='text/javascript' language='javascript' src='http://www.appbrain.com/api/api.nocache.js'></script>

@@ -42,6 +42,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "shouldn't show user if not friends" do
+    get :show, id: users(:three)
+    assert_response :redirect
+  end
+
   test "should get edit" do
     get :edit, id: @user
     assert_response :success
