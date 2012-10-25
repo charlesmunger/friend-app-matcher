@@ -4,7 +4,6 @@ class AppsControllerTest < ActionController::TestCase
   setup do
     @input_app = {
       app_id: "Input App",
-      name: "Input App"
     }
 
     @app = apps(:one)
@@ -40,7 +39,7 @@ class AppsControllerTest < ActionController::TestCase
   end
 
   test "should update app" do
-    put :update, id: @app, app: { app_id: @app.app_id, name: @app.name }
+    put :update, id: @app, app: { app_id: @app.app_id}
     assert_redirected_to app_path(assigns(:app))
   end
 

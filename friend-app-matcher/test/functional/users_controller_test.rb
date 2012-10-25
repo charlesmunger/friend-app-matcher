@@ -16,6 +16,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:users)
   end
 
+  test "show user should include apps" do
+    get :show, id: @user
+    assert_response :success
+    assert_not_nil assigns(:user)
+    assert_equal 1, assigns(:user).apps.count
+    assert_equal @user.apps[0].id, assigns(:user).apps[0].id
+  end
+
   test "should get new" do
     get :new
     assert_response :success

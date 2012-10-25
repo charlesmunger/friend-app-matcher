@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 1
   app_id: App1
-  name: App1
 
 two:
+  id: 2
   app_id: App2
-  name: App2
