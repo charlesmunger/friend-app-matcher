@@ -22,7 +22,7 @@ class UsersController < ApplicationController
         format.json { render json: @user }
       end
     else
-      redirect_to friends_url, notice: "Can only view a user's app's if they are your friend."
+      redirect_to friendships_url, notice: "Can only view a user's app's if they are your friend."
     end
   end
 

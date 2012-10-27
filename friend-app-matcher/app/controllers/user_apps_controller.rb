@@ -40,6 +40,8 @@ class UserAppsController < ApplicationController
   # POST /user_apps
   # POST /user_apps.json
   def create
+    # Receives a Facebook username and a list of Android package names.
+    # The list of package names are delimited by newlines.
     @user_app = UserApp.new(params[:user_app])
 
     respond_to do |format|

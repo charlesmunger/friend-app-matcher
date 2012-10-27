@@ -12,7 +12,7 @@ FriendAppMatcher::Application.routes.draw do
 
   resources :apps
 
-  resources :friends
+  resources :friendships
 
   resources :users
 

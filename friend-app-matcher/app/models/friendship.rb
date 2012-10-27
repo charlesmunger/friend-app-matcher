@@ -1,4 +1,4 @@
-class Friend < ActiveRecord::Base
+class Friendship < ActiveRecord::Base
   belongs_to :user, :class_name => :User
   belongs_to :friend, :class_name => :User
 
@@ -11,7 +11,7 @@ class Friend < ActiveRecord::Base
 
   def user_is_not_friend_to_self
     if (self.user_id == self.friend_id)
-      raise "Cannot add yourself as a friend"
+      errors.add(:friend_id, "cannot add a new friendship to the same person")
     end
   end
 

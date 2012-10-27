@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :friend_connections, :class_name => :Friend,
+  has_many :friend_connections, :class_name => :Friendship,
                                 :foreign_key => :user_id,
                                 dependent: :destroy
   has_many :friends, :through => :friend_connections, 
