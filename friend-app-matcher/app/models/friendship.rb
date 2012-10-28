@@ -11,7 +11,7 @@ class Friendship < ActiveRecord::Base
 
   def user_is_not_friend_to_self
     if (self.user_id == self.friend_id)
-      errors.add(:friend_id, "cannot add a new friendship to the same person")
+      errors.add(:friend_id, "cannot create a friendship to the same person")
     end
   end
 

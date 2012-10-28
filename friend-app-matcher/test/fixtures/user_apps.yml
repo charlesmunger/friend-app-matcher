@@ -7,3 +7,7 @@ one:
 two:
   user_id: 2
   app_id: 2
+
+three:
+  user_id: 3
+  app_id: 3
