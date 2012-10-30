@@ -1,4 +1,6 @@
 class TopappsController < ApplicationController
+  layout "applayout"
+
   def index
     apps = App.all
     @app_counts = {}

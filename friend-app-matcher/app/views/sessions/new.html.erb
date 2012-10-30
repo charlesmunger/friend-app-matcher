@@ -1,0 +1,41 @@
+<div class="login-header-bar">
+  <div class="header-content">
+    <%= image_tag('app-matcher-logo.png', class: 'logo') %>
+    <%= link_to('Sign Up', {}, class: 'signup-button') %>
+  </div>
+</div>
+  
+<div class="main">
+  <% if notice %>
+      <p id="notice"><%= notice %></p>
+  <% end %>
+  
+  <div class="signin">
+    <div class="signin-box">
+      <% if flash[:alert] %>
+        <p id="notice"><%= flash[:alert] %></p>
+      <% end %>
+    
+      <div class="signin-instruct">Login with Facebook</div>
+
+      <%= form_tag({}, {class: "login-form"}) do %>
+        <div class="login-field">
+          <%= label_tag :username, 'Username' %>
+          <%= text_field_tag :username, params[:username] %>
+        </div>
+        <div class="login-field">
+          <%= label_tag :password, 'Password' %>
+          <%= password_field_tag :password, params[:password] %>
+        </div>
+        <div>
+          <%= submit_tag "Login" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="login-content">
+    <%= image_tag('android-couple.jpg') %>
+    <div class="catch-phrase">We'll find you the perfect match!</div>
+  </div>
+</div>

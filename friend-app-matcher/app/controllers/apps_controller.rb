@@ -1,4 +1,6 @@
 class AppsController < ApplicationController
+  layout "applayout"
+
   # GET /apps
   # GET /apps.json
   def index

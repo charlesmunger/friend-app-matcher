@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FriendAppMatcher</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <div class="app-header-bar">
+    <div class="app-header-content">
+      <%= image_tag('app-matcher-logo-2.png', class: 'logo') %>
+
+      <ul>
+        <span class="user-options"><%= @user.username %></span>
+      </ul>
+
+      <%= image_tag('positive-android.png', class: 'app-header-android') %>
+    </div>
+  </div>
+
+  <div id="columns">
+
+    <% if session[:user_id] %>
+      <div id="side">
+
+        <ul>
+          <% 
+            current_user = User.find_by_id(session[:user_id])
+            home_user_path = users_path + '/' + current_user.id.to_s
+          %>
+          <li><%= link_to 'My Apps', home_user_path %></li>
+          <li><%= link_to 'Recommendations', recommendations_path %></li>
+          <li><%= link_to 'Top Applications', topapps_path %></li>
+          <li><%= link_to 'Friends', friendships_path %></li>
+        </ul>
+
+        <%= button_to 'Logout', logout_path, method: :delete %>
+      </div>
+    <% end %>
+
+    <div id="main">
+      <% if notice %>
+          <p id="notice"><%= notice %></p>
+      <% end %>
+      <%= yield %>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

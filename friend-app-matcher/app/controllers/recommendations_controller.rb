@@ -1,6 +1,8 @@
 require 'will_paginate/array'
 
 class RecommendationsController < ApplicationController
+  layout "applayout"
+
   def index
     user = current_user
     friends = user.friends

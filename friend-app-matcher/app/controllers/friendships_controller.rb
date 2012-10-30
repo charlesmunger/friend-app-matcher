@@ -1,4 +1,6 @@
 class FriendshipsController < ApplicationController
+  layout "applayout"
+
   # GET /friends
   # GET /friends.json
   def index
