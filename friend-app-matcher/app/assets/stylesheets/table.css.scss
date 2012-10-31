@@ -1,0 +1,23 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.service-list {
+  color: #222;
+
+  .header {
+    font-family: arial, sans-serif;
+    font-size: 17px;
+    margin: 0 0 0 6px;
+    padding: 0 0 15px 0;
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  ol {
+    list-style: none;
+  }
+
+  .list-element {
+    padding: 0;
+  }
+}

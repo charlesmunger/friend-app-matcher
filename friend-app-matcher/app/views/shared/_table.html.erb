@@ -1,0 +1,12 @@
+<div class="service-list">
+  <div class="header"><%= list_title %></div>
+  <div class="service-list-container">
+    <ol>
+      <% list.each do |item| %>
+        <li>
+          <div class="list-element"><%= render item %></div>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>

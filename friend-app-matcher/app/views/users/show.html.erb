@@ -1,33 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="service-view-user-apps">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <b>User:</b>
-  <%= @user.username %>
-</p>
-
-<p>
-  <b>Fb UID:</b>
-  <%= @user.uid %>
-</p>
-
-<p>
-  <b>Installed applications:</b>
-  <table>
-    <% @apps.each do |app| %>
-      <tr><td>
-        <%= render app %><br>
-      </td></tr>
-    <% end %>
-  </table>
-<script type='text/javascript' language='javascript' src='http://www.appbrain.com/api/api.nocache.js'></script>
-</p>
-
-<div class="apple_pagination">
-  <div class="page_info">
-    <%= page_entries_info @apps, :model => 'installed applications' %>
+  <div class="installed-apps-container">
+    <%= render partial: 'shared/table', 
+               locals: { list_title: @user.username + ' ' + @user.uid,
+                         list: @user.apps } %>
+    <div class="apple_pagination">
+      <div class="page_info">
+        <%= page_entries_info @apps, :model => 'installed applications' %>
+      </div>
+      <%= will_paginate @apps, :container => false %>
+    </div>
   </div>
-  <%= will_paginate @apps, :container => false %>
+  <script type='text/javascript' 
+          language='javascript' 
+          src='http://www.appbrain.com/api/api.nocache.js'>
+  </script>
 </div>
-
-<%= link_to 'Edit', edit_user_path(@user) %>
-<%= link_to 'Delete my account', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
