@@ -8,23 +8,39 @@
 </head>
 
 <body>
+<div class="wrapper">
   <div class="app-header-bar">
     <div class="app-header-content">
       <%= image_tag('app-matcher-logo-2.png', class: 'logo') %>
 
-      <ul>
-        <span class="user-options"><%= @user.username %></span>
+      <ul class="user-options-top">
+        <% # User.username is actually the Facebook id.
+           # Display the user's first name instead (change later). %>
+        <li>
+          <a class="name-display" href="#">
+            <%= @user.username %>
+            <%= image_tag('down-triangle.gif', class: 'dropdown-img') %>
+          </a>
+
+          <% # Hidden dropdown menu to display %>
+          <div class="user-options-sub">
+            <%= image_tag('up-triangle.png') %> 
+            <div class="user-options-sub-list-container">
+              <ul>
+                <li><%= link_to 'Settings', edit_user_path(@user) %></li>
+                <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+              </ul>
+            </div>
+          </div>
+        </li>
       </ul>
 
       <%= image_tag('positive-android.png', class: 'app-header-android') %>
     </div>
   </div>
 
-  <div id="columns">
-
-    <% if session[:user_id] %>
-      <div id="side">
-
+  <div class="app-main">
+    <div class="app-side-panel">
         <ul>
           <% 
             current_user = User.find_by_id(session[:user_id])
@@ -35,20 +51,15 @@
           <li><%= link_to 'Top Applications', topapps_path %></li>
           <li><%= link_to 'Friends', friendships_path %></li>
         </ul>
+    </div>
 
-        <%= button_to 'Logout', logout_path, method: :delete %>
-      </div>
-    <% end %>
-
-    <div id="main">
+    <div class="app-main-content">
       <% if notice %>
           <p id="notice"><%= notice %></p>
       <% end %>
       <%= yield %>
     </div>
-
   </div>
-
+</div>
 </body>
-
 </html>

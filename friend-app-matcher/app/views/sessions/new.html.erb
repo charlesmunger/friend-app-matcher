@@ -6,12 +6,12 @@
 </div>
   
 <div class="main">
-  <% if notice %>
-      <p id="notice"><%= notice %></p>
-  <% end %>
   
   <div class="signin">
     <div class="signin-box">
+      <% if notice %>
+        <p id="notice"><%= notice %></p>
+      <% end %>
       <% if flash[:alert] %>
         <p id="notice"><%= flash[:alert] %></p>
       <% end %>

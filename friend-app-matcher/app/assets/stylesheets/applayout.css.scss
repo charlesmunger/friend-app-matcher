@@ -1,0 +1,105 @@
+.app-header-bar {
+  background: #3b5998;
+  border-bottom: 1px solid #133783;
+  position: relative;
+}
+
+.app-header-content {
+  padding: 0 0 0 44px;
+
+  .user-options-top {
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    font-size: 14px;
+    padding: 5px;
+    margin: 0px;
+    list-style: none;
+
+    a, a:hover, a:active, a:visited {
+      color: #fff;
+      background: none;
+      text-decoration: none;
+    }
+
+    .dropdown-img {
+      height: 7px;
+      width: 13px;
+      padding: 0;
+    }
+  }
+
+  .user-options-sub {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: none;
+
+    img {
+      height: 13px;
+      width: 24px;
+      position: relative;
+      left: 136px;
+      z-index: 1;
+    }
+
+    .user-options-sub-list-container {
+      border: 1px solid #6b6b6b;
+      width: 100px;
+      position: relative;
+      top: -7px;
+      left: 77px;
+    }
+
+    ul {
+      padding: 0px;
+      font-size: 14px;
+      list-style: none;
+    }
+
+    li {
+      padding: 6px 21px; 
+      background: #2d2d2d;
+    }
+
+    a, a:hover, a:active, a:visited {
+      color: #bbb;
+      background: none;
+      text-decoration: none;
+    }
+  }
+
+  .app-header-android {
+    height: 50px;
+    position: absolute;
+    right: 0px;
+    top: 10px;
+  }
+}
+
+.app-main {
+  margin: 0 auto;
+  padding: 1px;
+  max-width: 1000px;
+  min-width: 780px;
+
+  .app-main-content {
+    margin: 0 0 0 200px;
+  }
+
+  .app-side-panel {
+    padding: 30px 20px 0 20px;
+    float: left;
+    /** border-right: 1px solid #999; **/
+  }
+
+  ul {
+    padding: 0;
+    li {
+      list-style: none;
+      a {
+        font-size: small;
+      }
+    }
+  }
+}
