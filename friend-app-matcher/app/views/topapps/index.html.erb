@@ -11,3 +11,10 @@
   <% end %>
 </table>
 <script type='text/javascript' language='javascript' src='http://www.appbrain.com/api/api.nocache.js'></script>
+
+<div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info @app_counts, :model => 'top applications' %>
+  </div>
+  <%= will_paginate @app_counts, :container => false %>
+</div>

@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.paginate page: params[:page],
+        order: 'created_at desc', per_page: 10
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
+    @apps = @user.apps.paginate(:page => params[:page])
     if params[:id].eql? session[:user_id].to_s or
         @user.friends.where(:id => session[:user_id]).count != 0
       respond_to do |format|

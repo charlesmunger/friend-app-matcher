@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, 
                        uniqueness: { case_sensitive: false }
+
+  def self.per_page
+    10
+  end
 end

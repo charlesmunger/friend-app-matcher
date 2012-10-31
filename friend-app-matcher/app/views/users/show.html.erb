@@ -13,7 +13,7 @@
 <p>
   <b>Installed applications:</b>
   <table>
-    <% @user.apps.each do |app| %>
+    <% @apps.each do |app| %>
       <tr><td>
         <%= render app %><br>
       </td></tr>
@@ -22,6 +22,12 @@
 <script type='text/javascript' language='javascript' src='http://www.appbrain.com/api/api.nocache.js'></script>
 </p>
 
-
+<div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info @apps, :model => 'installed applications' %>
+  </div>
+  <%= will_paginate @apps, :container => false %>
+</div>
 
 <%= link_to 'Edit', edit_user_path(@user) %>
+<%= link_to 'Delete my account', @user, method: :delete, data: { confirm: 'Are you sure?' } %>

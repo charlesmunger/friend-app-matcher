@@ -21,7 +21,7 @@
             current_user = User.find_by_id(session[:user_id])
             home_user_path = users_path + '/' + current_user.id.to_s
           %>
-          <li><%= link_to 'My Apps', home_user_path %></li>
+          <li><%= link_to 'My Account', home_user_path %></li>
           <li><%= link_to 'Recommendations', recommendations_path %></li>
           <li><%= link_to 'Top Applications', topapps_path %></li>
           <li><%= link_to 'Friends', friendships_path %></li>

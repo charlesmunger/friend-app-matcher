@@ -21,4 +21,11 @@
 
 <br />
 
+<div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info @friends, :model => 'friends' %>
+  </div>
+  <%= will_paginate @friends, :container => false %>
+</div>
+
 <%= link_to 'New Friendship', new_friendship_path %>

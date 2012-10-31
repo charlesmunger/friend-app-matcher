@@ -3,7 +3,7 @@ class FriendshipsController < ApplicationController
   # GET /friends.json
   def index
     @user = User.find_by_id(session[:user_id])
-    @friends = @user.friends
+    @friends = @user.friends.paginate page: params[:page], order: 'created_at desc'
 
     respond_to do |format|
       format.html # index.html.erb
