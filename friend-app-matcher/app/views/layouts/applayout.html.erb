@@ -41,21 +41,22 @@
 
   <div class="app-main">
     <div class="app-side-panel">
+      <div class="app-side-nav-container">
+        <div class="app-side-nav">Navigation</div>
         <ul>
-          <% 
-            current_user = User.find_by_id(session[:user_id])
-            home_user_path = users_path + '/' + current_user.id.to_s
-          %>
+          <% current_user = User.find_by_id(session[:user_id])
+             home_user_path = users_path + '/' + current_user.id.to_s %>
           <li><%= link_to 'My Apps', home_user_path %></li>
           <li><%= link_to 'Recommendations', recommendations_path %></li>
           <li><%= link_to 'Top Applications', topapps_path %></li>
           <li><%= link_to 'Friends', friendships_path %></li>
         </ul>
+      </div>
     </div>
 
     <div class="app-main-content">
       <% if notice %>
-          <p id="notice"><%= notice %></p>
+        <p id="notice"><%= notice %></p>
       <% end %>
       <%= yield %>
     </div>
