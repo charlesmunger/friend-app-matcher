@@ -47,7 +47,7 @@
       border: 1px solid #6b6b6b;
       width: 100px;
       position: relative;
-      top: -7px;
+      top: -6px;
       left: 77px;
     }
 
@@ -62,12 +62,10 @@
       background: #2d2d2d;
     }
 
-    a, a:hover, a:active, a:visited {
-      color: #bbb;
-      background: none;
-      text-decoration: none;
+    li:hover {
+      background: #3f3e3b;
     }
-  }
+  } 
 
   .app-header-android {
     height: 50px;
