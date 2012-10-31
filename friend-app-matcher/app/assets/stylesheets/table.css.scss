@@ -4,6 +4,8 @@
 
 .service-list {
   color: #222;
+  position: relative;
+  margin: 28px 0 0 0;
 
   .header {
     font-family: arial, sans-serif;
@@ -11,6 +13,62 @@
     margin: 0 0 0 6px;
     padding: 0 0 15px 0;
     border-bottom: 1px solid #ebebeb;
+
+    .header-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+  
+      li {
+        display: inline;
+      }
+ 
+      .pagination-left {
+        position: absolute;
+        top: -8px;
+        right: 135px;
+
+        img {
+          height: 24px;
+          padding: 4px 6px 3px;
+          background: #f1f1f1;
+          border-radius: 3px;
+          border: 1px solid #ebebeb;
+        }
+      }
+ 
+      .pagination-right {
+        position: absolute;
+        top: -8px;
+        right: 94px;
+
+        img {
+          height: 24px;
+          padding: 4px 6px 3px;
+          background: #f1f1f1;
+          border-radius: 3px;
+          border: 1px solid #ebebeb;
+        }
+      }
+
+      .actions {
+        position: absolute;
+        top: -8px;
+        right: 11px;
+
+        .actions-sublist {
+          display: none;
+        }
+
+        img {
+          padding: 4px 18px 3px;
+          height: 24px;
+          background: #f1f1f1;
+          border-radius: 3px;
+          border: 1px solid #ebebeb;
+        }
+      }
+    }
   }
 
   ol {

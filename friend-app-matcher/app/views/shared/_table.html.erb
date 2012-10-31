@@ -1,5 +1,21 @@
 <div class="service-list">
-  <div class="header"><%= list_title %></div>
+  <div class="header">
+    <ul class="header-list">
+      <li><a class="list-title"><%= list_title %></a></li>
+      <li><a class="pagination-left">
+        <%= image_tag('left-caret-icon.png') %>
+      </a></li>
+      <li><a class="pagination-right">
+        <%= image_tag('right-caret-icon.png') %>
+      </a></li>
+      <li><a class="actions">
+        <%= image_tag('widget-icon.gif') %>
+        <div class="actions-sublist">
+          <% # Should find a way to pass in custom actions list %>
+        </div>
+      </a></li>
+    </ul>
+  </div>
   <div class="service-list-container">
     <ol>
       <% list.each do |item| %>
