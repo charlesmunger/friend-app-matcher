@@ -1,4 +1,5 @@
 # Seed friend data
+Friendship.delete_all
 users = User.find(:all)
 users.each do |user|
   users.each do |friend|
