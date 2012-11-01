@@ -16,12 +16,12 @@ Table.prototype.setupActions = function() {
 
 // Displays the "actions" menu
 Table.prototype.showActions = function(evt) {
-  $(this.actions + ' .actions-sublist').slideDown('fast');
+  $('.service-list .actions-sublist').slideDown('fast');
 }
 
 // Hides the "actions" menu
 Table.prototype.hideActions = function(evt) {
-  $(this.actions + ' .actions-sublist').slideUp('fast');
+  $('.service-list .actions-sublist').slideUp('fast');
 }
 
 // Setup event handlers on checkboxes
