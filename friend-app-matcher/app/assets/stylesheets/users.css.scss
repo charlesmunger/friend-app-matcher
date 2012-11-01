@@ -1,3 +1,24 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.installed-apps-container {
+  .user-apps-actions {
+    padding: 0px;
+    font-size: 13px;
+    list-style: none;
+
+    li {
+      color: #222;
+
+      div {
+        padding: 5px 30px;
+      }
+
+      div:hover {
+        cursor: pointer;
+        background: #f1f1f1;
+      }
+    }
+  }
+}

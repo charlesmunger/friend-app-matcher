@@ -10,12 +10,6 @@ class UsersControllerTest < ActionController::TestCase
     @user = users(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:users)
-  end
-
   test "show user should include apps" do
     get :show, id: @user
     assert_response :success
