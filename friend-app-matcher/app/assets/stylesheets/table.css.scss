@@ -131,11 +131,11 @@
 .unchecked-item { }
 
 .checked-item {
-  padding: 7px;
-  background: image_url('checkmark.png') no-repeat;
-  height: 15px;
-  width: 15px;
+  padding: 0;
+  background: image_url('checkmark-mod.png') no-repeat;
+  height: 13px;
+  width: 13px;
   position: absolute;
-  top: -4px;
-  left: -6px;
+  top: 0;
+  left: -1px;
 }
