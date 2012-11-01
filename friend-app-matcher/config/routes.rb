@@ -1,12 +1,17 @@
 FriendAppMatcher::Application.routes.draw do
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
+  devise_for :users
 
-    get '' => :new
-    post '' => :create
-  end
+  #controller :sessions do
+  #  get 'login' => :new
+  #  post 'login' => :create
+  #  delete 'logout' => :destroy
+
+  #  get '' => :new
+  #  post '' => :create
+  #end
+
+  # root_url **NEEDED** from devise
+  root :to => "users#index"
 
   resources :user_apps
 

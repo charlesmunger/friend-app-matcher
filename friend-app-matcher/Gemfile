@@ -38,3 +38,10 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'will_paginate', '~> 3.0'
+
+# To use Facebook auth
+
+gem 'devise'
+gem 'omniauth'
+gem 'oauth2'
+gem 'omniauth-facebook'
