@@ -1,6 +1,5 @@
 FriendAppMatcher::Application.routes.draw do
-  devise_for :users
-
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   #controller :sessions do
   #  get 'login' => :new
   #  post 'login' => :create
@@ -23,6 +22,8 @@ FriendAppMatcher::Application.routes.draw do
 
   match "recommendations" => "recommendations#index"
   match "topapps" => "topapps#index"
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
