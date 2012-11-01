@@ -3,6 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .installed-apps-container {
+  .pagination-container {
+    position: absolute;
+    right: 240px;
+    top: 0;
+
+    .page_info {
+      font-size: 13px;
+    }
+  }
+
   .user-apps-actions {
     padding: 0px;
     font-size: 13px;

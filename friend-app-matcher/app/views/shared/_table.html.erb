@@ -2,7 +2,7 @@
   <div class="header">
     <ul class="header-list">
       <li><a class="select-all-checkbox-container">
-        <span role="checkbox" 
+        <span role="checkbox"
               class="checkbox"
               aria-checked="false"
               tabindex="0">
@@ -10,6 +10,9 @@
         </span>
       </a></li>
       <li><a class="list-title"><%= list_title %></a></li>
+      <li>
+        <%= render partial: pagination %>
+      </li>
       <li><a class="pagination-left" tabindex="0">
         <%= image_tag('left-caret-icon.png') %>
       </a></li>
@@ -30,7 +33,7 @@
         <li class="list-row-item">
           <div class="list-item">
             <div class="list-row-item-checkbox-container">
-              <span role="checkbox" 
+              <span role="checkbox"
                     class="checkbox"
                     aria-checked="false"
                     tabindex="0">

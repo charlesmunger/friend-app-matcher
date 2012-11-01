@@ -5,13 +5,8 @@
     <%= render partial: 'shared/table', 
                locals: { list_title: @user.username + ' ' + @user.uid,
                          list: @user.apps,
-                         custom_actions: 'users/ignore_table_actions' } %>
-    <div class="apple_pagination">
-      <div class="page_info">
-        <%= page_entries_info @apps, :model => 'installed applications' %>
-      </div>
-      <%= will_paginate @apps, :container => false %>
-    </div>
+                         custom_actions: 'users/ignore_table_actions',
+                         pagination: 'users/pagination' } %>
   </div>
   <script type='text/javascript' 
           language='javascript' 
