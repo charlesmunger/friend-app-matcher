@@ -1,31 +1,19 @@
-<h1>Listing friends</h1>
+<div class="service-view-user-friends">
+  <div class="friends-container">
+    <% if @page_left
+         @left_link = friendships_path(page: @page_left)
+       end
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Friend</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @friends.each do |friend| %>
-  <tr>
-    <td><%= friend.username %></td>
-    <td><%= link_to 'Show', friend %></td>
-    <td><%= link_to 'Edit', edit_friendship_path(friend) %></td>
-    <td><%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<div class="apple_pagination">
-  <div class="page_info">
-    <%= page_entries_info @friends, :model => 'friends' %>
+       if @page_right
+         @right_link = friendships_path(page: @page_right)
+       end
+    %>
+    <%= render partial: 'shared/table', 
+               locals: { list_title: 'Your Friends',
+                         list: @friends,
+                         custom_actions: 'friendships/ignore_table_actions',
+                         pagination: 'friendships/pagination', 
+                         left_link: @left_link,
+                         right_link: @right_link } %>
   </div>
-  <%= will_paginate @friends, :container => false %>
 </div>
-
-<%= link_to 'New Friendship', new_friendship_path %>

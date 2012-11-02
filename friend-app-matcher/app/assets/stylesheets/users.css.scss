@@ -31,4 +31,18 @@
       }
     }
   }
+
+  .list-item {
+    .list-row-item-checkbox-container {
+      margin: 5px;
+      position: absolute;
+      top: 35px;
+      left: 24px;
+    }
+
+    .list-element {
+      padding: 0;
+      margin: 0 0 0 103px;
+    }
+  }
 }

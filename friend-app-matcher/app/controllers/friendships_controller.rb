@@ -8,6 +8,27 @@ class FriendshipsController < ApplicationController
     @friends = @user.friends.paginate page: params[:page], order: 'created_at desc'
     @primary = @user
 
+    # Links for pagination
+    page = if params[:page]
+             params[:page].to_i
+           else
+             page = 1
+           end
+
+    @page_left = nil
+    @page_right = nil
+
+    if @primary.friends.count > User.per_page
+      if page == 1
+        @page_right = page + 1
+      elsif @friends.count < (User.per_page * page)
+        @page_left = page - 1
+      else
+        @page_right = page + 1
+        @page_left = page - 1
+      end
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @friends }
