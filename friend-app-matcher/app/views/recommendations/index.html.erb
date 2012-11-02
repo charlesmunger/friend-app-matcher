@@ -1,21 +1,23 @@
-<table>
-  <tr align="center">
-    <td> Installed by: </td>
-    <td> Application</td>
-  </tr>
-  <% @app_counts.each do |appCount| %>
-    <tr>
-      <td><%= appCount[1] %> friends. </td>
-      <td> <%= render appCount[0] %></td>
-    </tr>
-  <% end %>
-</table>
-<script type='text/javascript' language='javascript' src='http://www.appbrain.com/api/api.nocache.js'></script>
+<div class="service-view-rec-apps">
+  <div class="rec-apps-container">
+    <% if @page_left
+         @left_link = recommendations_path(page: @page_left)
+       end
 
-
-<div class="apple_pagination">
-  <div class="page_info">
-    <%= page_entries_info @app_counts, :model => 'recommended applications' %>
+       if @page_right
+         @right_link = recommendations_path(page: @page_right)
+       end
+    %>
+    <%= render partial: 'shared/table', 
+               locals: { list_title: 'Recommended Applications',
+                         list: @app_counts_display,
+                         custom_actions: 'recommendations/ignore_table_actions',
+                         pagination: 'recommendations/pagination', 
+                         left_link: @left_link,
+                         right_link: @right_link } %>
   </div>
-  <%= will_paginate @app_counts, :container => false %>
+  <script type='text/javascript' 
+          language='javascript' 
+          src='http://www.appbrain.com/api/api.nocache.js'>
+  </script>
 </div>

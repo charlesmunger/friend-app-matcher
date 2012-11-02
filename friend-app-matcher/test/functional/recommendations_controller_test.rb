@@ -12,9 +12,9 @@ class RecommendationsControllerTest < ActionController::TestCase
     app_counts = assigns(:app_counts)
     assert_not_nil app_counts
     assert_equal 1, app_counts.length
-    friends_app = app_counts[0]
-    assert_equal apps(:two), friends_app[0]
-    assert_equal 1, friends_app[1]
+    friends_app = app_counts.keys[0]
+    assert_equal apps(:two), friends_app
+    assert_equal 1, app_counts[friends_app]
   end
 
   test "do not recommend apps already installed by user" do

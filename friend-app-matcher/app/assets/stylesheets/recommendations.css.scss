@@ -1,3 +1,48 @@
 // Place all the styles related to the reccomendations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.rec-apps-container {
+  .pagination-container {
+    position: absolute;
+    right: 180px;
+    top: 0;
+
+    .page_info {
+      font-size: 13px;
+    }
+  }
+
+  .rec-apps-actions {
+    padding: 0px;
+    font-size: 13px;
+    list-style: none;
+
+    li {
+      color: #222;
+
+      div {
+        padding: 5px 30px;
+      }
+
+      div:hover {
+        cursor: pointer;
+        background: #f1f1f1;
+      }
+    }
+  }
+
+  .list-item {
+    .list-row-item-checkbox-container {
+      margin: 5px;
+      position: absolute;
+      top: 35px;
+      left: 24px;
+    }
+
+    .list-element {
+      padding: 0;
+      margin: 0 0 0 103px;
+    }
+  }
+}
