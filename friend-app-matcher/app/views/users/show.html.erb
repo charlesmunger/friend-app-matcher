@@ -2,11 +2,21 @@
   <p id="notice"><%= notice %></p>
 
   <div class="installed-apps-container">
+    <% if @page_left
+         @left_link = user_path(@user, page: @page_left)
+       end
+
+       if @page_right
+         @right_link = user_path(@user, page: @page_right)
+       end
+    %>
     <%= render partial: 'shared/table', 
                locals: { list_title: @user.username + ' ' + @user.uid,
                          list: @user.apps,
                          custom_actions: 'users/ignore_table_actions',
-                         pagination: 'users/pagination' } %>
+                         pagination: 'users/pagination', 
+                         left_link: @left_link,
+                         right_link: @right_link } %>
   </div>
   <script type='text/javascript' 
           language='javascript' 

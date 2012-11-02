@@ -17,16 +17,41 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @primary = User.find(session[:user_id])
+
     @user = User.find(params[:id])
-    @apps = @user.apps.paginate(:page => params[:page])
-    if params[:id].eql? current_user.id.to_s or
-        @user.friends.where(:id => current_user.id).count != 0
+    @apps = @user.apps.paginate(page: params[:page])
+
+    if @primary.id == @user.id or 
+      @primary.friends.where(:id => @user.id).count != 0
+
+      # Links for pagination
+      page = if params[:page]
+               params[:page].to_i
+             else
+               page = 1
+             end
+
+      @page_left = nil
+      @page_right = nil
+
+      if @user.apps.count > App.per_page
+        if page == 1
+          @page_right = page + 1
+        elsif @apps.count < (App.per_page * page)
+          @page_left = page - 1
+        else
+          @page_right = page + 1
+          @page_left = page - 1
+        end
+      end
+
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @user }
       end
     else
-      redirect_to friendships_url, notice: "Can only view a user's app's if they are your friend."
+      redirect_to friendships_url, 
+        notice: "Can only view someone's apps if the person is your friend."
     end
   end
 

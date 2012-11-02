@@ -16,6 +16,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:user)
     assert_equal 1, assigns(:user).apps.count
     assert_equal @user.apps[0].id, assigns(:user).apps[0].id
+    assert @page_left.nil?
+    assert @page_right.nil?
   end
 
   test "should get new" do

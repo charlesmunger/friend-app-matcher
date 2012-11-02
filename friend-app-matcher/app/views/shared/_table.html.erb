@@ -13,10 +13,18 @@
       <li>
         <%= render partial: pagination %>
       </li>
-      <li><a class="pagination-left" tabindex="0">
+      <li><a class="pagination-left"
+           <% if left_link %>
+             href=<%= left_link %>
+           <% end %>
+             tabindex="0">
         <%= image_tag('left-caret-icon.png') %>
       </a></li>
-      <li><a class="pagination-right" tabindex="0">
+      <li><a class="pagination-right" 
+           <% if right_link %>
+             href=<%= right_link %>
+           <% end %>
+             tabindex="0">
         <%= image_tag('right-caret-icon.png') %>
       </a></li>
       <li><a class="actions">
