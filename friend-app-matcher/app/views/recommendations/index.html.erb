@@ -11,7 +11,8 @@
     <%= render partial: 'shared/table', 
                locals: { list_title: 'Recommended Applications',
                          list: @app_counts_display,
-                         custom_actions: 'recommendations/ignore_table_actions',
+                         #custom_actions: 'recommendations/ignore_table_actions',
+                         custom_actions: nil,
                          pagination: 'recommendations/pagination', 
                          left_link: @left_link,
                          right_link: @right_link } %>
