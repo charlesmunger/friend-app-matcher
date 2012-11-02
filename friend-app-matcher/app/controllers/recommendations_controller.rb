@@ -2,7 +2,7 @@ require 'will_paginate/array'
 
 class RecommendationsController < ApplicationController
   def index
-    user = User.find_by_id(session[:user_id])
+    user = current_user
     friends = user.friends
     @app_counts = {}
     friends.each do |friend|

@@ -16,8 +16,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @apps = @user.apps.paginate(:page => params[:page])
-    if params[:id].eql? session[:user_id].to_s or
-        @user.friends.where(:id => session[:user_id]).count != 0
+    if params[:id].eql? current_user.id.to_s or
+        @user.friends.where(:id => current_user.id).count != 0
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @user }

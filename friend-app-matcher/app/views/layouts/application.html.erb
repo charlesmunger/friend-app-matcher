@@ -13,12 +13,11 @@
 
   <div id="columns">
 
-    <% if session[:user_id] %>
+    <% if current_user %>
       <div id="side">
 
         <ul>
           <% 
-            current_user = User.find_by_id(session[:user_id])
             home_user_path = users_path + '/' + current_user.id.to_s
           %>
           <li><%= link_to 'My Account', home_user_path %></li>
@@ -27,7 +26,8 @@
           <li><%= link_to 'Friends', friendships_path %></li>
         </ul>
 
-        <%= button_to 'Logout', logout_path, method: :delete %>
+        <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
+
       </div>
     <% end %>
 

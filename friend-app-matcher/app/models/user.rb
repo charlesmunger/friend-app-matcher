@@ -22,23 +22,21 @@ class User < ActiveRecord::Base
   validates :username, presence: true, 
                        uniqueness: { case_sensitive: false }
 
+  validates :uid, presence: true, uniqueness: true
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     auth.each do |k, v|
       logger.debug "#{k}\n#{v}\n\n"
     end
     unless user
-      user = User.create(name:auth.extra.raw_info.username,
+      user = User.create(username:auth.extra.raw_info.username,
                          name:auth.extra.raw_info.name,
                          provider:auth.provider,
                          uid:auth.uid,
                          email:auth.info.email,
                          password:Devise.friendly_token[0,20])
-      logger.debug "User created #{user}"
-      user = User.where(:provider => auth.provider, :uid => auth.uid).first
-      logger.debug "User retrieved from db #{user}"
     end
-    logger.debug "End find for fb"
     user
   end
   
