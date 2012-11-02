@@ -30,7 +30,9 @@
       <li><a class="actions">
         <%= image_tag('widget-icon.gif') %>
         <div class="actions-sublist">
-          <%= render partial: custom_actions %>
+          <% if custom_actions %>
+            <%= render partial: custom_actions %>
+          <% end %>
         </div>
       </a></li>
     </ul>

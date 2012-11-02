@@ -1,0 +1,40 @@
+<div class="service-view-top-apps">
+  <div class="friends-container">
+    <% if @page_left
+         @left_link = tops_path(page: @page_left)
+       end
+
+       if @page_right
+         @right_link = tops_path(page: @page_right)
+       end
+    %>
+    <%= render partial: 'shared/table', 
+               locals: { list_title: 'Your Friends',
+                         list: @,
+                         custom_actions: 'topapps/ignore_table_actions',
+                         pagination: 'topapps/pagination', 
+                         left_link: @left_link,
+                         right_link: @right_link } %>
+  </div>
+</div>
+
+<table>
+  <tr align="center">
+    <td> Installed by: </td>
+    <td> Application</td>
+  </tr>
+  <% @app_counts.each do |app_count| %>
+      <tr>
+        <td><%= app_count[1] %> people </td>
+        <td> <%= render app_count[0] %></td>
+      </tr>
+  <% end %>
+</table>
+<script type='text/javascript' language='javascript' src='http://www.appbrain.com/api/api.nocache.js'></script>
+
+<div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info @app_counts, :model => 'top applications' %>
+  </div>
+  <%= will_paginate @app_counts, :container => false %>
+</div>
