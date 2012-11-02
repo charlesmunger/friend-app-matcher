@@ -6,6 +6,7 @@ class FriendshipsController < ApplicationController
   def index
     @user = current_user#User.find_by_id(session[:user_id])
     @friends = @user.friends.paginate page: params[:page], order: 'created_at desc'
+    @primary = @user
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,6 +17,7 @@ class FriendshipsController < ApplicationController
   # GET /friendships/1
   # GET /friendships/1.json
   def show
+    @primary = User.find(session[:user_id])
     @friendship = Friendship.find(params[:id])
 
     respond_to do |format|
@@ -27,6 +29,7 @@ class FriendshipsController < ApplicationController
   # GET /friendships/new
   # GET /friendships/new.json
   def new
+    @primary = User.find(session[:user_id])
     @friendship = Friendship.new
 
     respond_to do |format|
@@ -37,6 +40,7 @@ class FriendshipsController < ApplicationController
 
   # GET /friendships/1/edit
   def edit
+    @primary = User.find(session[:user_id])
     @friendship = Friendship.find(params[:id])
   end
 

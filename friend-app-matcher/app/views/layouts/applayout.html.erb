@@ -18,7 +18,7 @@
            # Display the user's first name instead (change later). %>
         <li>
           <a class="name-display" href="#">
-            <%= @user.username %>
+            <%= @primary.username %>
             <%= image_tag('down-triangle.gif', class: 'dropdown-img') %>
           </a>
 
@@ -27,7 +27,7 @@
             <%= image_tag('up-triangle.png') %> 
             <div class="user-options-sub-list-container">
               <ul>
-                <li><%= link_to 'Settings', edit_user_path(@user) %></li>
+                <li><%= link_to 'Settings', edit_user_path(@primary) %></li>
                 <li><%= link_to 'Logout', logout_path, method: :delete %></li>
               </ul>
             </div>
@@ -45,9 +45,7 @@
         <div class="app-side-nav">Navigation</div>
         <div class="app-side-nav-list">
           <ul>
-            <% current_user = User.find_by_id(session[:user_id])
-               home_user_path = users_path + '/' + current_user.id.to_s %>
-            <li><%= link_to 'My Apps', home_user_path %></li>
+            <li><%= link_to 'My Apps', user_path(@primary) %></li>
             <li><%= link_to 'Recommendations', recommendations_path %></li>
             <li><%= link_to 'Top Applications', topapps_path %></li>
             <li><%= link_to 'Friends', friendships_path %></li>

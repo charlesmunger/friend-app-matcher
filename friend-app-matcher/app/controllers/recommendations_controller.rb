@@ -5,6 +5,8 @@ class RecommendationsController < ApplicationController
 
   def index
     user = current_user
+    @primary = user
+
     friends = user.friends
     @app_counts = {}
     friends.each do |friend|

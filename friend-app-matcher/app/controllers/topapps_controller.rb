@@ -2,6 +2,7 @@ class TopappsController < ApplicationController
   layout "applayout"
 
   def index
+    @primary = User.find(session[:user_id])
     apps = App.all
     @app_counts = {}
     apps.each do |app|

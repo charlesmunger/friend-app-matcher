@@ -4,6 +4,7 @@ class AppsController < ApplicationController
   # GET /apps
   # GET /apps.json
   def index
+    @primary = User.find(session[:user_id])
     @apps = App.all
 
     respond_to do |format|
@@ -15,6 +16,7 @@ class AppsController < ApplicationController
   # GET /apps/1
   # GET /apps/1.json
   def show
+    @primary = User.find(session[:user_id])
     @app = App.find(params[:id])
 
     respond_to do |format|
@@ -26,6 +28,7 @@ class AppsController < ApplicationController
   # GET /apps/new
   # GET /apps/new.json
   def new
+    @primary = User.find(session[:user_id])
     @app = App.new
 
     respond_to do |format|
@@ -36,6 +39,7 @@ class AppsController < ApplicationController
 
   # GET /apps/1/edit
   def edit
+    @primary = User.find(session[:user_id])
     @app = App.find(params[:id])
   end
 
