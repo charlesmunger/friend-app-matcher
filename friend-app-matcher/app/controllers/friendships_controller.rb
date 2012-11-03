@@ -38,7 +38,7 @@ class FriendshipsController < ApplicationController
   # GET /friendships/1
   # GET /friendships/1.json
   def show
-    @primary = User.find(session[:user_id])
+    @primary = current_user
     @friendship = Friendship.find(params[:id])
 
     respond_to do |format|
@@ -50,7 +50,7 @@ class FriendshipsController < ApplicationController
   # GET /friendships/new
   # GET /friendships/new.json
   def new
-    @primary = User.find(session[:user_id])
+    @primary = current_user
     @friendship = Friendship.new
 
     respond_to do |format|
@@ -61,7 +61,7 @@ class FriendshipsController < ApplicationController
 
   # GET /friendships/1/edit
   def edit
-    @primary = User.find(session[:user_id])
+    @primary = current_user
     @friendship = Friendship.find(params[:id])
   end
 

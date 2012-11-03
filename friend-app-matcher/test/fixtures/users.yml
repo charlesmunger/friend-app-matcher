@@ -2,15 +2,27 @@
 
 one:
   id: 1
-  username: User1
-  auth_token: User1
+  email: user1@test.com
+  encrypted_password: password
+  uid: "11111"
+  provider: facebook
+  username: user1
+  name: user1
 
 two:
   id: 2
-  username: User2
-  auth_token: User2
+  email: user2@test.com
+  encrypted_password: password
+  uid: "22222"
+  provider: facebook
+  username: user2
+  name: user2
 
 three:
   id: 3
-  username: User3
-  auth_token: User3
+  email: user3@test.com
+  encrypted_password: password
+  uid: "33333"
+  provider: facebook
+  username: user3
+  name: user3

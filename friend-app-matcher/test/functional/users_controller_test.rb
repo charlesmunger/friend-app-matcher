@@ -3,8 +3,14 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @input_user = {
+      email: "inputtest@test.com",
       username: "Input User",
-      auth_token: "Input User Token"
+      password: "password",
+      password_confirmation: "password",
+      remember_me: true,
+      uid: "1x1x1x1x1x1x1x1x",
+      provider: "facebook",
+      name: "user"
     }
 
     @user = users(:one)
@@ -49,8 +55,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    put :update, id: @user, user: { auth_token: @user.auth_token, 
-                                    username: @user.username }
+    put :update, id: @user, user: @input_user
     assert_redirected_to user_path(assigns(:user))
   end
 
