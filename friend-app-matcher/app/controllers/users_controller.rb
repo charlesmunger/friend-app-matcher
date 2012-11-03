@@ -4,13 +4,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.paginate page: params[:page],
-        order: 'created_at desc', per_page: 10
+    redirect_to action: "show", id: current_user.id
+    #@users = User.paginate page: params[:page],
+    #    order: 'created_at desc', per_page: 10
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.json { render json: @users }
+    #end
   end
 
   # GET /users/1

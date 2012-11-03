@@ -9,7 +9,7 @@ class UserAppsControllerTest < ActionController::TestCase
     # Third app hasn't been added to db yet
     @app3_package_name = "com.text.app3"
     @input_user_app = {
-      user_id: @user.username,
+      uid: @user.uid,
       apps: @app2.app_id + "\n" + @app3_package_name + "\n" + @app1.app_id
     }
 
@@ -63,7 +63,7 @@ class UserAppsControllerTest < ActionController::TestCase
 
   test "should not create user_app invalid username" do
     bad_input = {
-      user_id: "Unknown",
+      uid: "Unknown",
       apps: ""
     }
 

@@ -43,14 +43,14 @@ class UserAppsController < ApplicationController
     # Receives a Facebook username and a list of Android package names.
     # The list of package names are delimited by newlines.
     @user = User.find(:first, 
-      :conditions => [ "username = ?", params[:user_app][:user_id].strip ])
+      :conditions => [ "uid = ?", params[:user_app][:uid].strip ])
 
     if @user.nil?
       respond_to do |format|
         error_message = {
           # Arbitrary error code at the moment
           code: 21,
-          message: "Invalid username: " + params[:user_app][:user_id].strip
+          message: "Invalid uid: " + params[:user_app][:uid].strip
         }
 
         format.html { redirect_to user_apps_url }

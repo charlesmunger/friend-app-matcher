@@ -70,6 +70,11 @@
   .signin-instruct {
     font-size: 16px;
     margin: 0 0 24px 0;
+
+    a, a:visited {
+      color: blue;
+      text-decoration: none;
+    }
   }
 
   .login-form {

@@ -14,11 +14,11 @@
       <%= image_tag('app-matcher-logo-2.png', class: 'logo') %>
 
       <ul class="user-options-top">
-        <% # User.username is actually the Facebook id.
+        <% # User.email is actually the Facebook id.
            # Display the user's first name instead (change later). %>
         <li>
           <a class="name-display" href="#">
-            <%= @primary.username %>
+            <%= @primary.email %>
             <%= image_tag('down-triangle.gif', class: 'dropdown-img') %>
           </a>
 
