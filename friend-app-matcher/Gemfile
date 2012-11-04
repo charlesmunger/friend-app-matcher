@@ -45,3 +45,6 @@ gem 'devise'
 gem 'omniauth'
 gem 'oauth2'
 gem 'omniauth-facebook'
+
+gem 'therubyracer', require: "v8"
+gem 'execjs'
