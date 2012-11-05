@@ -46,3 +46,76 @@
     }
   }
 }
+
+.edit-user-container {
+   margin: 31px 0 0 0;
+   max-width: 740px;
+
+  .edit-user-header {
+    color: #222;
+    font-size: 18px;
+    font-family: arial, sans-serif;
+  }
+
+  .edit-user-details {
+    color: #333;
+    font-size: 14px;
+    font-family: arial, sans-serif;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #e5e5e5;
+
+    .details-email, .details-uid {
+      margin: 20px 0;
+    }
+
+    .details-email-label {
+      margin: 0 118px 0 0;
+    }
+
+    .details-uid-label {
+       margin: 0 130px 0 0;
+    }
+
+    .details-field {
+      border: 1px solid #e5e5e5;
+      height: 30px;
+      padding: 0 5px;
+    }
+  }
+
+  .edit-user-areas {
+    padding: 25px 0;
+    color: #222;
+    font-size: 14px;
+    font-family: arial, sans-serif;
+    border-bottom: 1px solid #e5e5e5;
+
+    a, a:visited {
+      color: #222;
+    }
+
+    a:hover {
+      color: #6e6e6e;
+      font-style: italic;
+    }
+  }
+
+  .edit-user-return {
+    padding: 25px 0;
+    color: #222;
+    font-size: 14px;
+    font-family: arial, sans-serif;
+
+    a, a:visited {
+      color: #222;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #6e6e6e;
+      font-style: italic;
+    }
+  }
+
+  
+}

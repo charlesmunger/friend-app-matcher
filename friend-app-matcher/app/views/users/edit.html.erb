@@ -1,6 +1,27 @@
-<h1>Editing user</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<div class="edit-user-container">
+  <div class="edit-user-header">
+    Personal details
+  </div>
+  <div class="edit-user-details">
+    <div class="details-email">
+      <label class="details-email-label">Email</label>
+      <input readonly="readonly" 
+             class="details-field"
+             value='<%= @user.email %>'>
+      </input>
+    </div>
+    <div class="details-uid">
+      <label class="details-uid-label">UID</label>
+      <input readonly="readonly"
+             class="details-field"
+             value='<%= @user.uid %>'>
+      </input> 
+    </div>
+  </div>
+  <div class="edit-user-areas">
+    <a>Edit friends</a>
+  </div>
+  <div class="edit-user-return">
+    <%= link_to 'Back', @user %>
+  </div>
+</div>
