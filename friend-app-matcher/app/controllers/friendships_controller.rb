@@ -5,9 +5,8 @@ class FriendshipsController < ApplicationController
   # GET /friends.json
   def index
     @user = current_user #User.find_by_id(session[:user_id])
-    @friends = @user.friends.paginate page: params[:page], order: 'created_at desc'
+    @friends = @user.friend_connections.paginate page: params[:page], order: 'created_at desc'
     @primary = @user
-    @display_all = params[:all].to_i == 1
 
     # Links for pagination
     page = if params[:page]

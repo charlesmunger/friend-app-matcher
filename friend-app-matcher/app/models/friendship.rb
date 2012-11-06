@@ -7,6 +7,18 @@ class Friendship < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :friend_id
   validate :user_is_not_friend_to_self
 
+  def user
+    User.find(self.user_id)
+  end
+
+  def friend
+    User.find(self.friend_id)
+  end
+
+  def self.per_page
+    10
+  end
+
   private
 
   def user_is_not_friend_to_self
