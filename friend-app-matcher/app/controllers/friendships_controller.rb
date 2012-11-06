@@ -5,7 +5,10 @@ class FriendshipsController < ApplicationController
   # GET /friends.json
   def index
     @user = current_user #User.find_by_id(session[:user_id])
-    @friends = @user.friend_connections.paginate page: params[:page], order: 'created_at desc'
+    @friends = @user.friend_connections
+    @friends = @friends.paginate(:conditions => {:ignore => false},
+      :page => params[:page], :order => 'created_at DESC')
+
     @primary = @user
 
     # Links for pagination
@@ -56,7 +59,36 @@ class FriendshipsController < ApplicationController
   # GET /friendships/edit
   def edit
     @primary = current_user
-    @friendship = Friendship.find(params[:id])
+    @friends = @primary.friend_connections
+    @friends = @friends.paginate(:page => params[:page], 
+      :order => 'created_at DESC')
+
+    # Links for pagination
+    page = if params[:page]
+             params[:page].to_i
+           else
+             page = 1
+           end
+
+    @page_left = nil
+    @page_right = nil
+
+    if @primary.friends.count > User.per_page
+      if page == 1
+        @page_right = page + 1
+      elsif @friends.count < (User.per_page * page)
+        @page_left = page - 1
+      else
+        @page_right = page + 1
+        @page_left = page - 1
+      end
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @friends }
+    end
+
   end
 
   # POST /friendships

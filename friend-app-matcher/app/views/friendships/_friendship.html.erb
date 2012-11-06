@@ -1,3 +1,7 @@
-<div id='<%= friendship.friend.email %>' class="friend-item">
+<div id='<%= friendship.friend.email %>' 
+     class='friend-item 
+          <% if friendship.ignore %>
+            ignored-friend 
+          <% end %>'>
   <%= link_to friendship.friend.email, user_path(friendship.friend) %>
 </div>
