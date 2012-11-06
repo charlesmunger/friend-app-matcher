@@ -6,7 +6,8 @@ class FriendshipsControllerTest < ActionController::TestCase
     @user3 = users(:three)
     @input_friendship = {
       user_id: @user1.username,
-      friend_id: @user3.username
+      friend_id: @user3.username,
+      ignore: false
     }
 
     @friendship = friendships(:one)    
@@ -28,12 +29,13 @@ class FriendshipsControllerTest < ActionController::TestCase
       post :create, friendship: @input_friendship
     end
 
-    assert_redirected_to friendship_path(assigns(:friendship))
+    assert_redirected_to friendships_path
+    assert_not_nil assigns(:friendship)
   end
 
   test "should show friendship" do
-    get :show, id: @friendship
-    assert_response :success
+    get :show
+    assert_redirected_to friendships_index_path
   end
 
   test "should get edit" do
@@ -43,7 +45,7 @@ class FriendshipsControllerTest < ActionController::TestCase
 
   test "should update friendship" do
     put :update, id: @friendship, friendship: { user_id: @friendship.user_id, friend_id: @friendship.friend_id }
-    assert_redirected_to friendship_path(assigns(:friendship))
+    assert_redirected_to friendships_path
   end
 
   test "should destroy friendship" do
@@ -52,5 +54,16 @@ class FriendshipsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to friendships_path
+  end
+
+  test "should ignore friendship" do
+    put :update, id: @friendship, friendship: { 
+      user_id: @friendship.user_id, friend_id: @friendship.friend_id,
+      ignore: true }
+    
+    assert_redirected_to friendships_path
+
+    result = assigns(:friendship)
+    assert result.ignore
   end
 end

@@ -22,7 +22,8 @@ FriendAppMatcher::Application.routes.draw do
     end
   end
 
-  resources :friendships
+  resource :friendships
+  match "friendships/index" => "friendships#index"
 
   resources :users
 

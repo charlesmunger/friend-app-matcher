@@ -4,9 +4,10 @@ class FriendshipsController < ApplicationController
   # GET /friends
   # GET /friends.json
   def index
-    @user = current_user#User.find_by_id(session[:user_id])
+    @user = current_user #User.find_by_id(session[:user_id])
     @friends = @user.friends.paginate page: params[:page], order: 'created_at desc'
     @primary = @user
+    @display_all = params[:all].to_i == 1
 
     # Links for pagination
     page = if params[:page]
@@ -35,16 +36,10 @@ class FriendshipsController < ApplicationController
     end
   end
 
-  # GET /friendships/1
-  # GET /friendships/1.json
+  # GET /friendships
+  # GET /friendships.json
   def show
-    @primary = current_user
-    @friendship = Friendship.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @friendship }
-    end
+    redirect_to action: "index"
   end
 
   # GET /friendships/new
@@ -59,7 +54,7 @@ class FriendshipsController < ApplicationController
     end
   end
 
-  # GET /friendships/1/edit
+  # GET /friendships/edit
   def edit
     @primary = current_user
     @friendship = Friendship.find(params[:id])
@@ -76,12 +71,13 @@ class FriendshipsController < ApplicationController
 
     @friendship = Friendship.new({ 
       user_id: @user.id, 
-      friend_id: @friend.id 
+      friend_id: @friend.id,
+      ignore: false
     })
 
     respond_to do |format|
       if @friendship.save
-        format.html { redirect_to @friendship, notice: 'Friendship was successfully created.' }
+        format.html { redirect_to friendships_url, notice: 'Friendship was successfully created.' }
         format.json { render json: @friendship, status: :created, location: @friendship }
       else
         format.html { render action: "new" }
@@ -96,8 +92,8 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
 
     respond_to do |format|
-      if @friendship.update_attributes(params[:friend])
-        format.html { redirect_to @friendship, notice: 'Friendship was successfully updated.' }
+      if @friendship.update_attributes(params[:friendship])
+        format.html { redirect_to friendships_url, notice: 'Friendship was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -1,11 +1,11 @@
 <div class="service-view-user-friends">
   <div class="friends-container">
     <% if @page_left
-         @left_link = friendships_path(page: @page_left)
+         @left_link = friendships_index_path(page: @page_left)
        end
 
        if @page_right
-         @right_link = friendships_path(page: @page_right)
+         @right_link = friendships_index_path(page: @page_right)
        end
     %>
     <%= render partial: 'shared/table', 
