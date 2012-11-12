@@ -90,6 +90,18 @@ Table.prototype.isSelected = function(element) {
   return checked === 'true';
 }
 
+// Returns a list of the selected row elements
+Table.prototype.getSelected = function() {
+  var selected = $(".service-list .list-items span[aria-checked='true']")
+
+  return $.map(selected, function(val, index) {
+    return $(val).parent().parent();
+  });
+}
+
+// Globally accessible table
+var table;
+
 $(function() {
-  var table = new Table();
+  table = new Table();
 });

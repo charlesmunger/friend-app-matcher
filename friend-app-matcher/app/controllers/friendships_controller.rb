@@ -122,13 +122,18 @@ class FriendshipsController < ApplicationController
   def update
     @friendship = Friendship.find(params[:id])
 
+    if (params[:ignore])
+      @friendship.ignore = params[:ignore] == "true"
+    end
+
     respond_to do |format|
       if @friendship.update_attributes(params[:friendship])
-        format.html { redirect_to friendships_url, notice: 'Friendship was successfully updated.' }
-        format.json { head :no_content }
+        format.html { render @friendship }
+        format.json { render json: { success: true } }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @friendship.errors, status: :unprocessable_entity }
+        format.html { render action: "index" }
+        format.json { render json: @friendship.errors, 
+                             status: :unprocessable_entity }
       end
     end
   end

@@ -45,7 +45,7 @@ class FriendshipsControllerTest < ActionController::TestCase
 
   test "should update friendship" do
     put :update, id: @friendship, friendship: { user_id: @friendship.user_id, friend_id: @friendship.friend_id }
-    assert_redirected_to friendships_path
+    assert_response :success
   end
 
   test "should destroy friendship" do
@@ -57,11 +57,9 @@ class FriendshipsControllerTest < ActionController::TestCase
   end
 
   test "should ignore friendship" do
-    put :update, id: @friendship, friendship: { 
-      user_id: @friendship.user_id, friend_id: @friendship.friend_id,
-      ignore: true }
+    put :update, id: @friendship, ignore: "true"
     
-    assert_redirected_to friendships_path
+    assert_response :success
 
     result = assigns(:friendship)
     assert result.ignore
