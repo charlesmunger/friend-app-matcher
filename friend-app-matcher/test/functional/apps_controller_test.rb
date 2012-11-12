@@ -97,6 +97,22 @@ class AppsControllerTest < ActionController::TestCase
     assert_equal 0, app_counts.length
   end
 
+  test "do not recommend apps from ignored friends" do
+    user = users(:one)
+    UserApp.new({ user_id: users(:two).id, app_id: apps(:two).id }).save
+    UserApp.new({ user_id: users(:three).id, app_id: apps(:two).id }).save
+    Friendship.new({ user_id: user.id, friend_id: users(:two).id,
+                     ignore: false }).save
+    Friendship.new({ user_id: user.id, friend_id: users(:three).id,
+                     ignore: true }).save
+
+    get :index
+    assert_response :success
+    app_counts = assigns(:app_counts)
+    assert_not_nil app_counts
+    assert_equal 1, app_counts.length
+  end
+
   test "get top appss" do
     get :topapps
     assert_response :success

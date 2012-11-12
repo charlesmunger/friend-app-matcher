@@ -171,7 +171,11 @@ class AppsController < ApplicationController
     user = current_user
     @primary = user
 
-    friends = user.friends
+    connections = user.friend_connections.find_all {
+      |friendship| friendship.ignore == false
+    }
+
+    friends = connections.map { |friendship| friendship.friend }
     @app_counts = {}
     friends.each do |friend|
       friend.apps.each do |app|
