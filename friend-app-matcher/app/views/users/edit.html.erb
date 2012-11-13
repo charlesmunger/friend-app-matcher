@@ -20,6 +20,11 @@
   </div>
   <div class="edit-user-areas">
     <%= link_to 'Edit friends', edit_friendships_path %>
+    <%= link_to 'Delete account', '#', class: 'edit-user-delete-account',
+                id: @user.id %>
+    <div id='editUserDeleteDialog' title='Delete account?'>
+      <p>Are you sure you want to delete your account?</p>
+    </div>
   </div>
   <div class="edit-user-return">
     <%= link_to 'Back', @user %>

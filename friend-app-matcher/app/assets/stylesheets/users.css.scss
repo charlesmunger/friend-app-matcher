@@ -93,6 +93,7 @@
     a, a:visited {
       color: #222;
       text-decoration: none;
+      margin-right: 25px;
     }
 
     a:hover {
@@ -117,6 +118,8 @@
       font-style: italic;
     }
   }
+}
 
-  
+#editUserDeleteDialog {
+  display: none;
 }

@@ -113,8 +113,8 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+      format.html { redirect_to new_user_session_path }
+      format.json { render json: { success: true } }
     end
   end
 end
