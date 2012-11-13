@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class AppsController < ApplicationController
   layout "applayout"
 
@@ -84,6 +86,135 @@ class AppsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to apps_url }
       format.json { head :no_content }
+    end
+  end
+
+  def like
+    begin
+      ActiveRecord::Base.transaction do
+        @app = App.find(params[:id])
+        @old_likes = @app.likes
+        @user_app = @app.user_apps.where(:user_id => current_user.id)
+
+        if @user_app.size == 0
+          @user_app = UserApp.new(
+              { user_id: current_user.id, app_id: params[:id]} )
+        else
+          @user_app = @user_app[0]
+        end
+    
+        if @user_app.liked?
+          @user_app.liked = false
+          @app.likes -= 1
+        else
+          @user_app.liked = true
+          @app.likes += 1
+        end
+        @app.save!
+        @user_app.save!      
+      end
+    rescue ActiveRecord::RecordInvalid => e
+      respond_to do |format|
+        format.html { redirect_to apps_url }
+        format.js { @likes = @old_likes
+            @id = @app.id
+            @error = true }
+        format.json { head :no_content }
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to apps_url }
+      format.js { @likes = @app.likes
+           @id = @app.id 
+           @error = false }
+      format.json { head :no_content }
+    end
+  end
+
+  def topapps
+    @primary = current_user
+
+    apps = App.all
+    @app_counts = []
+    apps.each do |app|
+      @app_counts << AppCount.new(app_id: app.app_id, 
+        count: app.user_apps.count, likes: app.likes, id: app.id)
+    end
+
+    @app_counts = @app_counts.sort_by { |appcount| appcount.count }.reverse
+    @app_counts_display = @app_counts.paginate(page: params[:page], 
+      per_page: AppCount.per_page)
+
+    # Links for pagination
+    page = if params[:page]
+             params[:page].to_i
+           else
+             page = 1
+           end
+
+    @page_left = nil
+    @page_right = nil
+
+    if @app_counts.count > AppCount.per_page
+      if page == 1
+        @page_right = page + 1
+      elsif @app_counts.count < (AppCount.per_page * page)
+        @page_left = page - 1
+      else
+        @page_right = page + 1
+        @page_left = page - 1
+      end
+    end
+  end
+
+  def recommendations
+    user = current_user
+    @primary = user
+
+    friends = user.friends
+    @app_counts = {}
+    friends.each do |friend|
+      friend.apps.each do |app|
+        if @app_counts[app]
+          @app_counts[app] += 1
+        else
+          @app_counts[app] = 1
+        end
+      end
+    end
+
+    # Remove apps that logged in user already has
+    user.apps.each do |app|
+      @app_counts.delete app
+    end
+
+    @app_counts_display = []
+    @app_counts.each do |key, value|
+      @app_counts_display << AppCount.new(app_id: key.app_id, 
+          count: value, likes: key.likes, id: key.id)
+    end
+
+    @app_counts_display = @app_counts_display.sort_by { |appcount| appcount.count }.reverse.paginate(page: params[:page], per_page: AppCount.per_page)
+
+    # Links for pagination
+    page = if params[:page]
+             params[:page].to_i
+           else
+             page = 1
+           end
+
+    @page_left = nil
+    @page_right = nil
+
+    if @app_counts.count > AppCount.per_page
+      if page == 1
+        @page_right = page + 1
+      elsif @app_counts.count < (AppCount.per_page * page)
+        @page_left = page - 1
+      else
+        @page_right = page + 1
+        @page_left = page - 1
+      end
     end
   end
 end

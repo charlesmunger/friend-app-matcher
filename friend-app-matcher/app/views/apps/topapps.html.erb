@@ -1,19 +1,19 @@
-<div class="service-view-rec-apps">
-  <div class="rec-apps-container">
+<div class="service-view-apps">
+  <div class="apps-container">
     <% if @page_left
-         @left_link = recommendations_path(page: @page_left)
+         @left_link = topapps_path(page: @page_left)
        end
 
        if @page_right
-         @right_link = recommendations_path(page: @page_right)
+         @right_link = topapps_path(page: @page_right)
        end
     %>
     <%= render partial: 'shared/table', 
-               locals: { list_title: 'Recommended Applications',
+               locals: { list_title: 'Top Applications',
                          list: @app_counts_display,
-                         #custom_actions: 'recommendations/ignore_table_actions',
+                         #custom_actions: 'apps/ignore_table_actions',
                          custom_actions: nil,
-                         pagination: 'recommendations/pagination', 
+                         pagination: 'apps/pagination', 
                          left_link: @left_link,
                          right_link: @right_link } %>
   </div>

@@ -1,5 +1,5 @@
 class AppCount < ActiveRecord::Base
-  attr_accessible :app_id, :count
+  attr_accessible :app_id, :count, :likes, :id
 
   def self.columns() @columns ||= []; end
  
@@ -10,7 +10,9 @@ class AppCount < ActiveRecord::Base
 
   column :app_id, :string
   column :count, :integer
- 
+  column :likes, :integer 
+  column :id, :integer
+
   def self.per_page
     10
   end

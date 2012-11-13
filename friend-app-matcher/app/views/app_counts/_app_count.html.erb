@@ -7,6 +7,9 @@
     </a>
   </div>
   <div class="appcount-count">
-    Installed by: <%= app_count.count %> people
+    Installed by: <%= app_count.count %> people <br>
+    <%= link_to "Like", like_app_url(app_count.id),
+        :remote => true, :method => :put %> : 
+  <span id="likes<%= app_count.id %>"> <%= app_count.likes %> likes </span>
   </div>
 </div>

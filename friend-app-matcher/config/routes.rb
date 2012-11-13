@@ -14,15 +14,20 @@ FriendAppMatcher::Application.routes.draw do
 
   resources :user_apps
 
-  resources :apps
+  #match "apps/like/:id" => "apps#like"
+
+  resources :apps do
+    member do
+      put :like
+    end
+  end
 
   resources :friendships
 
   resources :users
 
-  match "recommendations" => "recommendations#index"
-  match "topapps" => "topapps#index"
-
+  match "recommendations" => "apps#recommendations"
+  match "topapps" => "apps#topapps"
 
 
   # The priority is based upon order of creation:

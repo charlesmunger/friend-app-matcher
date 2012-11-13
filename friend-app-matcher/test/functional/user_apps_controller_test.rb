@@ -38,6 +38,21 @@ class UserAppsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:user_apps)
   end
 
+  test "create updates user_app when already present" do
+    user_app = UserApp.new({ user_id: @user.id, app_id: 
+              @app2.id, liked: true })
+    user_app.save
+    post :create, user_app: @input_user_app
+    
+    updated_app = UserApp.where(:user_id => @user.id, :app_id => @app2.id)[0]
+    assert updated_app.installed
+    assert updated_app.liked
+    
+    updated_app = UserApp.where(:user_id => @user.id, :app_id => @app1.id)[0]
+    assert updated_app.installed
+    assert !updated_app.liked
+  end
+
   test "should show user_app" do
     get :show, id: @user_app
     assert_response :success
