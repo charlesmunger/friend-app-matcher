@@ -106,7 +106,7 @@ class AppsControllerTest < ActionController::TestCase
     Friendship.new({ user_id: user.id, friend_id: users(:three).id,
                      ignore: true }).save
 
-    get :index
+    get :recommendations
     assert_response :success
     app_counts = assigns(:app_counts)
     assert_not_nil app_counts
