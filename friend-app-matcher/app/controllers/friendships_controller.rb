@@ -94,14 +94,14 @@ class FriendshipsController < ApplicationController
   # POST /friendships
   # POST /friends.json
   def create
-    @user = User.find(:first, 
-      :conditions => [ "username = ?", params[:friendship][:user_id] ])
+    #@user = User.find(:first, 
+    #  :conditions => [ "username = ?", params[:friendship][:user_id] ])
 
     @friend = User.find(:first,
       :conditions => [ "username = ?", params[:friendship][:friend_id] ])
 
     @friendship = Friendship.new({ 
-      user_id: @user.id, 
+      user_id: current_user.id, 
       friend_id: @friend.id,
       ignore: false
     })
