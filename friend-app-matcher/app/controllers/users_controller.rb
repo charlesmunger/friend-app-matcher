@@ -20,9 +20,10 @@ class UsersController < ApplicationController
     @primary = current_user
 
     @user = User.find(params[:id])
-    @apps = @user.apps.paginate(page: params[:page])
+    @apps = App.joins(:user_apps).where("user_apps.user_id = #{params[:id]} and user_apps.installed = true")
+        .paginate(page: params[:page])
 
-    if @primary.id == @user.id or 
+    if @primary.id == @user.id or
       @primary.friends.where(:id => @user.id).count != 0
 
       # Links for pagination

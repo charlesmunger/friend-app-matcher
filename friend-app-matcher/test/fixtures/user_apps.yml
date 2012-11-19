@@ -3,11 +3,14 @@
 one:
   user_id: 1
   app_id: 1
+  installed: true
 
 two:
   user_id: 2
   app_id: 2
+  installed: true
 
 three:
   user_id: 3
   app_id: 3
+  installed: true

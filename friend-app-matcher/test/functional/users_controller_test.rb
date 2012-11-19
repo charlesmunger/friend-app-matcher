@@ -20,8 +20,20 @@ class UsersControllerTest < ActionController::TestCase
     get :show, id: @user
     assert_response :success
     assert_not_nil assigns(:user)
-    assert_equal 1, assigns(:user).apps.count
+    assert_equal 1, assigns(:apps).length
     assert_equal @user.apps[0].id, assigns(:user).apps[0].id
+    assert @page_left.nil?
+    assert @page_right.nil?
+  end
+
+  test "show user should not include apps that are not installed" do
+    user_app = user_apps(:one)
+    user_app.installed = false
+    user_app.save
+    get :show, id: @user
+    assert_response :success
+    assert_not_nil assigns(:user)
+    assert_equal 0, assigns(:apps).length
     assert @page_left.nil?
     assert @page_right.nil?
   end

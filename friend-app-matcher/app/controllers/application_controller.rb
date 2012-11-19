@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
     # Fetch friends after each login.
     # Should not be here, we are misusing this function,
     # We should use https://github.com/hassox/warden
+
+    # Don't fail login for test accounts.
+    if !request.env['omniauth.auth']
+      return
+    end
+
     graph = Koala::Facebook::API.new(request.env['omniauth.auth']['credentials']['token'])
     friends = graph.get_connections("me", "friends")
     Friendship.destroy_all(:user_id => current_user.id)

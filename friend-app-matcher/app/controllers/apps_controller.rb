@@ -134,15 +134,23 @@ class AppsController < ApplicationController
   def topapps
     @primary = current_user
 
-    apps = App.all
-    @app_counts = []
-    apps.each do |app|
-      @app_counts << AppCount.new(app_id: app.app_id, 
-        count: app.user_apps.count, likes: app.likes, id: app.id)
-    end
 
-    @app_counts = @app_counts.sort_by { |appcount| appcount.count }.reverse
-    @app_counts_display = @app_counts.paginate(page: params[:page], 
+    app_count = UserApp.joins(:app).select("apps.app_id, apps.id, apps.likes, count(apps.app_id)")
+        .where(:installed => true).group("apps.app_id").order("count(apps.app_id) DESC")
+        .paginate(page: params[:page], per_page: AppCount.per_page)
+    @app_counts = []
+    app_count.each do |app|
+      @app_counts <<  AppCount.new(app_id: app.app_id, count: app_count.count[app.app_id], likes: app.likes, id: app.id)
+    end
+    #apps = App.all
+    #@app_counts = []
+    #apps.each do |app|
+    #  @app_counts << AppCount.new(app_id: app.app_id,
+    #    count: app.user_apps.where(:installed => true).count, likes: app.likes, id: app.id)
+    #end
+
+    #@app_counts = @app_counts.sort_by { |appcount| appcount.count }.reverse
+    @app_counts_display = @app_counts.paginate(page: params[:page],
       per_page: AppCount.per_page)
 
     # Links for pagination
@@ -178,11 +186,13 @@ class AppsController < ApplicationController
     friends = connections.map { |friendship| friendship.friend }
     @app_counts = {}
     friends.each do |friend|
-      friend.apps.each do |app|
-        if @app_counts[app]
-          @app_counts[app] += 1
+      friend.user_apps.each do |user_app|
+        if !user_app.installed?
+          next
+        elsif @app_counts[user_app.app]
+          @app_counts[user_app.app] += 1
         else
-          @app_counts[app] = 1
+          @app_counts[user_app.app] = 1
         end
       end
     end

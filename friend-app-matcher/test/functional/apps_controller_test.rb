@@ -113,7 +113,7 @@ class AppsControllerTest < ActionController::TestCase
     assert_equal 1, app_counts.length
   end
 
-  test "get top appss" do
+  test "get top apps" do
     get :topapps
     assert_response :success
     app_counts = assigns(:app_counts)
@@ -126,4 +126,30 @@ class AppsControllerTest < ActionController::TestCase
     assert @page_right.nil?
   end
 
+  test "do not recommend apps unless they are installed" do
+    user_app = user_apps(:two)
+    user_app.installed = false
+    user_app.save
+    get :recommendations
+    assert_response :success
+    app_counts = assigns(:app_counts)
+    assert_not_nil app_counts
+    assert_equal 0, app_counts.length
+  end
+
+  test "get top apps doesn't include non installed apps" do
+    user_app = user_apps(:one)
+    user_app.installed = false
+    user_app.save
+    user_app = user_apps(:two)
+    user_app.installed = false
+    user_app.save
+    get :topapps
+    assert_response :success
+    app_counts = assigns(:app_counts)
+    assert_not_nil app_counts
+    assert_equal 0, app_counts.length
+    assert @page_left.nil?
+    assert @page_right.nil?
+  end
 end
