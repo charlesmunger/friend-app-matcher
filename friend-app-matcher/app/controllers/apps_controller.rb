@@ -134,24 +134,17 @@ class AppsController < ApplicationController
   def topapps
     @primary = current_user
 
-
-    app_count = UserApp.joins(:app).select("apps.app_id, apps.id, apps.likes, count(apps.app_id)")
+    app_count = UserApp.joins(:app)
+        .select("apps.app_id as app_app_id, apps.id, apps.likes, count(apps.app_id) as count")
         .where(:installed => true).group("apps.app_id").order("count(apps.app_id) DESC")
         .paginate(page: params[:page], per_page: AppCount.per_page)
     @app_counts = []
     app_count.each do |app|
-      @app_counts <<  AppCount.new(app_id: app.app_id, count: app_count.count[app.app_id], likes: app.likes, id: app.id)
+      @app_counts <<  AppCount.new(app_id: app.app_app_id, count: app.count, likes: app.likes,
+          id: app.id)
     end
-    #apps = App.all
-    #@app_counts = []
-    #apps.each do |app|
-    #  @app_counts << AppCount.new(app_id: app.app_id,
-    #    count: app.user_apps.where(:installed => true).count, likes: app.likes, id: app.id)
-    #end
 
-    #@app_counts = @app_counts.sort_by { |appcount| appcount.count }.reverse
-    @app_counts_display = @app_counts.paginate(page: params[:page],
-      per_page: AppCount.per_page)
+    @app_counts_display = @app_counts.paginate(page: params[:page], per_page: AppCount.per_page)
 
     # Links for pagination
     page = if params[:page]
@@ -179,14 +172,11 @@ class AppsController < ApplicationController
     user = current_user
     @primary = user
 
-    connections = user.friend_connections.find_all {
-      |friendship| friendship.ignore == false
-    }
-
-    friends = connections.map { |friendship| friendship.friend }
+    friendships = Friendship.includes(:friend => [ {:user_apps => :app}])
+        .where(:user_id => current_user.id, :ignore => false)
     @app_counts = {}
-    friends.each do |friend|
-      friend.user_apps.each do |user_app|
+    friendships.each do |friendship|
+      friendship.friend.user_apps.each do |user_app|
         if !user_app.installed?
           next
         elsif @app_counts[user_app.app]
@@ -196,11 +186,11 @@ class AppsController < ApplicationController
         end
       end
     end
-
     # Remove apps that logged in user already has
     user.apps.each do |app|
       @app_counts.delete app
     end
+
 
     @app_counts_display = []
     @app_counts.each do |key, value|
@@ -208,7 +198,8 @@ class AppsController < ApplicationController
           count: value, likes: key.likes, id: key.id)
     end
 
-    @app_counts_display = @app_counts_display.sort_by { |appcount| appcount.count }.reverse.paginate(page: params[:page], per_page: AppCount.per_page)
+    @app_counts_display = @app_counts_display.sort_by { |appcount| appcount.count }.reverse
+        .paginate(page: params[:page], per_page: AppCount.per_page)
 
     # Links for pagination
     page = if params[:page]
