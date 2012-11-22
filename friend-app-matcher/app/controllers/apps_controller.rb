@@ -137,7 +137,6 @@ class AppsController < ApplicationController
     app_count = UserApp.joins(:app)
         .select("apps.app_id as app_app_id, apps.id, apps.likes, count(apps.app_id) as count")
         .where(:installed => true).group("apps.app_id").order("count(apps.app_id) DESC")
-        .paginate(page: params[:page], per_page: AppCount.per_page)
     @app_counts = []
     app_count.each do |app|
       @app_counts <<  AppCount.new(app_id: app.app_app_id, count: app.count, likes: app.likes,
