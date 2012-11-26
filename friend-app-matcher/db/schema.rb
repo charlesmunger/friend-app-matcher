@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113203846) do
+ActiveRecord::Schema.define(:version => 20121126180328) do
 
   create_table "apps", :force => true do |t|
     t.string   "app_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20121113203846) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "name"
+    t.string   "picture"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

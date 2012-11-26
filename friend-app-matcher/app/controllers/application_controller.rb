@@ -32,6 +32,8 @@ class ApplicationController < ActionController::Base
       #TODO: handle the case of an invalid token
       return
     end
+    current_user.picture = graph.get_picture(current_user.uid)
+    current_user.save
     friends = graph.get_connections("me", "friends")
     Friendship.destroy_all(:user_id => current_user.id)
     uids = friends.collect { |f| f["id"] }
