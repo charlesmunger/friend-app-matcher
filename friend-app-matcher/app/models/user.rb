@@ -24,11 +24,23 @@ class User < ActiveRecord::Base
 
   validates :uid, presence: true, uniqueness: true
 
+  def self.find_for_facebook_token(token)
+    graph = Koala::Facebook::API.new(token)
+    profile = graph.get_object("me")
+    user = User.where(:provider => :facebook, :uid => profile['id']).first
+    unless user
+      user = User.create(profile['username'],
+                         profile['name'],
+                         :facebook,
+                         profile['id'],
+                         profile['email'],
+                         password:Devise.friendly_token[0,20])
+      update_facebook_informations(token)
+    end
+  end
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
-    auth.each do |k, v|
-      logger.debug "#{k}\n#{v}\n\n"
-    end
     unless user
       user = User.create(username:auth.extra.raw_info.username,
                          name:auth.extra.raw_info.name,

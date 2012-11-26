@@ -1,4 +1,7 @@
 class UserAppsController < ApplicationController
+
+  skip_before_filter :authenticate_user!, :only => :create
+
   # GET /user_apps
   # GET /user_apps.json
   def index
@@ -42,25 +45,8 @@ class UserAppsController < ApplicationController
   def create
     # Receives a Facebook username and a list of Android package names.
     # The list of package names are delimited by newlines.
-    @user = User.find(:first, 
-      :conditions => [ "uid = ?", params[:user_app][:uid].strip ])
-
-    if @user.nil?
-      respond_to do |format|
-        error_message = {
-          # Arbitrary error code at the moment
-          code: 21,
-          message: "Invalid uid: " + params[:user_app][:uid].strip
-        }
-
-        format.html { redirect_to user_apps_url }
-        format.json { render json: error_message,
-                      status: :unprocessable_entity }
-      end
-
-      # Exit after creating a response
-      return
-    end
+    
+    @user = User.find_for_facebook_token(params[:token].strip)
 
     # List will be delimited by newlines
     packages_list = params[:user_app][:apps].strip.split("\n")

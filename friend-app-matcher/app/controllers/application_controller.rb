@@ -21,8 +21,17 @@ class ApplicationController < ActionController::Base
     if !request.env['omniauth.auth']
       return
     end
+    update_facebook_informations(request.env['omniauth.auth']['credentials']['token'])
+    super
+  end
 
-    graph = Koala::Facebook::API.new(request.env['omniauth.auth']['credentials']['token'])
+  def update_facebook_informations(token)
+    begin
+      graph = Koala::Facebook::API.new(token)
+    rescue
+      #TODO: handle the case of an invalid token
+      return
+    end
     friends = graph.get_connections("me", "friends")
     Friendship.destroy_all(:user_id => current_user.id)
     uids = friends.collect { |f| f["id"] }
@@ -36,7 +45,5 @@ class ApplicationController < ActionController::Base
                        }).save
       end
     end
-    super
   end
-
 end
