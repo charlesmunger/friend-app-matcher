@@ -3,5 +3,8 @@
           <% if friendship.ignore %>
             ignored-friend 
           <% end %>'>
+  <div>
+    <%= image_tag friendship.friend.picture %>
+  </div>
   <%= link_to friendship.friend.email, user_path(friendship.friend) %>
 </div>
