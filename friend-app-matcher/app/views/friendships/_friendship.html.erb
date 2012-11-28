@@ -3,8 +3,8 @@
           <% if friendship.ignore %>
             ignored-friend 
           <% end %>'>
-  <div>
-    <%= image_tag friendship.friend.picture %>
-  </div>
+<% if friendship.friend.picture %>
+  <%= image_tag(friendship.friend.picture, class: 'friend-picture') %>
+<% end %>
   <%= link_to friendship.friend.email, user_path(friendship.friend) %>
 </div>
