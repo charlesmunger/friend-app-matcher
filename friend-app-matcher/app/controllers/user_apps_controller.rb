@@ -65,10 +65,10 @@ class UserAppsController < ApplicationController
       end
 
       if valid_app
-        user_app = UserApp.where(:user_id => @user.id, :app_id => app.id)
+        user_app = UserApp.where(:user_id => @user.id, :app_id => app.app_id)
         if user_app.size == 0
           user_app = UserApp.new({ user_id: @user.id, app_id: 
-              app.id, installed: true })
+              app.app_id, installed: true })
         else
           user_app = user_app[0]
           user_app.installed = true
