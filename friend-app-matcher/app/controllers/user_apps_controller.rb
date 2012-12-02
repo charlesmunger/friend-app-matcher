@@ -1,7 +1,7 @@
 class UserAppsController < ApplicationController
 
   skip_before_filter :authenticate_user!, :only => :create
-
+  skip_before_filter :verity_authentication_token, :except => :create
   # GET /user_apps
   # GET /user_apps.json
   def index
