@@ -49,7 +49,7 @@ class UserAppsController < ApplicationController
     @user = User.find_for_facebook_token(params[:token].strip)
 
     # List will be delimited by newlines
-    packages_list = params[:user_app][:apps].strip.split("\n")
+    packages_list = params[:apps].strip.split("\n")
 
     # Packages that were successfully associated created with user
     @apps = []
