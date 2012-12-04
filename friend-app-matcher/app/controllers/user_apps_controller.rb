@@ -1,7 +1,8 @@
 class UserAppsController < ApplicationController
 
   skip_before_filter :authenticate_user!, :only => :create
-  skip_before_filter :verity_authentication_token, :except => :create
+  skip_before_filter :verify_authentication_token, :except => :create
+
   # GET /user_apps
   # GET /user_apps.json
   def index
@@ -68,7 +69,7 @@ class UserAppsController < ApplicationController
         user_app = UserApp.where(:user_id => @user.id, :app_id => app.app_id)
         if user_app.size == 0
           user_app = UserApp.new({ user_id: @user.id, app_id: 
-              app.app_id, installed: true })
+              app.id, installed: true })
         else
           user_app = user_app[0]
           user_app.installed = true
