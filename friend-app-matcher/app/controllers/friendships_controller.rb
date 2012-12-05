@@ -4,9 +4,9 @@ class FriendshipsController < ApplicationController
   # GET /friends
   # GET /friends.json
   def index
-    @user = current_user #User.find_by_id(session[:user_id])
-    @friends = @user.friend_connections
-    @friends = @friends.paginate(:conditions => {:ignore => false},
+    @user = current_user
+    @friends = Friendship.includes(:friend)
+        .where(:user_id => current_user.id).paginate(:conditions => {:ignore => false},
       :page => params[:page], :order => 'created_at DESC')
 
     @primary = @user
