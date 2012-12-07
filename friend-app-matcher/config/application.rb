@@ -60,6 +60,6 @@ module FriendAppMatcher
     config.assets.version = '1.0'
 
     # Use memcache instance
-    config.cache_store = :mem_cache_store, "http://ec2-184-73-47-195.compute-1.amazonaws.com"
+    config.cache_store = :dalli_store, "http://ec2-184-73-47-195.compute-1.amazonaws.com"
   end
 end

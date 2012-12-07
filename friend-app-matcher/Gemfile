@@ -57,3 +57,4 @@ gem 'therubyracer', require: "v8"
 gem 'execjs'
 
 gem 'rubystats'
+gem 'dalli'
