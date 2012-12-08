@@ -59,7 +59,5 @@ module FriendAppMatcher
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    # Use memcache instance
-    config.cache_store = :dalli_store, "http://ec2-184-73-47-195.compute-1.amazonaws.com"
   end
 end
