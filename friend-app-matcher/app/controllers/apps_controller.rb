@@ -142,14 +142,11 @@ class AppsController < ApplicationController
 
     @primary = current_user
 
-    app_count_total_size =  UserApp.joins(:app)
-        .select("DISTINCT apps.app_id")
-        .where(:installed => true)
-        .count
+    app_count_total_size =  App.select("count(*)").count
 
     app_count = UserApp.joins(:app)
         .select("apps.app_id as app_app_id, apps.id, apps.likes, count(apps.app_id) as count")
-        .where(:installed => true).group("apps.app_id").order("count(apps.app_id) DESC")
+        .group("apps.app_id").order("count(apps.app_id) DESC")
         .limit(10)
         .offset( (page - 1) * AppCount.per_page )
 
