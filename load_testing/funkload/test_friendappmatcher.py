@@ -14,9 +14,7 @@ class FriendAppMatcherTest(FunkLoadTestCase):
         self.password = self.conf_get('main', 'password')
 
     def test_home_page(self):
-        section = 'test_home_page'
-        self.test_get_target(section,
-                             self.conf_get(section, 'description'))
+        self.login()
 
     def test_topapps(self):
         section = 'test_topapps'
