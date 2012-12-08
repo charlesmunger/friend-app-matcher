@@ -43,10 +43,10 @@ class FriendAppMatcherTest(FunkLoadTestCase):
         res = self.get(self.login_url, description='Login page')
         self.assertEqual(res.code, 200)
 
-        email = self.user + str(randint(1, int(self.num_users))) \
-            + self.email
+        email = (self.user + str(randint(1, int(self.num_users))) + 
+                 '@' + self.email)
         res = self.post(self.login_url,
-                        params={ 'user[email]': self.email,
+                        params={ 'user[email]': email,
                                  'user[password]': self.password,
                                  'commit': 'Login' },
                         description='Login to home page')
