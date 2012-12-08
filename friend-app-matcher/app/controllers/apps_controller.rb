@@ -133,19 +133,6 @@ class AppsController < ApplicationController
   end
 
   def topapps
-    @primary = current_user
-
-    app_count = UserApp.joins(:app)
-        .select("apps.app_id as app_app_id, apps.id, apps.likes, count(apps.app_id) as count")
-        .where(:installed => true).group("apps.app_id").order("count(apps.app_id) DESC")
-    @app_counts = []
-    app_count.each do |app|
-      @app_counts <<  AppCount.new(app_id: app.app_app_id, count: app.count, likes: app.likes,
-          id: app.id)
-    end
-
-    @app_counts_display = @app_counts.paginate(page: params[:page], per_page: AppCount.per_page)
-
     # Links for pagination
     page = if params[:page]
              params[:page].to_i
@@ -153,13 +140,43 @@ class AppsController < ApplicationController
              page = 1
            end
 
+    @primary = current_user
+
+    # Note: count might be n + 1
+    app_count_total_size =  UserApp.joins(:app)
+        .select("apps.app_id as app_app_id, apps.id, apps.likes, count(apps.app_id) as count")
+        .where(:installed => true)
+        .group("apps.app_id")
+        .count[0]
+
+    if app_count_total_size.nil?
+      app_count_total_size = 0
+    else
+      app_count_total_size -= 1
+    end
+
+    app_count = UserApp.joins(:app)
+        .select("apps.app_id as app_app_id, apps.id, apps.likes, count(apps.app_id) as count")
+        .where(:installed => true).group("apps.app_id").order("count(apps.app_id) DESC")
+        .paginate(page: page, per_page: AppCount.per_page)
+
+    @app_counts = Array.new(app_count_total_size)
+    offset = (page - 1) * AppCount.per_page
+    index = 0
+    app_count.each do |app|
+      @app_counts[offset + index] = AppCount.new(app_id: app.app_app_id, count: app.count, likes: app.likes, id: app.id)
+      index += 1
+    end
+
+    @app_counts_display = @app_counts.paginate(page: page, per_page: AppCount.per_page)
+
     @page_left = nil
     @page_right = nil
 
-    if @app_counts.count > AppCount.per_page
+    if app_count_total_size > AppCount.per_page
       if page == 1
         @page_right = page + 1
-      elsif @app_counts.count < (AppCount.per_page * page)
+      elsif app_count_total_size < (AppCount.per_page * page)
         @page_left = page - 1
       else
         @page_right = page + 1
