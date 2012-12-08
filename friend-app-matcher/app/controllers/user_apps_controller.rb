@@ -1,7 +1,7 @@
 class UserAppsController < ApplicationController
 
   skip_before_filter :authenticate_user!, :only => :create
-  skip_before_filter :verify_authentication_token, :except => :create
+  skip_before_filter :verify_authenticity_token, :except => :create
 
   # GET /user_apps
   # GET /user_apps.json
