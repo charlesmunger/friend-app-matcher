@@ -142,23 +142,16 @@ class AppsController < ApplicationController
 
     @primary = current_user
 
-    # Note: count might be n + 1
     app_count_total_size =  UserApp.joins(:app)
-        .select("apps.app_id as app_app_id, apps.id, apps.likes, count(apps.app_id) as count")
+        .select("DISTINCT apps.app_id")
         .where(:installed => true)
-        .group("apps.app_id")
-        .count[0]
-
-    if app_count_total_size.nil?
-      app_count_total_size = 0
-    else
-      app_count_total_size -= 1
-    end
+        .count
 
     app_count = UserApp.joins(:app)
         .select("apps.app_id as app_app_id, apps.id, apps.likes, count(apps.app_id) as count")
         .where(:installed => true).group("apps.app_id").order("count(apps.app_id) DESC")
-        .paginate(page: page, per_page: AppCount.per_page)
+        .limit(10)
+        .offset( (page - 1) * AppCount.per_page )
 
     @app_counts = Array.new(app_count_total_size)
     offset = (page - 1) * AppCount.per_page
