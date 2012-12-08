@@ -98,7 +98,8 @@ class AppsController < ApplicationController
 
         if @user_app.size == 0
           @user_app = UserApp.new(
-              { user_id: current_user.id, app_id: params[:id]} )
+              { user_id: current_user.id, app_id: params[:id]}, 
+                  installed: false, liked: false )
         else
           @user_app = @user_app[0]
         end
