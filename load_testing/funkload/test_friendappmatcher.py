@@ -34,7 +34,7 @@ class FriendAppMatcherTest(FunkLoadTestCase):
     def test_like_app(self):
 	section = 'test_like_app'
         target = self.server_url + self.conf_get(section, 'target')
-        target.replace('id', str(randint(1, int(self.num_apps))))
+        target = target.replace('id', str(randint(1, int(self.num_apps))))
         self.test_put_target(section,
                              self.conf_get(section, 'description'),
                              target)

@@ -3,7 +3,7 @@ require 'will_paginate/array'
 class AppsController < ApplicationController
   layout "applayout"
 
-  skip_before_filter :verify_authenticity_token, :except => [:like]
+  skip_before_filter :verify_authenticity_token, :only => [:like]
 
   # GET /apps
   # GET /apps.json
@@ -86,7 +86,7 @@ class AppsController < ApplicationController
     @app.destroy
 
     respond_to do |format|
-      format.html { redirect_to apps_url }
+      format.html { redirect_to user_url }
       format.json { head :no_content }
     end
   end
@@ -118,7 +118,7 @@ class AppsController < ApplicationController
       end
     rescue ActiveRecord::RecordInvalid => e
       respond_to do |format|
-        format.html { redirect_to apps_url }
+        format.html { redirect_to user_url }
         format.js { @likes = @old_likes
             @id = @app.id
             @error = true }
@@ -126,7 +126,7 @@ class AppsController < ApplicationController
       end
     end
     respond_to do |format|
-      format.html { redirect_to apps_url }
+      format.html { redirect_to user_url }
       format.js { @likes = @app.likes
            @id = @app.id 
            @error = false }

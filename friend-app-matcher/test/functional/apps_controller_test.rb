@@ -48,7 +48,7 @@ class AppsControllerTest < ActionController::TestCase
       delete :destroy, id: @app
     end
 
-    assert_redirected_to apps_path
+    assert_redirected_to user_path
   end
 
   test "like and unlike app" do
