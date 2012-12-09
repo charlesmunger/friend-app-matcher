@@ -1,0 +1,6 @@
+Mysql under most stress during like apps test, our main transactional
+feature.  All other tests were mostly reads and didn't cause the cpu
+to overwork itself.
+
+The app servers, no matter what pages were being request, were constantly
+under stress, especially as one increases the number of concurrent users.
