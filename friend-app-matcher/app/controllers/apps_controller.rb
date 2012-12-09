@@ -3,6 +3,8 @@ require 'will_paginate/array'
 class AppsController < ApplicationController
   layout "applayout"
 
+  skip_before_filter :verify_authenticity_token, :only => [:like]
+
   # GET /apps
   # GET /apps.json
   def index
@@ -84,7 +86,7 @@ class AppsController < ApplicationController
     @app.destroy
 
     respond_to do |format|
-      format.html { redirect_to apps_url }
+      format.html { redirect_to user_url }
       format.json { head :no_content }
     end
   end
@@ -116,7 +118,7 @@ class AppsController < ApplicationController
       end
     rescue ActiveRecord::RecordInvalid => e
       respond_to do |format|
-        format.html { redirect_to apps_url }
+        format.html { redirect_to user_url }
         format.js { @likes = @old_likes
             @id = @app.id
             @error = true }
@@ -124,7 +126,7 @@ class AppsController < ApplicationController
       end
     end
     respond_to do |format|
-      format.html { redirect_to apps_url }
+      format.html { redirect_to user_url }
       format.js { @likes = @app.likes
            @id = @app.id 
            @error = false }
@@ -133,19 +135,6 @@ class AppsController < ApplicationController
   end
 
   def topapps
-    @primary = current_user
-
-    app_count = UserApp.joins(:app)
-        .select("apps.app_id as app_app_id, apps.id, apps.likes, count(apps.app_id) as count")
-        .where(:installed => true).group("apps.app_id").order("count(apps.app_id) DESC")
-    @app_counts = []
-    app_count.each do |app|
-      @app_counts <<  AppCount.new(app_id: app.app_app_id, count: app.count, likes: app.likes,
-          id: app.id)
-    end
-
-    @app_counts_display = @app_counts.paginate(page: params[:page], per_page: AppCount.per_page)
-
     # Links for pagination
     page = if params[:page]
              params[:page].to_i
@@ -153,13 +142,33 @@ class AppsController < ApplicationController
              page = 1
            end
 
+    @primary = current_user
+
+    app_count_total_size =  App.select("count(*)").count
+
+    app_count = UserApp.joins(:app)
+        .select("apps.app_id as app_app_id, apps.id, apps.likes, count(apps.app_id) as count")
+        .group("apps.app_id").order("count(apps.app_id) DESC")
+        .limit(10)
+        .offset( (page - 1) * AppCount.per_page )
+
+    @app_counts = Array.new(app_count_total_size)
+    offset = (page - 1) * AppCount.per_page
+    index = 0
+    app_count.each do |app|
+      @app_counts[offset + index] = AppCount.new(app_id: app.app_app_id, count: app.count, likes: app.likes, id: app.id)
+      index += 1
+    end
+
+    @app_counts_display = @app_counts.paginate(page: page, per_page: AppCount.per_page)
+
     @page_left = nil
     @page_right = nil
 
-    if @app_counts.count > AppCount.per_page
+    if app_count_total_size > AppCount.per_page
       if page == 1
         @page_right = page + 1
-      elsif @app_counts.count < (AppCount.per_page * page)
+      elsif app_count_total_size < (AppCount.per_page * page)
         @page_left = page - 1
       else
         @page_right = page + 1

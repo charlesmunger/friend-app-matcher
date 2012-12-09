@@ -48,7 +48,7 @@ class AppsControllerTest < ActionController::TestCase
       delete :destroy, id: @app
     end
 
-    assert_redirected_to apps_path
+    assert_redirected_to user_path
   end
 
   test "like and unlike app" do
@@ -148,7 +148,7 @@ class AppsControllerTest < ActionController::TestCase
     assert_response :success
     app_counts = assigns(:app_counts)
     assert_not_nil app_counts
-    assert_equal 0, app_counts.length
+    assert_equal 2, app_counts.length
     assert @page_left.nil?
     assert @page_right.nil?
   end

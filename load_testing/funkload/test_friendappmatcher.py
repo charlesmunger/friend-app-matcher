@@ -14,9 +14,7 @@ class FriendAppMatcherTest(FunkLoadTestCase):
         self.password = self.conf_get('main', 'password')
 
     def test_home_page(self):
-        section = 'test_home_page'
-        self.test_get_target(section,
-                             self.conf_get(section, 'description'))
+        self.login()
 
     def test_topapps(self):
         section = 'test_topapps'
@@ -36,7 +34,7 @@ class FriendAppMatcherTest(FunkLoadTestCase):
     def test_like_app(self):
 	section = 'test_like_app'
         target = self.server_url + self.conf_get(section, 'target')
-        target.replace('id', str(randint(1, int(self.num_apps))))
+        target = target.replace('id', str(randint(1, int(self.num_apps))))
         self.test_put_target(section,
                              self.conf_get(section, 'description'),
                              target)
@@ -45,10 +43,10 @@ class FriendAppMatcherTest(FunkLoadTestCase):
         res = self.get(self.login_url, description='Login page')
         self.assertEqual(res.code, 200)
 
-        email = self.user + str(randint(1, int(self.num_users))) \
-            + self.email
+        email = (self.user + str(randint(1, int(self.num_users))) + 
+                 '@' + self.email)
         res = self.post(self.login_url,
-                        params={ 'user[email]': self.email,
+                        params={ 'user[email]': email,
                                  'user[password]': self.password,
                                  'commit': 'Login' },
                         description='Login to home page')
