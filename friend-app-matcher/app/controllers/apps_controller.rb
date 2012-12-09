@@ -3,6 +3,8 @@ require 'will_paginate/array'
 class AppsController < ApplicationController
   layout "applayout"
 
+  skip_before_filter :verify_authenticity_token, :except => [:like]
+
   # GET /apps
   # GET /apps.json
   def index
