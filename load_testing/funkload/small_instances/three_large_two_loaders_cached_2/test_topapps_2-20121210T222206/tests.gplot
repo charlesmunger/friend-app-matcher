@@ -1,0 +1,8 @@
+set output "/home/load_testing/funkload/tmp/test_topapps-20121210T222206/tests.png"
+set title "Successful Tests Per Second"
+set terminal png size 640,540
+set xlabel "Concurrent Users"
+set ylabel "Test/s"
+set grid back
+set xrange [0:251]
+plot "/home/load_testing/funkload/tmp/test_topapps-20121210T222206/tests.data" u 1:2 w linespoints lw 2 lt 2 t "STPS"
