@@ -1,0 +1,60 @@
+set output "/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps.png"
+set title "Request Per Second over time"
+set xlabel "Time line"
+set xdata time
+set timefmt "%s"
+set format x "%H:%M"
+set ylabel "RPS"
+set grid
+set yrange [0:271]
+set terminal png size 640,540
+plot "/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-000.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-000.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#000000" t "10 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-001.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-001.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#0000FF" t "20 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-002.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-002.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#00FA9A" t "30 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-003.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-003.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#191970" t "40 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-004.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-004.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#8B008B" t "50 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-005.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-005.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#FF00FF" t "60 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-006.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-006.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#FFD700" t "70 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-007.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-007.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#0000CD" t "80 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-008.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-008.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#00BFFF" t "90 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-009.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-009.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#00FF00" t "100 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-010.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-010.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#7FFF00" t "110 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-011.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-011.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#FF0000" t "120 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-012.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-012.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#FF8C00" t "130 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-013.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-013.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#000000" t "140 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-014.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-014.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#0000FF" t "150 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-015.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-015.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#00FA9A" t "160 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-016.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-016.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#191970" t "170 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-017.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-017.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#8B008B" t "180 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-018.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-018.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#FF00FF" t "190 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-019.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-019.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#FFD700" t "200 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-020.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-020.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#0000CD" t "210 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-021.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-021.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#00BFFF" t "220 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-022.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-022.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#00FF00" t "230 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-023.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-023.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#7FFF00" t "240 CUs", \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-024.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/load_testing/funkload/three_large_two_loaders_cached_2/home_page/test_home_page-20121211T080523/time_rps-024.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#FF0000" t "250 CUs"

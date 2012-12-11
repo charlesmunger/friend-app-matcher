@@ -1,0 +1,6620 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<title>FunkLoad bench report</title>
+<meta name="date" content="2012-12-11 08:05:23" />
+<style type="text/css">
+
+/* funkload doc css */
+/* $Id: nuxeo_doc.css 21596 2005-02-15 10:01:33Z bdelbosc $ */
+
+body {
+  font: 90% 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: black;
+  margin: 2em;
+  padding: 2em;
+}
+
+a[href] {
+  color: #436976;
+  background-color: transparent;
+}
+
+h1 a[href] {
+  text-decoration: none;
+  color: #fcb100;
+  background-color: transparent;
+}
+
+a.strong {
+  font-weight: bold;
+}
+
+img {
+  margin: 0;
+  border: 0;
+}
+
+p {
+  margin: 0.5em 0 1em 0;
+  line-height: 1.5em;
+}
+p a {
+  text-decoration: underline;
+}
+p a:visited {
+  color: purple;
+  background-color: transparent;
+}
+p a:active {
+  color: red;
+  background-color: transparent;
+}
+a:hover {
+  text-decoration: none;
+}
+p img {
+  border: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #003a6b;
+  background-color: transparent;
+  font: 100% 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding-top: 0.5em;
+}
+
+h1 {
+  font-size: 160%;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid #888;
+  margin-top: 1em;
+}
+
+h1.title {
+  font-size: 200%;
+}
+
+h2 {
+  font-size: 140%;
+  margin-bottom: 0.5em;
+}
+h3 {
+  font-size: 120%;
+  margin-bottom: 0.5em;
+}
+h4 {
+  font-size: 110%;
+  font-weight: bold;
+}
+h5 {
+  font-size: 100%;
+  font-weight: bold;
+}
+h6 {
+  font-size: 80%;
+  font-weight: bold;
+}
+
+ul a, ol a {
+  text-decoration: underline;
+}
+
+dt {
+  font-weight: bold;
+}
+dt a {
+  text-decoration: none;
+}
+
+dd {
+  line-height: 1.5em;
+  margin-bottom: 1em;
+}
+
+legend {
+  background: #ffffff;
+  padding: 0.5em;
+}
+
+form {
+  margin: 0;
+}
+
+
+dl.form {
+  margin: 0;
+  padding: 1em;
+}
+
+dl.form dt {
+  width: 30%;
+  float: left;
+  margin: 0;
+  padding: 0 0.5em 0.5em 0;
+  text-align: right;
+}
+
+input {
+  font: 100% 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+  color: black;
+  background-color: white;
+  vertical-align: middle;
+}
+
+abbr, acronym, .explain {
+  color: black;
+  background-color: transparent;
+}
+
+q, blockquote {
+}
+
+code, pre {
+  font-family: monospace;
+  font-size: 1.2em;
+  display: block;
+  padding: 10px;
+  border: 1px solid #838183;
+  background-color: #eee;
+  color: #000;
+  overflow: auto;
+  margin: 0.5em 1em;
+}
+
+table.docutils {
+  border: 1px solid black;
+  font-size: 0.6em;
+  border-spacing: 0;
+  padding: 0;
+  margin: 1em;
+}
+
+table.docutils td {
+  border: 1px solid #CCC;
+  text-align: right;
+  padding: 0 0.3em;
+  margin: 0;
+}
+
+table.docutils tr {
+ padding: 0;
+ margin: 0;
+}
+
+table.docutils th {
+  border: 1px solid #CCC;
+  border-bottom: 1px solid black;
+  padding: 0.3em;
+  font-weight: bold;
+  margin: 0;
+}
+
+table.docutils td p, table.docutils th p {
+  margin: 0;
+  padding: 0;
+}
+
+table.docutils th.field-name {
+  border: 1px solid #CCC;
+}
+
+div.abstract {
+  padding: 0.5em;
+  background-color: #eef;
+  border: 1px solid #838183;
+  margin: 0.5em 1em;
+}
+
+div.abstract {
+  padding: 0.5em;
+  background-color: #eef;
+  border: 1px solid #838183;
+  margin: 0.5em 1em;
+}
+
+div.warning, div.note {
+  padding: 0.5em;
+  background-color: #fee;
+  border: 1px solid #838183;
+  margin: 0.5em 1em;
+}
+
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+}
+
+div.abstract p.topic-title {
+  font-weight: bold
+}
+
+
+th.field-name {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+td.field-body {
+  font-size: 1.5em;
+}
+
+tr.field {
+  border: none;
+}
+
+
+div.contents p.first a {
+  font-size: 150%;
+  border-bottom: 1px solid #888;
+  color: #fcb100;
+}
+
+div.contents a  { text-decoration: none }
+
+pre.address {
+  display: inline;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+</style>
+</head>
+<body>
+<div class="document" id="funkload-bench-report">
+<h1 class="title"><a class="reference external" href="http://funkload.nuxeo.org/">FunkLoad</a> bench report</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Date:</th>
+<td>2012-12-11 08:05:23</td></tr>
+</tbody>
+</table>
+<div class="abstract topic">
+<p class="topic-title first">Abstract</p>
+<p>FriendAppMatcher Load Test
+Bench result of <tt class="docutils literal">FriendAppMatcherTest.test_home_page</tt>:
+Home Page Load Test</p>
+</div>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of contents</p>
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="#bench-configuration" id="id1">1&nbsp;&nbsp;&nbsp;Bench configuration</a></li>
+<li><a class="reference internal" href="#bench-content" id="id2">2&nbsp;&nbsp;&nbsp;Bench content</a></li>
+<li><a class="reference internal" href="#test-stats" id="id3">3&nbsp;&nbsp;&nbsp;Test stats</a></li>
+<li><a class="reference internal" href="#page-stats" id="id4">4&nbsp;&nbsp;&nbsp;Page stats</a></li>
+<li><a class="reference internal" href="#request-stats" id="id5">5&nbsp;&nbsp;&nbsp;Request stats</a></li>
+<li><a class="reference internal" href="#slowest-requests" id="id6">6&nbsp;&nbsp;&nbsp;Slowest requests</a></li>
+<li><a class="reference internal" href="#page-detail-stats" id="id7">7&nbsp;&nbsp;&nbsp;Page detail stats</a><ul class="auto-toc">
+<li><a class="reference internal" href="#page-001-login-page" id="id8">7.1&nbsp;&nbsp;&nbsp;PAGE 001: Login page</a></li>
+<li><a class="reference internal" href="#page-002-login-to-home-page" id="id9">7.2&nbsp;&nbsp;&nbsp;PAGE 002: Login to home page</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#definitions" id="id10">8&nbsp;&nbsp;&nbsp;Definitions</a></li>
+</ul>
+</div>
+<div class="section" id="bench-configuration">
+<h1><a class="toc-backref" href="#id1">1&nbsp;&nbsp;&nbsp;Bench configuration</a></h1>
+<ul class="simple">
+<li>Launched: 2012-12-11 08:05:23</li>
+<li>From: ip-10-6-125-34</li>
+<li>Test: <tt class="docutils literal">test_friendappmatcher.py FriendAppMatcherTest.test_home_page</tt></li>
+<li>Target server: <a class="reference external" href="http://50.16.165.225">http://50.16.165.225</a></li>
+<li>Cycles of concurrent users: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250]</li>
+<li>Cycle duration: 15s</li>
+<li>Sleeptime between request: from 0.0s to 0.5s</li>
+<li>Sleeptime between test case: 0.01s</li>
+<li>Startup delay between thread: 1.5s</li>
+<li>Apdex: <sub>1.5</sub></li>
+<li><a class="reference external" href="http://funkload.nuxeo.org/">FunkLoad</a> version: 1.17.0b-20121106</li>
+</ul>
+</div>
+<div class="section" id="bench-content">
+<h1><a class="toc-backref" href="#id2">2&nbsp;&nbsp;&nbsp;Bench content</a></h1>
+<p>The test <tt class="docutils literal">FriendAppMatcherTest.test_home_page</tt> contains:</p>
+<ul class="simple">
+<li>2 page(s)</li>
+<li>2 redirect(s)</li>
+<li>1 link(s)</li>
+<li>2 image(s)</li>
+<li>0 XML RPC call(s)</li>
+</ul>
+<p>The bench contains:</p>
+<ul class="simple">
+<li>9435 tests</li>
+<li>28086 pages</li>
+<li>56757 requests</li>
+</ul>
+</div>
+<div class="section" id="test-stats">
+<h1><a class="toc-backref" href="#id3">3&nbsp;&nbsp;&nbsp;Test stats</a></h1>
+<p>The number of Successful <strong>Tests</strong> Per Second (STPS) over Concurrent Users (CUs).</p>
+<blockquote>
+<img alt="tests.png" src="tests.png" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">CUs</th>
+<th class="head">STPS</th>
+<th class="head">TOTAL</th>
+<th class="head">SUCCESS</th>
+<th class="head">ERROR</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>10</td>
+<td>12.467</td>
+<td>187</td>
+<td>187</td>
+<td>0.00%</td>
+</tr>
+<tr><td>20</td>
+<td>23.467</td>
+<td>352</td>
+<td>352</td>
+<td>0.00%</td>
+</tr>
+<tr><td>30</td>
+<td>27.733</td>
+<td>416</td>
+<td>416</td>
+<td>0.00%</td>
+</tr>
+<tr><td>40</td>
+<td>26.933</td>
+<td>404</td>
+<td>404</td>
+<td>0.00%</td>
+</tr>
+<tr><td>50</td>
+<td>26.533</td>
+<td>398</td>
+<td>398</td>
+<td>0.00%</td>
+</tr>
+<tr><td>60</td>
+<td>26.933</td>
+<td>404</td>
+<td>404</td>
+<td>0.00%</td>
+</tr>
+<tr><td>70</td>
+<td>26.600</td>
+<td>399</td>
+<td>399</td>
+<td>0.00%</td>
+</tr>
+<tr><td>80</td>
+<td>24.600</td>
+<td>369</td>
+<td>369</td>
+<td>0.00%</td>
+</tr>
+<tr><td>90</td>
+<td>26.000</td>
+<td>390</td>
+<td>390</td>
+<td>0.00%</td>
+</tr>
+<tr><td>100</td>
+<td>25.867</td>
+<td>388</td>
+<td>388</td>
+<td>0.00%</td>
+</tr>
+<tr><td>110</td>
+<td>25.733</td>
+<td>386</td>
+<td>386</td>
+<td>0.00%</td>
+</tr>
+<tr><td>120</td>
+<td>25.200</td>
+<td>378</td>
+<td>378</td>
+<td>0.00%</td>
+</tr>
+<tr><td>130</td>
+<td>25.533</td>
+<td>383</td>
+<td>383</td>
+<td>0.00%</td>
+</tr>
+<tr><td>140</td>
+<td>25.267</td>
+<td>379</td>
+<td>379</td>
+<td>0.00%</td>
+</tr>
+<tr><td>150</td>
+<td>26.000</td>
+<td>390</td>
+<td>390</td>
+<td>0.00%</td>
+</tr>
+<tr><td>160</td>
+<td>26.133</td>
+<td>392</td>
+<td>392</td>
+<td>0.00%</td>
+</tr>
+<tr><td>170</td>
+<td>24.333</td>
+<td>365</td>
+<td>365</td>
+<td>0.00%</td>
+</tr>
+<tr><td>180</td>
+<td>25.533</td>
+<td>383</td>
+<td>383</td>
+<td>0.00%</td>
+</tr>
+<tr><td>190</td>
+<td>25.933</td>
+<td>389</td>
+<td>389</td>
+<td>0.00%</td>
+</tr>
+<tr><td>200</td>
+<td>24.800</td>
+<td>372</td>
+<td>372</td>
+<td>0.00%</td>
+</tr>
+<tr><td>210</td>
+<td>24.600</td>
+<td>369</td>
+<td>369</td>
+<td>0.00%</td>
+</tr>
+<tr><td>220</td>
+<td>25.200</td>
+<td>378</td>
+<td>378</td>
+<td>0.00%</td>
+</tr>
+<tr><td>230</td>
+<td>24.867</td>
+<td>373</td>
+<td>373</td>
+<td>0.00%</td>
+</tr>
+<tr><td>240</td>
+<td>26.800</td>
+<td>402</td>
+<td>402</td>
+<td>0.00%</td>
+</tr>
+<tr><td>250</td>
+<td>25.933</td>
+<td>389</td>
+<td>389</td>
+<td>0.00%</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="page-stats">
+<h1><a class="toc-backref" href="#id4">4&nbsp;&nbsp;&nbsp;Page stats</a></h1>
+<p>The number of Successful <strong>Pages</strong> Per Second (SPPS) over Concurrent Users (CUs).
+Note that an XML RPC call count like a page.</p>
+<blockquote>
+<img alt="pages_spps.png" src="pages_spps.png" />
+<img alt="pages.png" src="pages.png" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">CUs</th>
+<th class="head">Apdex*</th>
+<th class="head">Rating</th>
+<th class="head">SPPS</th>
+<th class="head">maxSPPS</th>
+<th class="head">TOTAL</th>
+<th class="head">SUCCESS</th>
+<th class="head">ERROR</th>
+<th class="head">MIN</th>
+<th class="head">AVG</th>
+<th class="head">MAX</th>
+<th class="head">P10</th>
+<th class="head">MED</th>
+<th class="head">P90</th>
+<th class="head">P95</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>10</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>37.733</td>
+<td>46.000</td>
+<td>566</td>
+<td>566</td>
+<td>0.00%</td>
+<td>0.010</td>
+<td>0.089</td>
+<td>0.443</td>
+<td>0.014</td>
+<td>0.081</td>
+<td>0.161</td>
+<td>0.186</td>
+</tr>
+<tr><td>20</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>68.467</td>
+<td>85.000</td>
+<td>1027</td>
+<td>1027</td>
+<td>0.00%</td>
+<td>0.010</td>
+<td>0.107</td>
+<td>0.388</td>
+<td>0.019</td>
+<td>0.121</td>
+<td>0.188</td>
+<td>0.214</td>
+</tr>
+<tr><td>30</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>80.400</td>
+<td>87.000</td>
+<td>1206</td>
+<td>1206</td>
+<td>0.00%</td>
+<td>0.011</td>
+<td>0.182</td>
+<td>0.557</td>
+<td>0.043</td>
+<td>0.165</td>
+<td>0.339</td>
+<td>0.387</td>
+</tr>
+<tr><td>40</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>80.333</td>
+<td>94.000</td>
+<td>1205</td>
+<td>1205</td>
+<td>0.00%</td>
+<td>0.013</td>
+<td>0.275</td>
+<td>3.096</td>
+<td>0.100</td>
+<td>0.212</td>
+<td>0.543</td>
+<td>0.599</td>
+</tr>
+<tr><td>50</td>
+<td>0.999</td>
+<td>Excellent</td>
+<td>78.467</td>
+<td>97.000</td>
+<td>1177</td>
+<td>1177</td>
+<td>0.00%</td>
+<td>0.015</td>
+<td>0.380</td>
+<td>3.877</td>
+<td>0.129</td>
+<td>0.253</td>
+<td>0.789</td>
+<td>0.886</td>
+</tr>
+<tr><td>60</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>79.933</td>
+<td>95.000</td>
+<td>1199</td>
+<td>1199</td>
+<td>0.00%</td>
+<td>0.016</td>
+<td>0.398</td>
+<td>1.258</td>
+<td>0.123</td>
+<td>0.275</td>
+<td>0.830</td>
+<td>0.914</td>
+</tr>
+<tr><td>70</td>
+<td>0.999</td>
+<td>Excellent</td>
+<td>78.267</td>
+<td>93.000</td>
+<td>1174</td>
+<td>1174</td>
+<td>0.00%</td>
+<td>0.043</td>
+<td>0.546</td>
+<td>3.687</td>
+<td>0.163</td>
+<td>0.371</td>
+<td>1.143</td>
+<td>1.350</td>
+</tr>
+<tr><td>80</td>
+<td>0.999</td>
+<td>Excellent</td>
+<td>75.533</td>
+<td>87.000</td>
+<td>1133</td>
+<td>1133</td>
+<td>0.00%</td>
+<td>0.017</td>
+<td>0.574</td>
+<td>3.778</td>
+<td>0.154</td>
+<td>0.374</td>
+<td>1.200</td>
+<td>1.358</td>
+</tr>
+<tr><td>90</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>77.733</td>
+<td>107.000</td>
+<td>1166</td>
+<td>1166</td>
+<td>0.00%</td>
+<td>0.024</td>
+<td>0.621</td>
+<td>3.270</td>
+<td>0.204</td>
+<td>0.393</td>
+<td>1.298</td>
+<td>1.495</td>
+</tr>
+<tr><td>100</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>78.067</td>
+<td>99.000</td>
+<td>1171</td>
+<td>1171</td>
+<td>0.00%</td>
+<td>0.022</td>
+<td>0.652</td>
+<td>3.042</td>
+<td>0.214</td>
+<td>0.417</td>
+<td>1.367</td>
+<td>1.533</td>
+</tr>
+<tr><td>110</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>78.733</td>
+<td>86.000</td>
+<td>1181</td>
+<td>1181</td>
+<td>0.00%</td>
+<td>0.017</td>
+<td>0.729</td>
+<td>3.122</td>
+<td>0.233</td>
+<td>0.486</td>
+<td>1.518</td>
+<td>1.789</td>
+</tr>
+<tr><td>120</td>
+<td>0.998</td>
+<td>Excellent</td>
+<td>75.533</td>
+<td>90.000</td>
+<td>1133</td>
+<td>1133</td>
+<td>0.00%</td>
+<td>0.078</td>
+<td>0.832</td>
+<td>5.835</td>
+<td>0.241</td>
+<td>0.567</td>
+<td>1.734</td>
+<td>1.971</td>
+</tr>
+<tr><td>130</td>
+<td>0.997</td>
+<td>Excellent</td>
+<td>72.933</td>
+<td>91.000</td>
+<td>1094</td>
+<td>1094</td>
+<td>0.00%</td>
+<td>0.129</td>
+<td>0.943</td>
+<td>5.829</td>
+<td>0.278</td>
+<td>0.614</td>
+<td>2.029</td>
+<td>2.406</td>
+</tr>
+<tr><td>140</td>
+<td>0.994</td>
+<td>Excellent</td>
+<td>75.267</td>
+<td>88.000</td>
+<td>1129</td>
+<td>1129</td>
+<td>0.00%</td>
+<td>0.116</td>
+<td>0.934</td>
+<td>4.134</td>
+<td>0.280</td>
+<td>0.614</td>
+<td>1.971</td>
+<td>2.312</td>
+</tr>
+<tr><td>150</td>
+<td>0.998</td>
+<td>Excellent</td>
+<td>78.000</td>
+<td>85.000</td>
+<td>1170</td>
+<td>1170</td>
+<td>0.00%</td>
+<td>0.112</td>
+<td>0.884</td>
+<td>5.148</td>
+<td>0.281</td>
+<td>0.603</td>
+<td>1.856</td>
+<td>2.140</td>
+</tr>
+<tr><td>160</td>
+<td>0.995</td>
+<td>Excellent</td>
+<td>77.533</td>
+<td>113.000</td>
+<td>1163</td>
+<td>1163</td>
+<td>0.00%</td>
+<td>0.104</td>
+<td>0.969</td>
+<td>4.017</td>
+<td>0.258</td>
+<td>0.622</td>
+<td>2.142</td>
+<td>2.497</td>
+</tr>
+<tr><td>170</td>
+<td>0.988</td>
+<td>Excellent</td>
+<td>75.867</td>
+<td>100.000</td>
+<td>1138</td>
+<td>1138</td>
+<td>0.00%</td>
+<td>0.106</td>
+<td>1.021</td>
+<td>6.418</td>
+<td>0.297</td>
+<td>0.638</td>
+<td>2.188</td>
+<td>2.560</td>
+</tr>
+<tr><td>180</td>
+<td>0.976</td>
+<td>Excellent</td>
+<td>75.733</td>
+<td>98.000</td>
+<td>1136</td>
+<td>1136</td>
+<td>0.00%</td>
+<td>0.054</td>
+<td>1.313</td>
+<td>6.350</td>
+<td>0.365</td>
+<td>0.883</td>
+<td>2.971</td>
+<td>3.446</td>
+</tr>
+<tr><td>190</td>
+<td>0.980</td>
+<td>Excellent</td>
+<td>74.600</td>
+<td>91.000</td>
+<td>1119</td>
+<td>1119</td>
+<td>0.00%</td>
+<td>0.110</td>
+<td>1.266</td>
+<td>6.792</td>
+<td>0.349</td>
+<td>0.825</td>
+<td>2.737</td>
+<td>3.122</td>
+</tr>
+<tr><td>200</td>
+<td>0.969</td>
+<td>Excellent</td>
+<td>74.867</td>
+<td>85.000</td>
+<td>1123</td>
+<td>1123</td>
+<td>0.00%</td>
+<td>0.121</td>
+<td>1.336</td>
+<td>8.959</td>
+<td>0.345</td>
+<td>0.831</td>
+<td>2.838</td>
+<td>3.797</td>
+</tr>
+<tr><td>210</td>
+<td>0.975</td>
+<td>Excellent</td>
+<td>70.267</td>
+<td>99.000</td>
+<td>1054</td>
+<td>1054</td>
+<td>0.00%</td>
+<td>0.200</td>
+<td>1.328</td>
+<td>6.377</td>
+<td>0.368</td>
+<td>0.880</td>
+<td>2.841</td>
+<td>3.464</td>
+</tr>
+<tr><td>220</td>
+<td>0.964</td>
+<td>Excellent</td>
+<td>77.400</td>
+<td>95.000</td>
+<td>1161</td>
+<td>1161</td>
+<td>0.00%</td>
+<td>0.198</td>
+<td>1.464</td>
+<td>7.264</td>
+<td>0.402</td>
+<td>0.975</td>
+<td>3.142</td>
+<td>3.846</td>
+</tr>
+<tr><td>230</td>
+<td>0.974</td>
+<td>Excellent</td>
+<td>74.800</td>
+<td>90.000</td>
+<td>1122</td>
+<td>1122</td>
+<td>0.00%</td>
+<td>0.134</td>
+<td>1.320</td>
+<td>7.700</td>
+<td>0.353</td>
+<td>0.885</td>
+<td>2.763</td>
+<td>3.267</td>
+</tr>
+<tr><td>240</td>
+<td>0.967</td>
+<td>Excellent</td>
+<td>78.000</td>
+<td>106.000</td>
+<td>1170</td>
+<td>1170</td>
+<td>0.00%</td>
+<td>0.129</td>
+<td>1.328</td>
+<td>8.306</td>
+<td>0.340</td>
+<td>0.919</td>
+<td>2.860</td>
+<td>3.384</td>
+</tr>
+<tr><td>250</td>
+<td>0.980</td>
+<td>Excellent</td>
+<td>77.933</td>
+<td>107.000</td>
+<td>1169</td>
+<td>1169</td>
+<td>0.00%</td>
+<td>0.112</td>
+<td>1.101</td>
+<td>13.109</td>
+<td>0.282</td>
+<td>0.742</td>
+<td>2.122</td>
+<td>2.628</td>
+</tr>
+</tbody>
+</table>
+<p>* Apdex <sub>1.5</sub></p>
+</blockquote>
+</div>
+<div class="section" id="request-stats">
+<h1><a class="toc-backref" href="#id5">5&nbsp;&nbsp;&nbsp;Request stats</a></h1>
+<p>The number of <strong>Requests</strong> Per Second (RPS) successful or not over Concurrent Users (CUs).</p>
+<blockquote>
+<img alt="requests_rps.png" src="requests_rps.png" />
+<img alt="requests.png" src="requests.png" />
+<img alt="time_rps.png" src="time_rps.png" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">CUs</th>
+<th class="head">Apdex*</th>
+<th class="head">Rating*</th>
+<th class="head">RPS</th>
+<th class="head">maxRPS</th>
+<th class="head">TOTAL</th>
+<th class="head">SUCCESS</th>
+<th class="head">ERROR</th>
+<th class="head">MIN</th>
+<th class="head">AVG</th>
+<th class="head">MAX</th>
+<th class="head">P10</th>
+<th class="head">MED</th>
+<th class="head">P90</th>
+<th class="head">P95</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>10</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>75.267</td>
+<td>84.000</td>
+<td>1129</td>
+<td>1129</td>
+<td>0.00%</td>
+<td>0.007</td>
+<td>0.045</td>
+<td>0.429</td>
+<td>0.009</td>
+<td>0.017</td>
+<td>0.135</td>
+<td>0.154</td>
+</tr>
+<tr><td>20</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>138.133</td>
+<td>158.000</td>
+<td>2072</td>
+<td>2072</td>
+<td>0.00%</td>
+<td>0.007</td>
+<td>0.053</td>
+<td>0.360</td>
+<td>0.011</td>
+<td>0.028</td>
+<td>0.139</td>
+<td>0.163</td>
+</tr>
+<tr><td>30</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>162.800</td>
+<td>172.000</td>
+<td>2442</td>
+<td>2442</td>
+<td>0.00%</td>
+<td>0.008</td>
+<td>0.090</td>
+<td>0.348</td>
+<td>0.020</td>
+<td>0.082</td>
+<td>0.173</td>
+<td>0.209</td>
+</tr>
+<tr><td>40</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>162.733</td>
+<td>168.000</td>
+<td>2441</td>
+<td>2441</td>
+<td>0.00%</td>
+<td>0.012</td>
+<td>0.138</td>
+<td>3.096</td>
+<td>0.040</td>
+<td>0.130</td>
+<td>0.236</td>
+<td>0.271</td>
+</tr>
+<tr><td>50</td>
+<td>0.999</td>
+<td>Excellent</td>
+<td>157.933</td>
+<td>176.000</td>
+<td>2369</td>
+<td>2369</td>
+<td>0.00%</td>
+<td>0.010</td>
+<td>0.192</td>
+<td>3.338</td>
+<td>0.096</td>
+<td>0.172</td>
+<td>0.295</td>
+<td>0.357</td>
+</tr>
+<tr><td>60</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>160.333</td>
+<td>168.000</td>
+<td>2405</td>
+<td>2405</td>
+<td>0.00%</td>
+<td>0.013</td>
+<td>0.202</td>
+<td>0.650</td>
+<td>0.106</td>
+<td>0.194</td>
+<td>0.336</td>
+<td>0.371</td>
+</tr>
+<tr><td>70</td>
+<td>0.999</td>
+<td>Excellent</td>
+<td>159.067</td>
+<td>185.000</td>
+<td>2386</td>
+<td>2386</td>
+<td>0.00%</td>
+<td>0.015</td>
+<td>0.274</td>
+<td>3.135</td>
+<td>0.123</td>
+<td>0.240</td>
+<td>0.462</td>
+<td>0.546</td>
+</tr>
+<tr><td>80</td>
+<td>0.999</td>
+<td>Excellent</td>
+<td>150.200</td>
+<td>173.000</td>
+<td>2253</td>
+<td>2253</td>
+<td>0.00%</td>
+<td>0.013</td>
+<td>0.303</td>
+<td>3.724</td>
+<td>0.135</td>
+<td>0.256</td>
+<td>0.482</td>
+<td>0.565</td>
+</tr>
+<tr><td>90</td>
+<td>0.999</td>
+<td>Excellent</td>
+<td>159.733</td>
+<td>183.000</td>
+<td>2396</td>
+<td>2396</td>
+<td>0.00%</td>
+<td>0.016</td>
+<td>0.324</td>
+<td>3.495</td>
+<td>0.162</td>
+<td>0.313</td>
+<td>0.505</td>
+<td>0.598</td>
+</tr>
+<tr><td>100</td>
+<td>0.999</td>
+<td>Excellent</td>
+<td>158.733</td>
+<td>177.000</td>
+<td>2381</td>
+<td>2381</td>
+<td>0.00%</td>
+<td>0.013</td>
+<td>0.339</td>
+<td>2.490</td>
+<td>0.197</td>
+<td>0.312</td>
+<td>0.521</td>
+<td>0.632</td>
+</tr>
+<tr><td>110</td>
+<td>1.000</td>
+<td>Excellent</td>
+<td>154.933</td>
+<td>160.000</td>
+<td>2324</td>
+<td>2324</td>
+<td>0.00%</td>
+<td>0.016</td>
+<td>0.390</td>
+<td>1.499</td>
+<td>0.220</td>
+<td>0.353</td>
+<td>0.617</td>
+<td>0.730</td>
+</tr>
+<tr><td>120</td>
+<td>0.998</td>
+<td>Excellent</td>
+<td>155.467</td>
+<td>184.000</td>
+<td>2332</td>
+<td>2332</td>
+<td>0.00%</td>
+<td>0.019</td>
+<td>0.429</td>
+<td>4.326</td>
+<td>0.221</td>
+<td>0.364</td>
+<td>0.717</td>
+<td>0.856</td>
+</tr>
+<tr><td>130</td>
+<td>0.997</td>
+<td>Excellent</td>
+<td>149.667</td>
+<td>182.000</td>
+<td>2245</td>
+<td>2245</td>
+<td>0.00%</td>
+<td>0.075</td>
+<td>0.485</td>
+<td>3.501</td>
+<td>0.233</td>
+<td>0.409</td>
+<td>0.825</td>
+<td>0.973</td>
+</tr>
+<tr><td>140</td>
+<td>0.992</td>
+<td>Excellent</td>
+<td>153.333</td>
+<td>176.000</td>
+<td>2300</td>
+<td>2300</td>
+<td>0.00%</td>
+<td>0.094</td>
+<td>0.495</td>
+<td>3.617</td>
+<td>0.237</td>
+<td>0.413</td>
+<td>0.814</td>
+<td>1.055</td>
+</tr>
+<tr><td>150</td>
+<td>0.998</td>
+<td>Excellent</td>
+<td>156.400</td>
+<td>180.000</td>
+<td>2346</td>
+<td>2346</td>
+<td>0.00%</td>
+<td>0.051</td>
+<td>0.471</td>
+<td>3.338</td>
+<td>0.230</td>
+<td>0.432</td>
+<td>0.736</td>
+<td>0.860</td>
+</tr>
+<tr><td>160</td>
+<td>0.993</td>
+<td>Excellent</td>
+<td>155.667</td>
+<td>194.000</td>
+<td>2335</td>
+<td>2335</td>
+<td>0.00%</td>
+<td>0.052</td>
+<td>0.524</td>
+<td>3.813</td>
+<td>0.235</td>
+<td>0.452</td>
+<td>0.916</td>
+<td>1.104</td>
+</tr>
+<tr><td>170</td>
+<td>0.988</td>
+<td>Excellent</td>
+<td>153.400</td>
+<td>195.000</td>
+<td>2301</td>
+<td>2301</td>
+<td>0.00%</td>
+<td>0.022</td>
+<td>0.545</td>
+<td>4.432</td>
+<td>0.232</td>
+<td>0.468</td>
+<td>0.910</td>
+<td>1.163</td>
+</tr>
+<tr><td>180</td>
+<td>0.974</td>
+<td>Excellent</td>
+<td>155.400</td>
+<td>185.000</td>
+<td>2331</td>
+<td>2331</td>
+<td>0.00%</td>
+<td>0.054</td>
+<td>0.695</td>
+<td>3.784</td>
+<td>0.329</td>
+<td>0.572</td>
+<td>1.216</td>
+<td>1.517</td>
+</tr>
+<tr><td>190</td>
+<td>0.974</td>
+<td>Excellent</td>
+<td>150.600</td>
+<td>167.000</td>
+<td>2259</td>
+<td>2259</td>
+<td>0.00%</td>
+<td>0.084</td>
+<td>0.701</td>
+<td>5.288</td>
+<td>0.315</td>
+<td>0.586</td>
+<td>1.188</td>
+<td>1.524</td>
+</tr>
+<tr><td>200</td>
+<td>0.964</td>
+<td>Excellent</td>
+<td>150.867</td>
+<td>184.000</td>
+<td>2263</td>
+<td>2263</td>
+<td>0.00%</td>
+<td>0.120</td>
+<td>0.739</td>
+<td>4.869</td>
+<td>0.277</td>
+<td>0.570</td>
+<td>1.305</td>
+<td>1.913</td>
+</tr>
+<tr><td>210</td>
+<td>0.973</td>
+<td>Excellent</td>
+<td>143.600</td>
+<td>187.000</td>
+<td>2154</td>
+<td>2154</td>
+<td>0.00%</td>
+<td>0.097</td>
+<td>0.720</td>
+<td>3.885</td>
+<td>0.327</td>
+<td>0.594</td>
+<td>1.250</td>
+<td>1.550</td>
+</tr>
+<tr><td>220</td>
+<td>0.954</td>
+<td>Excellent</td>
+<td>155.933</td>
+<td>201.000</td>
+<td>2339</td>
+<td>2339</td>
+<td>0.00%</td>
+<td>0.033</td>
+<td>0.831</td>
+<td>5.413</td>
+<td>0.356</td>
+<td>0.708</td>
+<td>1.445</td>
+<td>1.852</td>
+</tr>
+<tr><td>230</td>
+<td>0.970</td>
+<td>Excellent</td>
+<td>151.267</td>
+<td>163.000</td>
+<td>2269</td>
+<td>2269</td>
+<td>0.00%</td>
+<td>0.117</td>
+<td>0.731</td>
+<td>7.700</td>
+<td>0.316</td>
+<td>0.580</td>
+<td>1.273</td>
+<td>1.648</td>
+</tr>
+<tr><td>240</td>
+<td>0.961</td>
+<td>Excellent</td>
+<td>157.667</td>
+<td>214.000</td>
+<td>2365</td>
+<td>2365</td>
+<td>0.00%</td>
+<td>0.124</td>
+<td>0.729</td>
+<td>5.512</td>
+<td>0.245</td>
+<td>0.595</td>
+<td>1.338</td>
+<td>1.795</td>
+</tr>
+<tr><td>250</td>
+<td>0.972</td>
+<td>Excellent</td>
+<td>154.667</td>
+<td>217.000</td>
+<td>2320</td>
+<td>2320</td>
+<td>0.00%</td>
+<td>0.094</td>
+<td>0.653</td>
+<td>13.109</td>
+<td>0.232</td>
+<td>0.486</td>
+<td>1.197</td>
+<td>1.551</td>
+</tr>
+</tbody>
+</table>
+<p>* Apdex <sub>1.5</sub></p>
+</blockquote>
+</div>
+<div class="section" id="slowest-requests">
+<h1><a class="toc-backref" href="#id6">6&nbsp;&nbsp;&nbsp;Slowest requests</a></h1>
+<p>The 5 slowest average response time during the best cycle with <strong>30</strong> CUs:</p>
+<ul class="simple">
+<li>In page 002, Apdex rating: Excellent, avg response time: 0.18s, post: <tt class="docutils literal">/users/sign_in</tt>
+<cite>Login to home page</cite></li>
+<li>In page 001, Apdex rating: Excellent, avg response time: 0.08s, image: <tt class="docutils literal"><span class="pre">/assets/android-couple-b1ad5d5350bfe4ef04a08aad1a70c79d.jpg</span></tt>
+``</li>
+<li>In page 002, Apdex rating: Excellent, avg response time: 0.08s, get: <tt class="docutils literal">/users/sign_in</tt>
+``</li>
+<li>In page 001, Apdex rating: Excellent, avg response time: 0.08s, link: <tt class="docutils literal"><span class="pre">/assets/application-f7872605e25f7dbf8a128f2cc96a6a4e.css</span></tt>
+``</li>
+<li>In page 002, Apdex rating: Excellent, avg response time: 0.07s, get: <tt class="docutils literal">/users/11755</tt>
+``</li>
+</ul>
+</div>
+<div class="section" id="page-detail-stats">
+<h1><a class="toc-backref" href="#id7">7&nbsp;&nbsp;&nbsp;Page detail stats</a></h1>
+<div class="section" id="page-001-login-page">
+<h2><a class="toc-backref" href="#id8">7.1&nbsp;&nbsp;&nbsp;PAGE 001: Login page</a></h2>
+<ul>
+<li><p class="first">Req: 001, get, url <tt class="docutils literal">/users/sign_in</tt></p>
+<blockquote>
+<img alt="request_001.001.png" src="request_001.001.png" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">CUs</p>
+</th>
+<th class="head"><p class="first last">Apdex*</p>
+</th>
+<th class="head"><p class="first last">Rating</p>
+</th>
+<th class="head"><p class="first last">TOTAL</p>
+</th>
+<th class="head"><p class="first last">SUCCESS</p>
+</th>
+<th class="head"><p class="first last">ERROR</p>
+</th>
+<th class="head"><p class="first last">MIN</p>
+</th>
+<th class="head"><p class="first last">AVG</p>
+</th>
+<th class="head"><p class="first last">MAX</p>
+</th>
+<th class="head"><p class="first last">P10</p>
+</th>
+<th class="head"><p class="first last">MED</p>
+</th>
+<th class="head"><p class="first last">P90</p>
+</th>
+<th class="head"><p class="first last">P95</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last">10</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">187</p>
+</td>
+<td><p class="first last">187</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.012</p>
+</td>
+<td><p class="first last">0.030</p>
+</td>
+<td><p class="first last">0.323</p>
+</td>
+<td><p class="first last">0.013</p>
+</td>
+<td><p class="first last">0.018</p>
+</td>
+<td><p class="first last">0.059</p>
+</td>
+<td><p class="first last">0.073</p>
+</td>
+</tr>
+<tr><td><p class="first last">20</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">349</p>
+</td>
+<td><p class="first last">349</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.012</p>
+</td>
+<td><p class="first last">0.038</p>
+</td>
+<td><p class="first last">0.165</p>
+</td>
+<td><p class="first last">0.014</p>
+</td>
+<td><p class="first last">0.029</p>
+</td>
+<td><p class="first last">0.068</p>
+</td>
+<td><p class="first last">0.105</p>
+</td>
+</tr>
+<tr><td><p class="first last">30</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">415</p>
+</td>
+<td><p class="first last">415</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.013</p>
+</td>
+<td><p class="first last">0.059</p>
+</td>
+<td><p class="first last">0.244</p>
+</td>
+<td><p class="first last">0.018</p>
+</td>
+<td><p class="first last">0.044</p>
+</td>
+<td><p class="first last">0.113</p>
+</td>
+<td><p class="first last">0.131</p>
+</td>
+</tr>
+<tr><td><p class="first last">40</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">411</p>
+</td>
+<td><p class="first last">411</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.013</p>
+</td>
+<td><p class="first last">0.094</p>
+</td>
+<td><p class="first last">0.537</p>
+</td>
+<td><p class="first last">0.022</p>
+</td>
+<td><p class="first last">0.086</p>
+</td>
+<td><p class="first last">0.163</p>
+</td>
+<td><p class="first last">0.224</p>
+</td>
+</tr>
+<tr><td><p class="first last">50</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">396</p>
+</td>
+<td><p class="first last">396</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.014</p>
+</td>
+<td><p class="first last">0.139</p>
+</td>
+<td><p class="first last">3.127</p>
+</td>
+<td><p class="first last">0.034</p>
+</td>
+<td><p class="first last">0.121</p>
+</td>
+<td><p class="first last">0.234</p>
+</td>
+<td><p class="first last">0.286</p>
+</td>
+</tr>
+<tr><td><p class="first last">60</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">406</p>
+</td>
+<td><p class="first last">406</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.013</p>
+</td>
+<td><p class="first last">0.150</p>
+</td>
+<td><p class="first last">0.469</p>
+</td>
+<td><p class="first last">0.063</p>
+</td>
+<td><p class="first last">0.137</p>
+</td>
+<td><p class="first last">0.249</p>
+</td>
+<td><p class="first last">0.303</p>
+</td>
+</tr>
+<tr><td><p class="first last">70</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">404</p>
+</td>
+<td><p class="first last">404</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.015</p>
+</td>
+<td><p class="first last">0.203</p>
+</td>
+<td><p class="first last">3.014</p>
+</td>
+<td><p class="first last">0.059</p>
+</td>
+<td><p class="first last">0.159</p>
+</td>
+<td><p class="first last">0.359</p>
+</td>
+<td><p class="first last">0.497</p>
+</td>
+</tr>
+<tr><td><p class="first last">80</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.013</p>
+</td>
+<td><p class="first last">0.244</p>
+</td>
+<td><p class="first last">3.154</p>
+</td>
+<td><p class="first last">0.073</p>
+</td>
+<td><p class="first last">0.204</p>
+</td>
+<td><p class="first last">0.466</p>
+</td>
+<td><p class="first last">0.541</p>
+</td>
+</tr>
+<tr><td><p class="first last">90</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">394</p>
+</td>
+<td><p class="first last">394</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.016</p>
+</td>
+<td><p class="first last">0.263</p>
+</td>
+<td><p class="first last">1.164</p>
+</td>
+<td><p class="first last">0.085</p>
+</td>
+<td><p class="first last">0.241</p>
+</td>
+<td><p class="first last">0.474</p>
+</td>
+<td><p class="first last">0.536</p>
+</td>
+</tr>
+<tr><td><p class="first last">100</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.013</p>
+</td>
+<td><p class="first last">0.294</p>
+</td>
+<td><p class="first last">1.176</p>
+</td>
+<td><p class="first last">0.110</p>
+</td>
+<td><p class="first last">0.253</p>
+</td>
+<td><p class="first last">0.498</p>
+</td>
+<td><p class="first last">0.608</p>
+</td>
+</tr>
+<tr><td><p class="first last">110</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.016</p>
+</td>
+<td><p class="first last">0.376</p>
+</td>
+<td><p class="first last">1.173</p>
+</td>
+<td><p class="first last">0.192</p>
+</td>
+<td><p class="first last">0.341</p>
+</td>
+<td><p class="first last">0.631</p>
+</td>
+<td><p class="first last">0.728</p>
+</td>
+</tr>
+<tr><td><p class="first last">120</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">389</p>
+</td>
+<td><p class="first last">389</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.019</p>
+</td>
+<td><p class="first last">0.380</p>
+</td>
+<td><p class="first last">1.729</p>
+</td>
+<td><p class="first last">0.122</p>
+</td>
+<td><p class="first last">0.345</p>
+</td>
+<td><p class="first last">0.700</p>
+</td>
+<td><p class="first last">0.823</p>
+</td>
+</tr>
+<tr><td><p class="first last">130</p>
+</td>
+<td><p class="first last">0.996</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">378</p>
+</td>
+<td><p class="first last">378</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.075</p>
+</td>
+<td><p class="first last">0.502</p>
+</td>
+<td><p class="first last">1.672</p>
+</td>
+<td><p class="first last">0.228</p>
+</td>
+<td><p class="first last">0.433</p>
+</td>
+<td><p class="first last">0.914</p>
+</td>
+<td><p class="first last">1.082</p>
+</td>
+</tr>
+<tr><td><p class="first last">140</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.094</p>
+</td>
+<td><p class="first last">0.479</p>
+</td>
+<td><p class="first last">2.052</p>
+</td>
+<td><p class="first last">0.229</p>
+</td>
+<td><p class="first last">0.388</p>
+</td>
+<td><p class="first last">0.756</p>
+</td>
+<td><p class="first last">0.971</p>
+</td>
+</tr>
+<tr><td><p class="first last">150</p>
+</td>
+<td><p class="first last">0.996</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">398</p>
+</td>
+<td><p class="first last">398</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.051</p>
+</td>
+<td><p class="first last">0.490</p>
+</td>
+<td><p class="first last">3.143</p>
+</td>
+<td><p class="first last">0.236</p>
+</td>
+<td><p class="first last">0.451</p>
+</td>
+<td><p class="first last">0.804</p>
+</td>
+<td><p class="first last">0.933</p>
+</td>
+</tr>
+<tr><td><p class="first last">160</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">394</p>
+</td>
+<td><p class="first last">394</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.052</p>
+</td>
+<td><p class="first last">0.507</p>
+</td>
+<td><p class="first last">2.136</p>
+</td>
+<td><p class="first last">0.212</p>
+</td>
+<td><p class="first last">0.463</p>
+</td>
+<td><p class="first last">0.938</p>
+</td>
+<td><p class="first last">1.067</p>
+</td>
+</tr>
+<tr><td><p class="first last">170</p>
+</td>
+<td><p class="first last">0.982</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">381</p>
+</td>
+<td><p class="first last">381</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.022</p>
+</td>
+<td><p class="first last">0.567</p>
+</td>
+<td><p class="first last">3.964</p>
+</td>
+<td><p class="first last">0.227</p>
+</td>
+<td><p class="first last">0.468</p>
+</td>
+<td><p class="first last">0.941</p>
+</td>
+<td><p class="first last">1.172</p>
+</td>
+</tr>
+<tr><td><p class="first last">180</p>
+</td>
+<td><p class="first last">0.969</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">398</p>
+</td>
+<td><p class="first last">398</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.061</p>
+</td>
+<td><p class="first last">0.670</p>
+</td>
+<td><p class="first last">2.574</p>
+</td>
+<td><p class="first last">0.193</p>
+</td>
+<td><p class="first last">0.566</p>
+</td>
+<td><p class="first last">1.270</p>
+</td>
+<td><p class="first last">1.571</p>
+</td>
+</tr>
+<tr><td><p class="first last">190</p>
+</td>
+<td><p class="first last">0.978</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">387</p>
+</td>
+<td><p class="first last">387</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.084</p>
+</td>
+<td><p class="first last">0.702</p>
+</td>
+<td><p class="first last">4.209</p>
+</td>
+<td><p class="first last">0.263</p>
+</td>
+<td><p class="first last">0.589</p>
+</td>
+<td><p class="first last">1.194</p>
+</td>
+<td><p class="first last">1.433</p>
+</td>
+</tr>
+<tr><td><p class="first last">200</p>
+</td>
+<td><p class="first last">0.975</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">376</p>
+</td>
+<td><p class="first last">376</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.129</p>
+</td>
+<td><p class="first last">0.703</p>
+</td>
+<td><p class="first last">3.950</p>
+</td>
+<td><p class="first last">0.333</p>
+</td>
+<td><p class="first last">0.584</p>
+</td>
+<td><p class="first last">1.193</p>
+</td>
+<td><p class="first last">1.547</p>
+</td>
+</tr>
+<tr><td><p class="first last">210</p>
+</td>
+<td><p class="first last">0.971</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">368</p>
+</td>
+<td><p class="first last">368</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.097</p>
+</td>
+<td><p class="first last">0.729</p>
+</td>
+<td><p class="first last">3.885</p>
+</td>
+<td><p class="first last">0.334</p>
+</td>
+<td><p class="first last">0.596</p>
+</td>
+<td><p class="first last">1.264</p>
+</td>
+<td><p class="first last">1.553</p>
+</td>
+</tr>
+<tr><td><p class="first last">220</p>
+</td>
+<td><p class="first last">0.947</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">388</p>
+</td>
+<td><p class="first last">388</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.033</p>
+</td>
+<td><p class="first last">0.885</p>
+</td>
+<td><p class="first last">4.794</p>
+</td>
+<td><p class="first last">0.363</p>
+</td>
+<td><p class="first last">0.729</p>
+</td>
+<td><p class="first last">1.572</p>
+</td>
+<td><p class="first last">2.029</p>
+</td>
+</tr>
+<tr><td><p class="first last">230</p>
+</td>
+<td><p class="first last">0.961</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">389</p>
+</td>
+<td><p class="first last">389</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.121</p>
+</td>
+<td><p class="first last">0.790</p>
+</td>
+<td><p class="first last">5.974</p>
+</td>
+<td><p class="first last">0.315</p>
+</td>
+<td><p class="first last">0.619</p>
+</td>
+<td><p class="first last">1.356</p>
+</td>
+<td><p class="first last">1.786</p>
+</td>
+</tr>
+<tr><td><p class="first last">240</p>
+</td>
+<td><p class="first last">0.943</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">412</p>
+</td>
+<td><p class="first last">412</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.124</p>
+</td>
+<td><p class="first last">0.846</p>
+</td>
+<td><p class="first last">5.512</p>
+</td>
+<td><p class="first last">0.306</p>
+</td>
+<td><p class="first last">0.680</p>
+</td>
+<td><p class="first last">1.652</p>
+</td>
+<td><p class="first last">2.162</p>
+</td>
+</tr>
+<tr><td><p class="first last">250</p>
+</td>
+<td><p class="first last">0.974</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">397</p>
+</td>
+<td><p class="first last">397</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.120</p>
+</td>
+<td><p class="first last">0.681</p>
+</td>
+<td><p class="first last">5.906</p>
+</td>
+<td><p class="first last">0.245</p>
+</td>
+<td><p class="first last">0.518</p>
+</td>
+<td><p class="first last">1.213</p>
+</td>
+<td><p class="first last">1.555</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>* Apdex <sub>1.5</sub></p>
+</blockquote>
+</li>
+<li><p class="first">Req: 002, link, url <tt class="docutils literal"><span class="pre">/assets/application-f7872605e25f7dbf8a128f2cc96a6a4e.css</span></tt></p>
+<blockquote>
+<img alt="request_001.002.png" src="request_001.002.png" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">CUs</p>
+</th>
+<th class="head"><p class="first last">Apdex*</p>
+</th>
+<th class="head"><p class="first last">Rating</p>
+</th>
+<th class="head"><p class="first last">TOTAL</p>
+</th>
+<th class="head"><p class="first last">SUCCESS</p>
+</th>
+<th class="head"><p class="first last">ERROR</p>
+</th>
+<th class="head"><p class="first last">MIN</p>
+</th>
+<th class="head"><p class="first last">AVG</p>
+</th>
+<th class="head"><p class="first last">MAX</p>
+</th>
+<th class="head"><p class="first last">P10</p>
+</th>
+<th class="head"><p class="first last">MED</p>
+</th>
+<th class="head"><p class="first last">P90</p>
+</th>
+<th class="head"><p class="first last">P95</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last">10</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">187</p>
+</td>
+<td><p class="first last">187</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.007</p>
+</td>
+<td><p class="first last">0.020</p>
+</td>
+<td><p class="first last">0.108</p>
+</td>
+<td><p class="first last">0.008</p>
+</td>
+<td><p class="first last">0.011</p>
+</td>
+<td><p class="first last">0.049</p>
+</td>
+<td><p class="first last">0.069</p>
+</td>
+</tr>
+<tr><td><p class="first last">20</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">349</p>
+</td>
+<td><p class="first last">349</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.007</p>
+</td>
+<td><p class="first last">0.026</p>
+</td>
+<td><p class="first last">0.115</p>
+</td>
+<td><p class="first last">0.009</p>
+</td>
+<td><p class="first last">0.018</p>
+</td>
+<td><p class="first last">0.058</p>
+</td>
+<td><p class="first last">0.078</p>
+</td>
+</tr>
+<tr><td><p class="first last">30</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">414</p>
+</td>
+<td><p class="first last">414</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.008</p>
+</td>
+<td><p class="first last">0.077</p>
+</td>
+<td><p class="first last">0.230</p>
+</td>
+<td><p class="first last">0.019</p>
+</td>
+<td><p class="first last">0.074</p>
+</td>
+<td><p class="first last">0.144</p>
+</td>
+<td><p class="first last">0.158</p>
+</td>
+</tr>
+<tr><td><p class="first last">40</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">414</p>
+</td>
+<td><p class="first last">414</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.016</p>
+</td>
+<td><p class="first last">0.132</p>
+</td>
+<td><p class="first last">0.373</p>
+</td>
+<td><p class="first last">0.048</p>
+</td>
+<td><p class="first last">0.125</p>
+</td>
+<td><p class="first last">0.211</p>
+</td>
+<td><p class="first last">0.250</p>
+</td>
+</tr>
+<tr><td><p class="first last">50</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">397</p>
+</td>
+<td><p class="first last">397</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.029</p>
+</td>
+<td><p class="first last">0.190</p>
+</td>
+<td><p class="first last">3.226</p>
+</td>
+<td><p class="first last">0.104</p>
+</td>
+<td><p class="first last">0.153</p>
+</td>
+<td><p class="first last">0.275</p>
+</td>
+<td><p class="first last">0.343</p>
+</td>
+</tr>
+<tr><td><p class="first last">60</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.034</p>
+</td>
+<td><p class="first last">0.192</p>
+</td>
+<td><p class="first last">0.477</p>
+</td>
+<td><p class="first last">0.111</p>
+</td>
+<td><p class="first last">0.174</p>
+</td>
+<td><p class="first last">0.310</p>
+</td>
+<td><p class="first last">0.355</p>
+</td>
+</tr>
+<tr><td><p class="first last">70</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">403</p>
+</td>
+<td><p class="first last">403</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.029</p>
+</td>
+<td><p class="first last">0.280</p>
+</td>
+<td><p class="first last">3.026</p>
+</td>
+<td><p class="first last">0.128</p>
+</td>
+<td><p class="first last">0.235</p>
+</td>
+<td><p class="first last">0.489</p>
+</td>
+<td><p class="first last">0.620</p>
+</td>
+</tr>
+<tr><td><p class="first last">80</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">373</p>
+</td>
+<td><p class="first last">373</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.046</p>
+</td>
+<td><p class="first last">0.281</p>
+</td>
+<td><p class="first last">1.315</p>
+</td>
+<td><p class="first last">0.145</p>
+</td>
+<td><p class="first last">0.243</p>
+</td>
+<td><p class="first last">0.450</p>
+</td>
+<td><p class="first last">0.511</p>
+</td>
+</tr>
+<tr><td><p class="first last">90</p>
+</td>
+<td><p class="first last">0.998</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">400</p>
+</td>
+<td><p class="first last">400</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.066</p>
+</td>
+<td><p class="first last">0.317</p>
+</td>
+<td><p class="first last">3.495</p>
+</td>
+<td><p class="first last">0.154</p>
+</td>
+<td><p class="first last">0.261</p>
+</td>
+<td><p class="first last">0.483</p>
+</td>
+<td><p class="first last">0.609</p>
+</td>
+</tr>
+<tr><td><p class="first last">100</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">394</p>
+</td>
+<td><p class="first last">394</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.087</p>
+</td>
+<td><p class="first last">0.331</p>
+</td>
+<td><p class="first last">1.323</p>
+</td>
+<td><p class="first last">0.205</p>
+</td>
+<td><p class="first last">0.270</p>
+</td>
+<td><p class="first last">0.506</p>
+</td>
+<td><p class="first last">0.631</p>
+</td>
+</tr>
+<tr><td><p class="first last">110</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">376</p>
+</td>
+<td><p class="first last">376</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.017</p>
+</td>
+<td><p class="first last">0.356</p>
+</td>
+<td><p class="first last">1.152</p>
+</td>
+<td><p class="first last">0.221</p>
+</td>
+<td><p class="first last">0.335</p>
+</td>
+<td><p class="first last">0.569</p>
+</td>
+<td><p class="first last">0.699</p>
+</td>
+</tr>
+<tr><td><p class="first last">120</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">393</p>
+</td>
+<td><p class="first last">393</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.118</p>
+</td>
+<td><p class="first last">0.416</p>
+</td>
+<td><p class="first last">4.326</p>
+</td>
+<td><p class="first last">0.225</p>
+</td>
+<td><p class="first last">0.352</p>
+</td>
+<td><p class="first last">0.645</p>
+</td>
+<td><p class="first last">0.741</p>
+</td>
+</tr>
+<tr><td><p class="first last">130</p>
+</td>
+<td><p class="first last">0.992</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">381</p>
+</td>
+<td><p class="first last">381</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.122</p>
+</td>
+<td><p class="first last">0.461</p>
+</td>
+<td><p class="first last">3.501</p>
+</td>
+<td><p class="first last">0.222</p>
+</td>
+<td><p class="first last">0.367</p>
+</td>
+<td><p class="first last">0.733</p>
+</td>
+<td><p class="first last">0.957</p>
+</td>
+</tr>
+<tr><td><p class="first last">140</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">391</p>
+</td>
+<td><p class="first last">391</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.100</p>
+</td>
+<td><p class="first last">0.437</p>
+</td>
+<td><p class="first last">2.085</p>
+</td>
+<td><p class="first last">0.228</p>
+</td>
+<td><p class="first last">0.360</p>
+</td>
+<td><p class="first last">0.707</p>
+</td>
+<td><p class="first last">0.935</p>
+</td>
+</tr>
+<tr><td><p class="first last">150</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">387</p>
+</td>
+<td><p class="first last">387</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.112</p>
+</td>
+<td><p class="first last">0.428</p>
+</td>
+<td><p class="first last">3.163</p>
+</td>
+<td><p class="first last">0.214</p>
+</td>
+<td><p class="first last">0.373</p>
+</td>
+<td><p class="first last">0.690</p>
+</td>
+<td><p class="first last">0.811</p>
+</td>
+</tr>
+<tr><td><p class="first last">160</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.188</p>
+</td>
+<td><p class="first last">0.480</p>
+</td>
+<td><p class="first last">2.017</p>
+</td>
+<td><p class="first last">0.228</p>
+</td>
+<td><p class="first last">0.368</p>
+</td>
+<td><p class="first last">0.843</p>
+</td>
+<td><p class="first last">1.103</p>
+</td>
+</tr>
+<tr><td><p class="first last">170</p>
+</td>
+<td><p class="first last">0.994</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.096</p>
+</td>
+<td><p class="first last">0.483</p>
+</td>
+<td><p class="first last">4.432</p>
+</td>
+<td><p class="first last">0.207</p>
+</td>
+<td><p class="first last">0.387</p>
+</td>
+<td><p class="first last">0.805</p>
+</td>
+<td><p class="first last">0.961</p>
+</td>
+</tr>
+<tr><td><p class="first last">180</p>
+</td>
+<td><p class="first last">0.964</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.149</p>
+</td>
+<td><p class="first last">0.714</p>
+</td>
+<td><p class="first last">2.618</p>
+</td>
+<td><p class="first last">0.326</p>
+</td>
+<td><p class="first last">0.556</p>
+</td>
+<td><p class="first last">1.358</p>
+</td>
+<td><p class="first last">1.832</p>
+</td>
+</tr>
+<tr><td><p class="first last">190</p>
+</td>
+<td><p class="first last">0.979</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">379</p>
+</td>
+<td><p class="first last">379</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.125</p>
+</td>
+<td><p class="first last">0.647</p>
+</td>
+<td><p class="first last">4.328</p>
+</td>
+<td><p class="first last">0.256</p>
+</td>
+<td><p class="first last">0.538</p>
+</td>
+<td><p class="first last">1.087</p>
+</td>
+<td><p class="first last">1.407</p>
+</td>
+</tr>
+<tr><td><p class="first last">200</p>
+</td>
+<td><p class="first last">0.965</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">371</p>
+</td>
+<td><p class="first last">371</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.120</p>
+</td>
+<td><p class="first last">0.704</p>
+</td>
+<td><p class="first last">4.157</p>
+</td>
+<td><p class="first last">0.244</p>
+</td>
+<td><p class="first last">0.495</p>
+</td>
+<td><p class="first last">1.283</p>
+</td>
+<td><p class="first last">1.818</p>
+</td>
+</tr>
+<tr><td><p class="first last">210</p>
+</td>
+<td><p class="first last">0.970</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">362</p>
+</td>
+<td><p class="first last">362</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.134</p>
+</td>
+<td><p class="first last">0.701</p>
+</td>
+<td><p class="first last">3.375</p>
+</td>
+<td><p class="first last">0.246</p>
+</td>
+<td><p class="first last">0.577</p>
+</td>
+<td><p class="first last">1.308</p>
+</td>
+<td><p class="first last">1.596</p>
+</td>
+</tr>
+<tr><td><p class="first last">220</p>
+</td>
+<td><p class="first last">0.953</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">397</p>
+</td>
+<td><p class="first last">397</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.183</p>
+</td>
+<td><p class="first last">0.810</p>
+</td>
+<td><p class="first last">3.963</p>
+</td>
+<td><p class="first last">0.343</p>
+</td>
+<td><p class="first last">0.695</p>
+</td>
+<td><p class="first last">1.441</p>
+</td>
+<td><p class="first last">1.900</p>
+</td>
+</tr>
+<tr><td><p class="first last">230</p>
+</td>
+<td><p class="first last">0.980</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.119</p>
+</td>
+<td><p class="first last">0.679</p>
+</td>
+<td><p class="first last">4.607</p>
+</td>
+<td><p class="first last">0.276</p>
+</td>
+<td><p class="first last">0.569</p>
+</td>
+<td><p class="first last">1.204</p>
+</td>
+<td><p class="first last">1.454</p>
+</td>
+</tr>
+<tr><td><p class="first last">240</p>
+</td>
+<td><p class="first last">0.970</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">405</p>
+</td>
+<td><p class="first last">405</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.193</p>
+</td>
+<td><p class="first last">0.667</p>
+</td>
+<td><p class="first last">3.552</p>
+</td>
+<td><p class="first last">0.233</p>
+</td>
+<td><p class="first last">0.573</p>
+</td>
+<td><p class="first last">1.272</p>
+</td>
+<td><p class="first last">1.569</p>
+</td>
+</tr>
+<tr><td><p class="first last">250</p>
+</td>
+<td><p class="first last">0.983</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">385</p>
+</td>
+<td><p class="first last">385</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.094</p>
+</td>
+<td><p class="first last">0.567</p>
+</td>
+<td><p class="first last">3.202</p>
+</td>
+<td><p class="first last">0.224</p>
+</td>
+<td><p class="first last">0.396</p>
+</td>
+<td><p class="first last">1.102</p>
+</td>
+<td><p class="first last">1.385</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>* Apdex <sub>1.5</sub></p>
+</blockquote>
+</li>
+<li><p class="first">Req: 003, image, url <tt class="docutils literal"><span class="pre">/assets/app-matcher-logo-5672f91bd0cf8a264d27e27d0d552dbb.png</span></tt></p>
+<blockquote>
+<img alt="request_001.003.png" src="request_001.003.png" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">CUs</p>
+</th>
+<th class="head"><p class="first last">Apdex*</p>
+</th>
+<th class="head"><p class="first last">Rating</p>
+</th>
+<th class="head"><p class="first last">TOTAL</p>
+</th>
+<th class="head"><p class="first last">SUCCESS</p>
+</th>
+<th class="head"><p class="first last">ERROR</p>
+</th>
+<th class="head"><p class="first last">MIN</p>
+</th>
+<th class="head"><p class="first last">AVG</p>
+</th>
+<th class="head"><p class="first last">MAX</p>
+</th>
+<th class="head"><p class="first last">P10</p>
+</th>
+<th class="head"><p class="first last">MED</p>
+</th>
+<th class="head"><p class="first last">P90</p>
+</th>
+<th class="head"><p class="first last">P95</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last">10</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">188</p>
+</td>
+<td><p class="first last">188</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.007</p>
+</td>
+<td><p class="first last">0.019</p>
+</td>
+<td><p class="first last">0.095</p>
+</td>
+<td><p class="first last">0.008</p>
+</td>
+<td><p class="first last">0.011</p>
+</td>
+<td><p class="first last">0.045</p>
+</td>
+<td><p class="first last">0.068</p>
+</td>
+</tr>
+<tr><td><p class="first last">20</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">348</p>
+</td>
+<td><p class="first last">348</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.007</p>
+</td>
+<td><p class="first last">0.027</p>
+</td>
+<td><p class="first last">0.145</p>
+</td>
+<td><p class="first last">0.009</p>
+</td>
+<td><p class="first last">0.017</p>
+</td>
+<td><p class="first last">0.062</p>
+</td>
+<td><p class="first last">0.078</p>
+</td>
+</tr>
+<tr><td><p class="first last">30</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">412</p>
+</td>
+<td><p class="first last">412</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.008</p>
+</td>
+<td><p class="first last">0.063</p>
+</td>
+<td><p class="first last">0.274</p>
+</td>
+<td><p class="first last">0.015</p>
+</td>
+<td><p class="first last">0.052</p>
+</td>
+<td><p class="first last">0.121</p>
+</td>
+<td><p class="first last">0.139</p>
+</td>
+</tr>
+<tr><td><p class="first last">40</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">413</p>
+</td>
+<td><p class="first last">413</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.012</p>
+</td>
+<td><p class="first last">0.108</p>
+</td>
+<td><p class="first last">0.357</p>
+</td>
+<td><p class="first last">0.031</p>
+</td>
+<td><p class="first last">0.114</p>
+</td>
+<td><p class="first last">0.167</p>
+</td>
+<td><p class="first last">0.199</p>
+</td>
+</tr>
+<tr><td><p class="first last">50</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">396</p>
+</td>
+<td><p class="first last">396</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.010</p>
+</td>
+<td><p class="first last">0.160</p>
+</td>
+<td><p class="first last">0.550</p>
+</td>
+<td><p class="first last">0.094</p>
+</td>
+<td><p class="first last">0.138</p>
+</td>
+<td><p class="first last">0.241</p>
+</td>
+<td><p class="first last">0.267</p>
+</td>
+</tr>
+<tr><td><p class="first last">60</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">403</p>
+</td>
+<td><p class="first last">403</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.015</p>
+</td>
+<td><p class="first last">0.177</p>
+</td>
+<td><p class="first last">0.494</p>
+</td>
+<td><p class="first last">0.108</p>
+</td>
+<td><p class="first last">0.154</p>
+</td>
+<td><p class="first last">0.257</p>
+</td>
+<td><p class="first last">0.295</p>
+</td>
+</tr>
+<tr><td><p class="first last">70</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">403</p>
+</td>
+<td><p class="first last">403</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.031</p>
+</td>
+<td><p class="first last">0.250</p>
+</td>
+<td><p class="first last">0.887</p>
+</td>
+<td><p class="first last">0.125</p>
+</td>
+<td><p class="first last">0.226</p>
+</td>
+<td><p class="first last">0.390</p>
+</td>
+<td><p class="first last">0.480</p>
+</td>
+</tr>
+<tr><td><p class="first last">80</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">372</p>
+</td>
+<td><p class="first last">372</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.015</p>
+</td>
+<td><p class="first last">0.270</p>
+</td>
+<td><p class="first last">1.296</p>
+</td>
+<td><p class="first last">0.141</p>
+</td>
+<td><p class="first last">0.239</p>
+</td>
+<td><p class="first last">0.406</p>
+</td>
+<td><p class="first last">0.475</p>
+</td>
+</tr>
+<tr><td><p class="first last">90</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">413</p>
+</td>
+<td><p class="first last">413</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.055</p>
+</td>
+<td><p class="first last">0.294</p>
+</td>
+<td><p class="first last">0.903</p>
+</td>
+<td><p class="first last">0.178</p>
+</td>
+<td><p class="first last">0.258</p>
+</td>
+<td><p class="first last">0.461</p>
+</td>
+<td><p class="first last">0.510</p>
+</td>
+</tr>
+<tr><td><p class="first last">100</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">403</p>
+</td>
+<td><p class="first last">403</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.083</p>
+</td>
+<td><p class="first last">0.314</p>
+</td>
+<td><p class="first last">2.419</p>
+</td>
+<td><p class="first last">0.197</p>
+</td>
+<td><p class="first last">0.256</p>
+</td>
+<td><p class="first last">0.477</p>
+</td>
+<td><p class="first last">0.572</p>
+</td>
+</tr>
+<tr><td><p class="first last">110</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">383</p>
+</td>
+<td><p class="first last">383</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.089</p>
+</td>
+<td><p class="first last">0.367</p>
+</td>
+<td><p class="first last">1.332</p>
+</td>
+<td><p class="first last">0.219</p>
+</td>
+<td><p class="first last">0.337</p>
+</td>
+<td><p class="first last">0.581</p>
+</td>
+<td><p class="first last">0.690</p>
+</td>
+</tr>
+<tr><td><p class="first last">120</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">400</p>
+</td>
+<td><p class="first last">400</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.094</p>
+</td>
+<td><p class="first last">0.405</p>
+</td>
+<td><p class="first last">3.271</p>
+</td>
+<td><p class="first last">0.223</p>
+</td>
+<td><p class="first last">0.345</p>
+</td>
+<td><p class="first last">0.709</p>
+</td>
+<td><p class="first last">0.866</p>
+</td>
+</tr>
+<tr><td><p class="first last">130</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">383</p>
+</td>
+<td><p class="first last">383</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.103</p>
+</td>
+<td><p class="first last">0.437</p>
+</td>
+<td><p class="first last">1.336</p>
+</td>
+<td><p class="first last">0.236</p>
+</td>
+<td><p class="first last">0.371</p>
+</td>
+<td><p class="first last">0.728</p>
+</td>
+<td><p class="first last">0.859</p>
+</td>
+</tr>
+<tr><td><p class="first last">140</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">389</p>
+</td>
+<td><p class="first last">389</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.096</p>
+</td>
+<td><p class="first last">0.450</p>
+</td>
+<td><p class="first last">2.649</p>
+</td>
+<td><p class="first last">0.227</p>
+</td>
+<td><p class="first last">0.370</p>
+</td>
+<td><p class="first last">0.712</p>
+</td>
+<td><p class="first last">0.976</p>
+</td>
+</tr>
+<tr><td><p class="first last">150</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">389</p>
+</td>
+<td><p class="first last">389</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.100</p>
+</td>
+<td><p class="first last">0.429</p>
+</td>
+<td><p class="first last">3.156</p>
+</td>
+<td><p class="first last">0.221</p>
+</td>
+<td><p class="first last">0.387</p>
+</td>
+<td><p class="first last">0.687</p>
+</td>
+<td><p class="first last">0.755</p>
+</td>
+</tr>
+<tr><td><p class="first last">160</p>
+</td>
+<td><p class="first last">0.992</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.116</p>
+</td>
+<td><p class="first last">0.494</p>
+</td>
+<td><p class="first last">2.138</p>
+</td>
+<td><p class="first last">0.227</p>
+</td>
+<td><p class="first last">0.370</p>
+</td>
+<td><p class="first last">0.860</p>
+</td>
+<td><p class="first last">1.209</p>
+</td>
+</tr>
+<tr><td><p class="first last">170</p>
+</td>
+<td><p class="first last">0.992</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.035</p>
+</td>
+<td><p class="first last">0.511</p>
+</td>
+<td><p class="first last">3.480</p>
+</td>
+<td><p class="first last">0.229</p>
+</td>
+<td><p class="first last">0.448</p>
+</td>
+<td><p class="first last">0.857</p>
+</td>
+<td><p class="first last">1.192</p>
+</td>
+</tr>
+<tr><td><p class="first last">180</p>
+</td>
+<td><p class="first last">0.975</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">402</p>
+</td>
+<td><p class="first last">402</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.151</p>
+</td>
+<td><p class="first last">0.644</p>
+</td>
+<td><p class="first last">3.247</p>
+</td>
+<td><p class="first last">0.330</p>
+</td>
+<td><p class="first last">0.533</p>
+</td>
+<td><p class="first last">1.066</p>
+</td>
+<td><p class="first last">1.493</p>
+</td>
+</tr>
+<tr><td><p class="first last">190</p>
+</td>
+<td><p class="first last">0.983</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">379</p>
+</td>
+<td><p class="first last">379</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.133</p>
+</td>
+<td><p class="first last">0.657</p>
+</td>
+<td><p class="first last">3.987</p>
+</td>
+<td><p class="first last">0.247</p>
+</td>
+<td><p class="first last">0.576</p>
+</td>
+<td><p class="first last">1.095</p>
+</td>
+<td><p class="first last">1.313</p>
+</td>
+</tr>
+<tr><td><p class="first last">200</p>
+</td>
+<td><p class="first last">0.958</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.122</p>
+</td>
+<td><p class="first last">0.719</p>
+</td>
+<td><p class="first last">4.664</p>
+</td>
+<td><p class="first last">0.240</p>
+</td>
+<td><p class="first last">0.488</p>
+</td>
+<td><p class="first last">1.316</p>
+</td>
+<td><p class="first last">2.401</p>
+</td>
+</tr>
+<tr><td><p class="first last">210</p>
+</td>
+<td><p class="first last">0.974</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">368</p>
+</td>
+<td><p class="first last">368</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.133</p>
+</td>
+<td><p class="first last">0.717</p>
+</td>
+<td><p class="first last">3.485</p>
+</td>
+<td><p class="first last">0.325</p>
+</td>
+<td><p class="first last">0.582</p>
+</td>
+<td><p class="first last">1.242</p>
+</td>
+<td><p class="first last">1.512</p>
+</td>
+</tr>
+<tr><td><p class="first last">220</p>
+</td>
+<td><p class="first last">0.960</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">391</p>
+</td>
+<td><p class="first last">391</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.203</p>
+</td>
+<td><p class="first last">0.783</p>
+</td>
+<td><p class="first last">5.413</p>
+</td>
+<td><p class="first last">0.338</p>
+</td>
+<td><p class="first last">0.634</p>
+</td>
+<td><p class="first last">1.385</p>
+</td>
+<td><p class="first last">1.818</p>
+</td>
+</tr>
+<tr><td><p class="first last">230</p>
+</td>
+<td><p class="first last">0.976</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.117</p>
+</td>
+<td><p class="first last">0.622</p>
+</td>
+<td><p class="first last">4.521</p>
+</td>
+<td><p class="first last">0.253</p>
+</td>
+<td><p class="first last">0.485</p>
+</td>
+<td><p class="first last">1.045</p>
+</td>
+<td><p class="first last">1.384</p>
+</td>
+</tr>
+<tr><td><p class="first last">240</p>
+</td>
+<td><p class="first last">0.972</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">394</p>
+</td>
+<td><p class="first last">394</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.161</p>
+</td>
+<td><p class="first last">0.642</p>
+</td>
+<td><p class="first last">3.011</p>
+</td>
+<td><p class="first last">0.227</p>
+</td>
+<td><p class="first last">0.504</p>
+</td>
+<td><p class="first last">1.220</p>
+</td>
+<td><p class="first last">1.548</p>
+</td>
+</tr>
+<tr><td><p class="first last">250</p>
+</td>
+<td><p class="first last">0.973</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.094</p>
+</td>
+<td><p class="first last">0.605</p>
+</td>
+<td><p class="first last">3.868</p>
+</td>
+<td><p class="first last">0.224</p>
+</td>
+<td><p class="first last">0.464</p>
+</td>
+<td><p class="first last">1.098</p>
+</td>
+<td><p class="first last">1.571</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>* Apdex <sub>1.5</sub></p>
+</blockquote>
+</li>
+<li><p class="first">Req: 004, image, url <tt class="docutils literal"><span class="pre">/assets/android-couple-b1ad5d5350bfe4ef04a08aad1a70c79d.jpg</span></tt></p>
+<blockquote>
+<img alt="request_001.004.png" src="request_001.004.png" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">CUs</p>
+</th>
+<th class="head"><p class="first last">Apdex*</p>
+</th>
+<th class="head"><p class="first last">Rating</p>
+</th>
+<th class="head"><p class="first last">TOTAL</p>
+</th>
+<th class="head"><p class="first last">SUCCESS</p>
+</th>
+<th class="head"><p class="first last">ERROR</p>
+</th>
+<th class="head"><p class="first last">MIN</p>
+</th>
+<th class="head"><p class="first last">AVG</p>
+</th>
+<th class="head"><p class="first last">MAX</p>
+</th>
+<th class="head"><p class="first last">P10</p>
+</th>
+<th class="head"><p class="first last">MED</p>
+</th>
+<th class="head"><p class="first last">P90</p>
+</th>
+<th class="head"><p class="first last">P95</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last">10</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">188</p>
+</td>
+<td><p class="first last">188</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.008</p>
+</td>
+<td><p class="first last">0.021</p>
+</td>
+<td><p class="first last">0.090</p>
+</td>
+<td><p class="first last">0.009</p>
+</td>
+<td><p class="first last">0.014</p>
+</td>
+<td><p class="first last">0.046</p>
+</td>
+<td><p class="first last">0.062</p>
+</td>
+</tr>
+<tr><td><p class="first last">20</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">348</p>
+</td>
+<td><p class="first last">348</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.009</p>
+</td>
+<td><p class="first last">0.031</p>
+</td>
+<td><p class="first last">0.121</p>
+</td>
+<td><p class="first last">0.011</p>
+</td>
+<td><p class="first last">0.020</p>
+</td>
+<td><p class="first last">0.079</p>
+</td>
+<td><p class="first last">0.090</p>
+</td>
+</tr>
+<tr><td><p class="first last">30</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">410</p>
+</td>
+<td><p class="first last">410</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.008</p>
+</td>
+<td><p class="first last">0.085</p>
+</td>
+<td><p class="first last">0.262</p>
+</td>
+<td><p class="first last">0.021</p>
+</td>
+<td><p class="first last">0.087</p>
+</td>
+<td><p class="first last">0.147</p>
+</td>
+<td><p class="first last">0.167</p>
+</td>
+</tr>
+<tr><td><p class="first last">40</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">409</p>
+</td>
+<td><p class="first last">409</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.013</p>
+</td>
+<td><p class="first last">0.148</p>
+</td>
+<td><p class="first last">0.433</p>
+</td>
+<td><p class="first last">0.078</p>
+</td>
+<td><p class="first last">0.140</p>
+</td>
+<td><p class="first last">0.228</p>
+</td>
+<td><p class="first last">0.266</p>
+</td>
+</tr>
+<tr><td><p class="first last">50</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.028</p>
+</td>
+<td><p class="first last">0.220</p>
+</td>
+<td><p class="first last">0.546</p>
+</td>
+<td><p class="first last">0.124</p>
+</td>
+<td><p class="first last">0.223</p>
+</td>
+<td><p class="first last">0.338</p>
+</td>
+<td><p class="first last">0.362</p>
+</td>
+</tr>
+<tr><td><p class="first last">60</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">404</p>
+</td>
+<td><p class="first last">404</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.045</p>
+</td>
+<td><p class="first last">0.243</p>
+</td>
+<td><p class="first last">0.583</p>
+</td>
+<td><p class="first last">0.142</p>
+</td>
+<td><p class="first last">0.235</p>
+</td>
+<td><p class="first last">0.350</p>
+</td>
+<td><p class="first last">0.373</p>
+</td>
+</tr>
+<tr><td><p class="first last">70</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">406</p>
+</td>
+<td><p class="first last">406</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.069</p>
+</td>
+<td><p class="first last">0.305</p>
+</td>
+<td><p class="first last">1.015</p>
+</td>
+<td><p class="first last">0.181</p>
+</td>
+<td><p class="first last">0.269</p>
+</td>
+<td><p class="first last">0.451</p>
+</td>
+<td><p class="first last">0.526</p>
+</td>
+</tr>
+<tr><td><p class="first last">80</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">375</p>
+</td>
+<td><p class="first last">375</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.140</p>
+</td>
+<td><p class="first last">0.367</p>
+</td>
+<td><p class="first last">1.318</p>
+</td>
+<td><p class="first last">0.216</p>
+</td>
+<td><p class="first last">0.340</p>
+</td>
+<td><p class="first last">0.514</p>
+</td>
+<td><p class="first last">0.687</p>
+</td>
+</tr>
+<tr><td><p class="first last">90</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">417</p>
+</td>
+<td><p class="first last">417</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.129</p>
+</td>
+<td><p class="first last">0.366</p>
+</td>
+<td><p class="first last">3.314</p>
+</td>
+<td><p class="first last">0.214</p>
+</td>
+<td><p class="first last">0.346</p>
+</td>
+<td><p class="first last">0.515</p>
+</td>
+<td><p class="first last">0.591</p>
+</td>
+</tr>
+<tr><td><p class="first last">100</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">413</p>
+</td>
+<td><p class="first last">413</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.148</p>
+</td>
+<td><p class="first last">0.383</p>
+</td>
+<td><p class="first last">1.684</p>
+</td>
+<td><p class="first last">0.225</p>
+</td>
+<td><p class="first last">0.352</p>
+</td>
+<td><p class="first last">0.571</p>
+</td>
+<td><p class="first last">0.697</p>
+</td>
+</tr>
+<tr><td><p class="first last">110</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">384</p>
+</td>
+<td><p class="first last">384</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.193</p>
+</td>
+<td><p class="first last">0.407</p>
+</td>
+<td><p class="first last">1.499</p>
+</td>
+<td><p class="first last">0.235</p>
+</td>
+<td><p class="first last">0.363</p>
+</td>
+<td><p class="first last">0.603</p>
+</td>
+<td><p class="first last">0.712</p>
+</td>
+</tr>
+<tr><td><p class="first last">120</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">406</p>
+</td>
+<td><p class="first last">406</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.094</p>
+</td>
+<td><p class="first last">0.453</p>
+</td>
+<td><p class="first last">3.360</p>
+</td>
+<td><p class="first last">0.245</p>
+</td>
+<td><p class="first last">0.389</p>
+</td>
+<td><p class="first last">0.704</p>
+</td>
+<td><p class="first last">0.801</p>
+</td>
+</tr>
+<tr><td><p class="first last">130</p>
+</td>
+<td><p class="first last">0.997</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">387</p>
+</td>
+<td><p class="first last">387</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.196</p>
+</td>
+<td><p class="first last">0.491</p>
+</td>
+<td><p class="first last">3.124</p>
+</td>
+<td><p class="first last">0.233</p>
+</td>
+<td><p class="first last">0.460</p>
+</td>
+<td><p class="first last">0.750</p>
+</td>
+<td><p class="first last">0.933</p>
+</td>
+</tr>
+<tr><td><p class="first last">140</p>
+</td>
+<td><p class="first last">0.988</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">391</p>
+</td>
+<td><p class="first last">391</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.198</p>
+</td>
+<td><p class="first last">0.521</p>
+</td>
+<td><p class="first last">1.809</p>
+</td>
+<td><p class="first last">0.247</p>
+</td>
+<td><p class="first last">0.462</p>
+</td>
+<td><p class="first last">0.814</p>
+</td>
+<td><p class="first last">1.207</p>
+</td>
+</tr>
+<tr><td><p class="first last">150</p>
+</td>
+<td><p class="first last">0.998</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">400</p>
+</td>
+<td><p class="first last">400</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.192</p>
+</td>
+<td><p class="first last">0.488</p>
+</td>
+<td><p class="first last">3.161</p>
+</td>
+<td><p class="first last">0.249</p>
+</td>
+<td><p class="first last">0.452</p>
+</td>
+<td><p class="first last">0.735</p>
+</td>
+<td><p class="first last">0.859</p>
+</td>
+</tr>
+<tr><td><p class="first last">160</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">392</p>
+</td>
+<td><p class="first last">392</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.184</p>
+</td>
+<td><p class="first last">0.565</p>
+</td>
+<td><p class="first last">3.252</p>
+</td>
+<td><p class="first last">0.320</p>
+</td>
+<td><p class="first last">0.486</p>
+</td>
+<td><p class="first last">0.923</p>
+</td>
+<td><p class="first last">1.113</p>
+</td>
+</tr>
+<tr><td><p class="first last">170</p>
+</td>
+<td><p class="first last">0.977</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">383</p>
+</td>
+<td><p class="first last">383</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.195</p>
+</td>
+<td><p class="first last">0.594</p>
+</td>
+<td><p class="first last">3.435</p>
+</td>
+<td><p class="first last">0.267</p>
+</td>
+<td><p class="first last">0.482</p>
+</td>
+<td><p class="first last">0.971</p>
+</td>
+<td><p class="first last">1.470</p>
+</td>
+</tr>
+<tr><td><p class="first last">180</p>
+</td>
+<td><p class="first last">0.977</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">394</p>
+</td>
+<td><p class="first last">394</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.246</p>
+</td>
+<td><p class="first last">0.712</p>
+</td>
+<td><p class="first last">3.784</p>
+</td>
+<td><p class="first last">0.352</p>
+</td>
+<td><p class="first last">0.584</p>
+</td>
+<td><p class="first last">1.181</p>
+</td>
+<td><p class="first last">1.479</p>
+</td>
+</tr>
+<tr><td><p class="first last">190</p>
+</td>
+<td><p class="first last">0.975</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.199</p>
+</td>
+<td><p class="first last">0.730</p>
+</td>
+<td><p class="first last">4.810</p>
+</td>
+<td><p class="first last">0.339</p>
+</td>
+<td><p class="first last">0.631</p>
+</td>
+<td><p class="first last">1.094</p>
+</td>
+<td><p class="first last">1.460</p>
+</td>
+</tr>
+<tr><td><p class="first last">200</p>
+</td>
+<td><p class="first last">0.953</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">379</p>
+</td>
+<td><p class="first last">379</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.200</p>
+</td>
+<td><p class="first last">0.802</p>
+</td>
+<td><p class="first last">4.679</p>
+</td>
+<td><p class="first last">0.296</p>
+</td>
+<td><p class="first last">0.602</p>
+</td>
+<td><p class="first last">1.420</p>
+</td>
+<td><p class="first last">2.612</p>
+</td>
+</tr>
+<tr><td><p class="first last">210</p>
+</td>
+<td><p class="first last">0.981</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">370</p>
+</td>
+<td><p class="first last">370</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.193</p>
+</td>
+<td><p class="first last">0.684</p>
+</td>
+<td><p class="first last">3.365</p>
+</td>
+<td><p class="first last">0.316</p>
+</td>
+<td><p class="first last">0.594</p>
+</td>
+<td><p class="first last">1.195</p>
+</td>
+<td><p class="first last">1.327</p>
+</td>
+</tr>
+<tr><td><p class="first last">220</p>
+</td>
+<td><p class="first last">0.968</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.214</p>
+</td>
+<td><p class="first last">0.798</p>
+</td>
+<td><p class="first last">4.877</p>
+</td>
+<td><p class="first last">0.361</p>
+</td>
+<td><p class="first last">0.713</p>
+</td>
+<td><p class="first last">1.319</p>
+</td>
+<td><p class="first last">1.589</p>
+</td>
+</tr>
+<tr><td><p class="first last">230</p>
+</td>
+<td><p class="first last">0.977</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">383</p>
+</td>
+<td><p class="first last">383</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.222</p>
+</td>
+<td><p class="first last">0.697</p>
+</td>
+<td><p class="first last">5.551</p>
+</td>
+<td><p class="first last">0.339</p>
+</td>
+<td><p class="first last">0.553</p>
+</td>
+<td><p class="first last">1.189</p>
+</td>
+<td><p class="first last">1.438</p>
+</td>
+</tr>
+<tr><td><p class="first last">240</p>
+</td>
+<td><p class="first last">0.956</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">396</p>
+</td>
+<td><p class="first last">396</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.177</p>
+</td>
+<td><p class="first last">0.729</p>
+</td>
+<td><p class="first last">3.070</p>
+</td>
+<td><p class="first last">0.248</p>
+</td>
+<td><p class="first last">0.590</p>
+</td>
+<td><p class="first last">1.413</p>
+</td>
+<td><p class="first last">1.919</p>
+</td>
+</tr>
+<tr><td><p class="first last">250</p>
+</td>
+<td><p class="first last">0.966</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">384</p>
+</td>
+<td><p class="first last">384</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.196</p>
+</td>
+<td><p class="first last">0.662</p>
+</td>
+<td><p class="first last">5.714</p>
+</td>
+<td><p class="first last">0.240</p>
+</td>
+<td><p class="first last">0.484</p>
+</td>
+<td><p class="first last">1.187</p>
+</td>
+<td><p class="first last">1.666</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>* Apdex <sub>1.5</sub></p>
+</blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="page-002-login-to-home-page">
+<h2><a class="toc-backref" href="#id9">7.2&nbsp;&nbsp;&nbsp;PAGE 002: Login to home page</a></h2>
+<ul>
+<li><p class="first">Req: 001, post, url <tt class="docutils literal">/users/sign_in</tt></p>
+<blockquote>
+<img alt="request_002.001.png" src="request_002.001.png" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">CUs</p>
+</th>
+<th class="head"><p class="first last">Apdex*</p>
+</th>
+<th class="head"><p class="first last">Rating</p>
+</th>
+<th class="head"><p class="first last">TOTAL</p>
+</th>
+<th class="head"><p class="first last">SUCCESS</p>
+</th>
+<th class="head"><p class="first last">ERROR</p>
+</th>
+<th class="head"><p class="first last">MIN</p>
+</th>
+<th class="head"><p class="first last">AVG</p>
+</th>
+<th class="head"><p class="first last">MAX</p>
+</th>
+<th class="head"><p class="first last">P10</p>
+</th>
+<th class="head"><p class="first last">MED</p>
+</th>
+<th class="head"><p class="first last">P90</p>
+</th>
+<th class="head"><p class="first last">P95</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last">10</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">189</p>
+</td>
+<td><p class="first last">189</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.121</p>
+</td>
+<td><p class="first last">0.151</p>
+</td>
+<td><p class="first last">0.429</p>
+</td>
+<td><p class="first last">0.125</p>
+</td>
+<td><p class="first last">0.137</p>
+</td>
+<td><p class="first last">0.190</p>
+</td>
+<td><p class="first last">0.230</p>
+</td>
+</tr>
+<tr><td><p class="first last">20</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">356</p>
+</td>
+<td><p class="first last">356</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.122</p>
+</td>
+<td><p class="first last">0.154</p>
+</td>
+<td><p class="first last">0.360</p>
+</td>
+<td><p class="first last">0.127</p>
+</td>
+<td><p class="first last">0.142</p>
+</td>
+<td><p class="first last">0.199</p>
+</td>
+<td><p class="first last">0.222</p>
+</td>
+</tr>
+<tr><td><p class="first last">30</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">407</p>
+</td>
+<td><p class="first last">407</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.124</p>
+</td>
+<td><p class="first last">0.182</p>
+</td>
+<td><p class="first last">0.348</p>
+</td>
+<td><p class="first last">0.137</p>
+</td>
+<td><p class="first last">0.171</p>
+</td>
+<td><p class="first last">0.243</p>
+</td>
+<td><p class="first last">0.266</p>
+</td>
+</tr>
+<tr><td><p class="first last">40</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">402</p>
+</td>
+<td><p class="first last">402</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.125</p>
+</td>
+<td><p class="first last">0.209</p>
+</td>
+<td><p class="first last">0.551</p>
+</td>
+<td><p class="first last">0.145</p>
+</td>
+<td><p class="first last">0.191</p>
+</td>
+<td><p class="first last">0.280</p>
+</td>
+<td><p class="first last">0.331</p>
+</td>
+</tr>
+<tr><td><p class="first last">50</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.129</p>
+</td>
+<td><p class="first last">0.255</p>
+</td>
+<td><p class="first last">3.338</p>
+</td>
+<td><p class="first last">0.154</p>
+</td>
+<td><p class="first last">0.234</p>
+</td>
+<td><p class="first last">0.375</p>
+</td>
+<td><p class="first last">0.407</p>
+</td>
+</tr>
+<tr><td><p class="first last">60</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">406</p>
+</td>
+<td><p class="first last">406</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.124</p>
+</td>
+<td><p class="first last">0.269</p>
+</td>
+<td><p class="first last">0.650</p>
+</td>
+<td><p class="first last">0.158</p>
+</td>
+<td><p class="first last">0.252</p>
+</td>
+<td><p class="first last">0.389</p>
+</td>
+<td><p class="first last">0.459</p>
+</td>
+</tr>
+<tr><td><p class="first last">70</p>
+</td>
+<td><p class="first last">0.998</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">410</p>
+</td>
+<td><p class="first last">410</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.128</p>
+</td>
+<td><p class="first last">0.325</p>
+</td>
+<td><p class="first last">3.135</p>
+</td>
+<td><p class="first last">0.167</p>
+</td>
+<td><p class="first last">0.284</p>
+</td>
+<td><p class="first last">0.496</p>
+</td>
+<td><p class="first last">0.603</p>
+</td>
+</tr>
+<tr><td><p class="first last">80</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">377</p>
+</td>
+<td><p class="first last">377</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.128</p>
+</td>
+<td><p class="first last">0.364</p>
+</td>
+<td><p class="first last">3.724</p>
+</td>
+<td><p class="first last">0.172</p>
+</td>
+<td><p class="first last">0.315</p>
+</td>
+<td><p class="first last">0.514</p>
+</td>
+<td><p class="first last">0.582</p>
+</td>
+</tr>
+<tr><td><p class="first last">90</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">411</p>
+</td>
+<td><p class="first last">411</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.134</p>
+</td>
+<td><p class="first last">0.380</p>
+</td>
+<td><p class="first last">3.270</p>
+</td>
+<td><p class="first last">0.219</p>
+</td>
+<td><p class="first last">0.350</p>
+</td>
+<td><p class="first last">0.573</p>
+</td>
+<td><p class="first last">0.673</p>
+</td>
+</tr>
+<tr><td><p class="first last">100</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">403</p>
+</td>
+<td><p class="first last">403</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.135</p>
+</td>
+<td><p class="first last">0.388</p>
+</td>
+<td><p class="first last">1.326</p>
+</td>
+<td><p class="first last">0.232</p>
+</td>
+<td><p class="first last">0.362</p>
+</td>
+<td><p class="first last">0.610</p>
+</td>
+<td><p class="first last">0.704</p>
+</td>
+</tr>
+<tr><td><p class="first last">110</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">392</p>
+</td>
+<td><p class="first last">392</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.130</p>
+</td>
+<td><p class="first last">0.465</p>
+</td>
+<td><p class="first last">1.344</p>
+</td>
+<td><p class="first last">0.256</p>
+</td>
+<td><p class="first last">0.406</p>
+</td>
+<td><p class="first last">0.736</p>
+</td>
+<td><p class="first last">0.867</p>
+</td>
+</tr>
+<tr><td><p class="first last">120</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">390</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.128</p>
+</td>
+<td><p class="first last">0.481</p>
+</td>
+<td><p class="first last">1.498</p>
+</td>
+<td><p class="first last">0.246</p>
+</td>
+<td><p class="first last">0.450</p>
+</td>
+<td><p class="first last">0.760</p>
+</td>
+<td><p class="first last">0.873</p>
+</td>
+</tr>
+<tr><td><p class="first last">130</p>
+</td>
+<td><p class="first last">0.999</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">378</p>
+</td>
+<td><p class="first last">378</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.137</p>
+</td>
+<td><p class="first last">0.514</p>
+</td>
+<td><p class="first last">1.696</p>
+</td>
+<td><p class="first last">0.289</p>
+</td>
+<td><p class="first last">0.471</p>
+</td>
+<td><p class="first last">0.831</p>
+</td>
+<td><p class="first last">0.947</p>
+</td>
+</tr>
+<tr><td><p class="first last">140</p>
+</td>
+<td><p class="first last">0.990</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">387</p>
+</td>
+<td><p class="first last">387</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.151</p>
+</td>
+<td><p class="first last">0.563</p>
+</td>
+<td><p class="first last">3.617</p>
+</td>
+<td><p class="first last">0.275</p>
+</td>
+<td><p class="first last">0.486</p>
+</td>
+<td><p class="first last">0.857</p>
+</td>
+<td><p class="first last">1.034</p>
+</td>
+</tr>
+<tr><td><p class="first last">150</p>
+</td>
+<td><p class="first last">0.998</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">400</p>
+</td>
+<td><p class="first last">400</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.162</p>
+</td>
+<td><p class="first last">0.524</p>
+</td>
+<td><p class="first last">3.338</p>
+</td>
+<td><p class="first last">0.292</p>
+</td>
+<td><p class="first last">0.478</p>
+</td>
+<td><p class="first last">0.806</p>
+</td>
+<td><p class="first last">0.940</p>
+</td>
+</tr>
+<tr><td><p class="first last">160</p>
+</td>
+<td><p class="first last">0.989</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">398</p>
+</td>
+<td><p class="first last">398</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.131</p>
+</td>
+<td><p class="first last">0.585</p>
+</td>
+<td><p class="first last">3.813</p>
+</td>
+<td><p class="first last">0.272</p>
+</td>
+<td><p class="first last">0.486</p>
+</td>
+<td><p class="first last">0.951</p>
+</td>
+<td><p class="first last">1.206</p>
+</td>
+</tr>
+<tr><td><p class="first last">170</p>
+</td>
+<td><p class="first last">0.991</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">381</p>
+</td>
+<td><p class="first last">381</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.131</p>
+</td>
+<td><p class="first last">0.582</p>
+</td>
+<td><p class="first last">3.240</p>
+</td>
+<td><p class="first last">0.298</p>
+</td>
+<td><p class="first last">0.503</p>
+</td>
+<td><p class="first last">0.888</p>
+</td>
+<td><p class="first last">1.078</p>
+</td>
+</tr>
+<tr><td><p class="first last">180</p>
+</td>
+<td><p class="first last">0.984</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.175</p>
+</td>
+<td><p class="first last">0.720</p>
+</td>
+<td><p class="first last">3.771</p>
+</td>
+<td><p class="first last">0.376</p>
+</td>
+<td><p class="first last">0.632</p>
+</td>
+<td><p class="first last">1.123</p>
+</td>
+<td><p class="first last">1.340</p>
+</td>
+</tr>
+<tr><td><p class="first last">190</p>
+</td>
+<td><p class="first last">0.971</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">380</p>
+</td>
+<td><p class="first last">380</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.175</p>
+</td>
+<td><p class="first last">0.731</p>
+</td>
+<td><p class="first last">3.342</p>
+</td>
+<td><p class="first last">0.349</p>
+</td>
+<td><p class="first last">0.603</p>
+</td>
+<td><p class="first last">1.271</p>
+</td>
+<td><p class="first last">1.598</p>
+</td>
+</tr>
+<tr><td><p class="first last">200</p>
+</td>
+<td><p class="first last">0.971</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">382</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.166</p>
+</td>
+<td><p class="first last">0.756</p>
+</td>
+<td><p class="first last">4.869</p>
+</td>
+<td><p class="first last">0.338</p>
+</td>
+<td><p class="first last">0.620</p>
+</td>
+<td><p class="first last">1.230</p>
+</td>
+<td><p class="first last">1.682</p>
+</td>
+</tr>
+<tr><td><p class="first last">210</p>
+</td>
+<td><p class="first last">0.978</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">358</p>
+</td>
+<td><p class="first last">358</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.223</p>
+</td>
+<td><p class="first last">0.742</p>
+</td>
+<td><p class="first last">3.716</p>
+</td>
+<td><p class="first last">0.350</p>
+</td>
+<td><p class="first last">0.630</p>
+</td>
+<td><p class="first last">1.209</p>
+</td>
+<td><p class="first last">1.465</p>
+</td>
+</tr>
+<tr><td><p class="first last">220</p>
+</td>
+<td><p class="first last">0.957</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">392</p>
+</td>
+<td><p class="first last">392</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.233</p>
+</td>
+<td><p class="first last">0.843</p>
+</td>
+<td><p class="first last">4.612</p>
+</td>
+<td><p class="first last">0.378</p>
+</td>
+<td><p class="first last">0.711</p>
+</td>
+<td><p class="first last">1.447</p>
+</td>
+<td><p class="first last">1.809</p>
+</td>
+</tr>
+<tr><td><p class="first last">230</p>
+</td>
+<td><p class="first last">0.966</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">381</p>
+</td>
+<td><p class="first last">381</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.153</p>
+</td>
+<td><p class="first last">0.812</p>
+</td>
+<td><p class="first last">5.169</p>
+</td>
+<td><p class="first last">0.360</p>
+</td>
+<td><p class="first last">0.673</p>
+</td>
+<td><p class="first last">1.355</p>
+</td>
+<td><p class="first last">1.633</p>
+</td>
+</tr>
+<tr><td><p class="first last">240</p>
+</td>
+<td><p class="first last">0.965</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">399</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.164</p>
+</td>
+<td><p class="first last">0.759</p>
+</td>
+<td><p class="first last">3.985</p>
+</td>
+<td><p class="first last">0.344</p>
+</td>
+<td><p class="first last">0.633</p>
+</td>
+<td><p class="first last">1.301</p>
+</td>
+<td><p class="first last">1.783</p>
+</td>
+</tr>
+<tr><td><p class="first last">250</p>
+</td>
+<td><p class="first last">0.975</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">386</p>
+</td>
+<td><p class="first last">386</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.223</p>
+</td>
+<td><p class="first last">0.716</p>
+</td>
+<td><p class="first last">6.197</p>
+</td>
+<td><p class="first last">0.336</p>
+</td>
+<td><p class="first last">0.594</p>
+</td>
+<td><p class="first last">1.222</p>
+</td>
+<td><p class="first last">1.478</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>* Apdex <sub>1.5</sub></p>
+</blockquote>
+</li>
+<li><p class="first">Req: 002, get, url <tt class="docutils literal">/users/15198</tt></p>
+<blockquote>
+<img alt="request_002.002.png" src="request_002.002.png" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">CUs</p>
+</th>
+<th class="head"><p class="first last">Apdex*</p>
+</th>
+<th class="head"><p class="first last">Rating</p>
+</th>
+<th class="head"><p class="first last">TOTAL</p>
+</th>
+<th class="head"><p class="first last">SUCCESS</p>
+</th>
+<th class="head"><p class="first last">ERROR</p>
+</th>
+<th class="head"><p class="first last">MIN</p>
+</th>
+<th class="head"><p class="first last">AVG</p>
+</th>
+<th class="head"><p class="first last">MAX</p>
+</th>
+<th class="head"><p class="first last">P10</p>
+</th>
+<th class="head"><p class="first last">MED</p>
+</th>
+<th class="head"><p class="first last">P90</p>
+</th>
+<th class="head"><p class="first last">P95</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last">10</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">95</p>
+</td>
+<td><p class="first last">95</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.010</p>
+</td>
+<td><p class="first last">0.024</p>
+</td>
+<td><p class="first last">0.156</p>
+</td>
+<td><p class="first last">0.010</p>
+</td>
+<td><p class="first last">0.014</p>
+</td>
+<td><p class="first last">0.050</p>
+</td>
+<td><p class="first last">0.061</p>
+</td>
+</tr>
+<tr><td><p class="first last">20</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">161</p>
+</td>
+<td><p class="first last">161</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.010</p>
+</td>
+<td><p class="first last">0.032</p>
+</td>
+<td><p class="first last">0.203</p>
+</td>
+<td><p class="first last">0.011</p>
+</td>
+<td><p class="first last">0.023</p>
+</td>
+<td><p class="first last">0.063</p>
+</td>
+<td><p class="first last">0.080</p>
+</td>
+</tr>
+<tr><td><p class="first last">30</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">193</p>
+</td>
+<td><p class="first last">193</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.011</p>
+</td>
+<td><p class="first last">0.070</p>
+</td>
+<td><p class="first last">0.227</p>
+</td>
+<td><p class="first last">0.022</p>
+</td>
+<td><p class="first last">0.057</p>
+</td>
+<td><p class="first last">0.123</p>
+</td>
+<td><p class="first last">0.138</p>
+</td>
+</tr>
+<tr><td><p class="first last">40</p>
+</td>
+<td><p class="first last">0.997</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">195</p>
+</td>
+<td><p class="first last">195</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.013</p>
+</td>
+<td><p class="first last">0.142</p>
+</td>
+<td><p class="first last">3.096</p>
+</td>
+<td><p class="first last">0.037</p>
+</td>
+<td><p class="first last">0.122</p>
+</td>
+<td><p class="first last">0.212</p>
+</td>
+<td><p class="first last">0.260</p>
+</td>
+</tr>
+<tr><td><p class="first last">50</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">192</p>
+</td>
+<td><p class="first last">192</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.018</p>
+</td>
+<td><p class="first last">0.179</p>
+</td>
+<td><p class="first last">0.399</p>
+</td>
+<td><p class="first last">0.100</p>
+</td>
+<td><p class="first last">0.165</p>
+</td>
+<td><p class="first last">0.272</p>
+</td>
+<td><p class="first last">0.329</p>
+</td>
+</tr>
+<tr><td><p class="first last">60</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">194</p>
+</td>
+<td><p class="first last">194</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.016</p>
+</td>
+<td><p class="first last">0.178</p>
+</td>
+<td><p class="first last">0.595</p>
+</td>
+<td><p class="first last">0.086</p>
+</td>
+<td><p class="first last">0.149</p>
+</td>
+<td><p class="first last">0.322</p>
+</td>
+<td><p class="first last">0.359</p>
+</td>
+</tr>
+<tr><td><p class="first last">70</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">181</p>
+</td>
+<td><p class="first last">181</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.043</p>
+</td>
+<td><p class="first last">0.258</p>
+</td>
+<td><p class="first last">0.690</p>
+</td>
+<td><p class="first last">0.119</p>
+</td>
+<td><p class="first last">0.243</p>
+</td>
+<td><p class="first last">0.408</p>
+</td>
+<td><p class="first last">0.463</p>
+</td>
+</tr>
+<tr><td><p class="first last">80</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">187</p>
+</td>
+<td><p class="first last">187</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.017</p>
+</td>
+<td><p class="first last">0.289</p>
+</td>
+<td><p class="first last">1.056</p>
+</td>
+<td><p class="first last">0.120</p>
+</td>
+<td><p class="first last">0.241</p>
+</td>
+<td><p class="first last">0.494</p>
+</td>
+<td><p class="first last">0.602</p>
+</td>
+</tr>
+<tr><td><p class="first last">90</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">182</p>
+</td>
+<td><p class="first last">182</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.056</p>
+</td>
+<td><p class="first last">0.309</p>
+</td>
+<td><p class="first last">0.889</p>
+</td>
+<td><p class="first last">0.153</p>
+</td>
+<td><p class="first last">0.274</p>
+</td>
+<td><p class="first last">0.521</p>
+</td>
+<td><p class="first last">0.627</p>
+</td>
+</tr>
+<tr><td><p class="first last">100</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">184</p>
+</td>
+<td><p class="first last">184</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.022</p>
+</td>
+<td><p class="first last">0.319</p>
+</td>
+<td><p class="first last">1.161</p>
+</td>
+<td><p class="first last">0.181</p>
+</td>
+<td><p class="first last">0.257</p>
+</td>
+<td><p class="first last">0.559</p>
+</td>
+<td><p class="first last">0.637</p>
+</td>
+</tr>
+<tr><td><p class="first last">110</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">198</p>
+</td>
+<td><p class="first last">198</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.017</p>
+</td>
+<td><p class="first last">0.363</p>
+</td>
+<td><p class="first last">0.900</p>
+</td>
+<td><p class="first last">0.213</p>
+</td>
+<td><p class="first last">0.350</p>
+</td>
+<td><p class="first last">0.584</p>
+</td>
+<td><p class="first last">0.636</p>
+</td>
+</tr>
+<tr><td><p class="first last">120</p>
+</td>
+<td><p class="first last">0.994</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">180</p>
+</td>
+<td><p class="first last">180</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.078</p>
+</td>
+<td><p class="first last">0.446</p>
+</td>
+<td><p class="first last">3.387</p>
+</td>
+<td><p class="first last">0.210</p>
+</td>
+<td><p class="first last">0.358</p>
+</td>
+<td><p class="first last">0.849</p>
+</td>
+<td><p class="first last">1.064</p>
+</td>
+</tr>
+<tr><td><p class="first last">130</p>
+</td>
+<td><p class="first last">0.997</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">169</p>
+</td>
+<td><p class="first last">169</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.129</p>
+</td>
+<td><p class="first last">0.526</p>
+</td>
+<td><p class="first last">3.113</p>
+</td>
+<td><p class="first last">0.243</p>
+</td>
+<td><p class="first last">0.467</p>
+</td>
+<td><p class="first last">0.864</p>
+</td>
+<td><p class="first last">1.083</p>
+</td>
+</tr>
+<tr><td><p class="first last">140</p>
+</td>
+<td><p class="first last">0.986</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">183</p>
+</td>
+<td><p class="first last">183</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.168</p>
+</td>
+<td><p class="first last">0.526</p>
+</td>
+<td><p class="first last">3.052</p>
+</td>
+<td><p class="first last">0.240</p>
+</td>
+<td><p class="first last">0.404</p>
+</td>
+<td><p class="first last">0.944</p>
+</td>
+<td><p class="first last">1.232</p>
+</td>
+</tr>
+<tr><td><p class="first last">150</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">185</p>
+</td>
+<td><p class="first last">185</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.112</p>
+</td>
+<td><p class="first last">0.463</p>
+</td>
+<td><p class="first last">1.429</p>
+</td>
+<td><p class="first last">0.226</p>
+</td>
+<td><p class="first last">0.375</p>
+</td>
+<td><p class="first last">0.760</p>
+</td>
+<td><p class="first last">0.982</p>
+</td>
+</tr>
+<tr><td><p class="first last">160</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">188</p>
+</td>
+<td><p class="first last">188</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.104</p>
+</td>
+<td><p class="first last">0.515</p>
+</td>
+<td><p class="first last">2.197</p>
+</td>
+<td><p class="first last">0.225</p>
+</td>
+<td><p class="first last">0.447</p>
+</td>
+<td><p class="first last">0.942</p>
+</td>
+<td><p class="first last">1.104</p>
+</td>
+</tr>
+<tr><td><p class="first last">170</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">190</p>
+</td>
+<td><p class="first last">190</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.126</p>
+</td>
+<td><p class="first last">0.524</p>
+</td>
+<td><p class="first last">3.844</p>
+</td>
+<td><p class="first last">0.221</p>
+</td>
+<td><p class="first last">0.461</p>
+</td>
+<td><p class="first last">0.847</p>
+</td>
+<td><p class="first last">0.972</p>
+</td>
+</tr>
+<tr><td><p class="first last">180</p>
+</td>
+<td><p class="first last">0.974</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">174</p>
+</td>
+<td><p class="first last">174</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.065</p>
+</td>
+<td><p class="first last">0.718</p>
+</td>
+<td><p class="first last">2.304</p>
+</td>
+<td><p class="first last">0.322</p>
+</td>
+<td><p class="first last">0.645</p>
+</td>
+<td><p class="first last">1.278</p>
+</td>
+<td><p class="first last">1.533</p>
+</td>
+</tr>
+<tr><td><p class="first last">190</p>
+</td>
+<td><p class="first last">0.966</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">175</p>
+</td>
+<td><p class="first last">175</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.164</p>
+</td>
+<td><p class="first last">0.706</p>
+</td>
+<td><p class="first last">3.970</p>
+</td>
+<td><p class="first last">0.307</p>
+</td>
+<td><p class="first last">0.532</p>
+</td>
+<td><p class="first last">1.258</p>
+</td>
+<td><p class="first last">1.768</p>
+</td>
+</tr>
+<tr><td><p class="first last">200</p>
+</td>
+<td><p class="first last">0.962</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">186</p>
+</td>
+<td><p class="first last">186</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.124</p>
+</td>
+<td><p class="first last">0.767</p>
+</td>
+<td><p class="first last">3.865</p>
+</td>
+<td><p class="first last">0.272</p>
+</td>
+<td><p class="first last">0.562</p>
+</td>
+<td><p class="first last">1.275</p>
+</td>
+<td><p class="first last">2.412</p>
+</td>
+</tr>
+<tr><td><p class="first last">210</p>
+</td>
+<td><p class="first last">0.969</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">161</p>
+</td>
+<td><p class="first last">161</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.200</p>
+</td>
+<td><p class="first last">0.701</p>
+</td>
+<td><p class="first last">3.645</p>
+</td>
+<td><p class="first last">0.341</p>
+</td>
+<td><p class="first last">0.566</p>
+</td>
+<td><p class="first last">1.335</p>
+</td>
+<td><p class="first last">1.556</p>
+</td>
+</tr>
+<tr><td><p class="first last">220</p>
+</td>
+<td><p class="first last">0.954</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">184</p>
+</td>
+<td><p class="first last">184</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.203</p>
+</td>
+<td><p class="first last">0.795</p>
+</td>
+<td><p class="first last">3.579</p>
+</td>
+<td><p class="first last">0.378</p>
+</td>
+<td><p class="first last">0.627</p>
+</td>
+<td><p class="first last">1.425</p>
+</td>
+<td><p class="first last">1.717</p>
+</td>
+</tr>
+<tr><td><p class="first last">230</p>
+</td>
+<td><p class="first last">0.969</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">177</p>
+</td>
+<td><p class="first last">177</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.134</p>
+</td>
+<td><p class="first last">0.751</p>
+</td>
+<td><p class="first last">7.700</p>
+</td>
+<td><p class="first last">0.277</p>
+</td>
+<td><p class="first last">0.624</p>
+</td>
+<td><p class="first last">1.273</p>
+</td>
+<td><p class="first last">1.574</p>
+</td>
+</tr>
+<tr><td><p class="first last">240</p>
+</td>
+<td><p class="first last">0.961</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">178</p>
+</td>
+<td><p class="first last">178</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.129</p>
+</td>
+<td><p class="first last">0.739</p>
+</td>
+<td><p class="first last">3.012</p>
+</td>
+<td><p class="first last">0.231</p>
+</td>
+<td><p class="first last">0.598</p>
+</td>
+<td><p class="first last">1.324</p>
+</td>
+<td><p class="first last">1.900</p>
+</td>
+</tr>
+<tr><td><p class="first last">250</p>
+</td>
+<td><p class="first last">0.955</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">191</p>
+</td>
+<td><p class="first last">191</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.112</p>
+</td>
+<td><p class="first last">0.709</p>
+</td>
+<td><p class="first last">13.109</p>
+</td>
+<td><p class="first last">0.222</p>
+</td>
+<td><p class="first last">0.458</p>
+</td>
+<td><p class="first last">1.319</p>
+</td>
+<td><p class="first last">1.640</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>* Apdex <sub>1.5</sub></p>
+</blockquote>
+</li>
+<li><p class="first">Req: 003, get, url <tt class="docutils literal">/users/sign_in</tt></p>
+<blockquote>
+<img alt="request_002.003.png" src="request_002.003.png" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><p class="first last">CUs</p>
+</th>
+<th class="head"><p class="first last">Apdex*</p>
+</th>
+<th class="head"><p class="first last">Rating</p>
+</th>
+<th class="head"><p class="first last">TOTAL</p>
+</th>
+<th class="head"><p class="first last">SUCCESS</p>
+</th>
+<th class="head"><p class="first last">ERROR</p>
+</th>
+<th class="head"><p class="first last">MIN</p>
+</th>
+<th class="head"><p class="first last">AVG</p>
+</th>
+<th class="head"><p class="first last">MAX</p>
+</th>
+<th class="head"><p class="first last">P10</p>
+</th>
+<th class="head"><p class="first last">MED</p>
+</th>
+<th class="head"><p class="first last">P90</p>
+</th>
+<th class="head"><p class="first last">P95</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><p class="first last">10</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">95</p>
+</td>
+<td><p class="first last">95</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.012</p>
+</td>
+<td><p class="first last">0.028</p>
+</td>
+<td><p class="first last">0.106</p>
+</td>
+<td><p class="first last">0.014</p>
+</td>
+<td><p class="first last">0.018</p>
+</td>
+<td><p class="first last">0.052</p>
+</td>
+<td><p class="first last">0.071</p>
+</td>
+</tr>
+<tr><td><p class="first last">20</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">161</p>
+</td>
+<td><p class="first last">161</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.013</p>
+</td>
+<td><p class="first last">0.045</p>
+</td>
+<td><p class="first last">0.234</p>
+</td>
+<td><p class="first last">0.016</p>
+</td>
+<td><p class="first last">0.031</p>
+</td>
+<td><p class="first last">0.097</p>
+</td>
+<td><p class="first last">0.120</p>
+</td>
+</tr>
+<tr><td><p class="first last">30</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">191</p>
+</td>
+<td><p class="first last">191</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.013</p>
+</td>
+<td><p class="first last">0.080</p>
+</td>
+<td><p class="first last">0.240</p>
+</td>
+<td><p class="first last">0.023</p>
+</td>
+<td><p class="first last">0.068</p>
+</td>
+<td><p class="first last">0.148</p>
+</td>
+<td><p class="first last">0.185</p>
+</td>
+</tr>
+<tr><td><p class="first last">40</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">197</p>
+</td>
+<td><p class="first last">197</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.016</p>
+</td>
+<td><p class="first last">0.137</p>
+</td>
+<td><p class="first last">0.507</p>
+</td>
+<td><p class="first last">0.045</p>
+</td>
+<td><p class="first last">0.125</p>
+</td>
+<td><p class="first last">0.230</p>
+</td>
+<td><p class="first last">0.261</p>
+</td>
+</tr>
+<tr><td><p class="first last">50</p>
+</td>
+<td><p class="first last">0.997</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">190</p>
+</td>
+<td><p class="first last">190</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.015</p>
+</td>
+<td><p class="first last">0.197</p>
+</td>
+<td><p class="first last">3.127</p>
+</td>
+<td><p class="first last">0.101</p>
+</td>
+<td><p class="first last">0.165</p>
+</td>
+<td><p class="first last">0.262</p>
+</td>
+<td><p class="first last">0.352</p>
+</td>
+</tr>
+<tr><td><p class="first last">60</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">193</p>
+</td>
+<td><p class="first last">193</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.033</p>
+</td>
+<td><p class="first last">0.187</p>
+</td>
+<td><p class="first last">0.483</p>
+</td>
+<td><p class="first last">0.096</p>
+</td>
+<td><p class="first last">0.161</p>
+</td>
+<td><p class="first last">0.338</p>
+</td>
+<td><p class="first last">0.378</p>
+</td>
+</tr>
+<tr><td><p class="first last">70</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">179</p>
+</td>
+<td><p class="first last">179</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.043</p>
+</td>
+<td><p class="first last">0.310</p>
+</td>
+<td><p class="first last">0.911</p>
+</td>
+<td><p class="first last">0.126</p>
+</td>
+<td><p class="first last">0.251</p>
+</td>
+<td><p class="first last">0.567</p>
+</td>
+<td><p class="first last">0.606</p>
+</td>
+</tr>
+<tr><td><p class="first last">80</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">187</p>
+</td>
+<td><p class="first last">187</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.019</p>
+</td>
+<td><p class="first last">0.291</p>
+</td>
+<td><p class="first last">1.185</p>
+</td>
+<td><p class="first last">0.131</p>
+</td>
+<td><p class="first last">0.238</p>
+</td>
+<td><p class="first last">0.484</p>
+</td>
+<td><p class="first last">0.584</p>
+</td>
+</tr>
+<tr><td><p class="first last">90</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">179</p>
+</td>
+<td><p class="first last">179</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.024</p>
+</td>
+<td><p class="first last">0.326</p>
+</td>
+<td><p class="first last">1.070</p>
+</td>
+<td><p class="first last">0.167</p>
+</td>
+<td><p class="first last">0.270</p>
+</td>
+<td><p class="first last">0.575</p>
+</td>
+<td><p class="first last">0.693</p>
+</td>
+</tr>
+<tr><td><p class="first last">100</p>
+</td>
+<td><p class="first last">0.997</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">185</p>
+</td>
+<td><p class="first last">185</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.051</p>
+</td>
+<td><p class="first last">0.326</p>
+</td>
+<td><p class="first last">2.490</p>
+</td>
+<td><p class="first last">0.190</p>
+</td>
+<td><p class="first last">0.251</p>
+</td>
+<td><p class="first last">0.510</p>
+</td>
+<td><p class="first last">0.687</p>
+</td>
+</tr>
+<tr><td><p class="first last">110</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">201</p>
+</td>
+<td><p class="first last">201</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.116</p>
+</td>
+<td><p class="first last">0.366</p>
+</td>
+<td><p class="first last">0.955</p>
+</td>
+<td><p class="first last">0.215</p>
+</td>
+<td><p class="first last">0.341</p>
+</td>
+<td><p class="first last">0.588</p>
+</td>
+<td><p class="first last">0.692</p>
+</td>
+</tr>
+<tr><td><p class="first last">120</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">174</p>
+</td>
+<td><p class="first last">174</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.080</p>
+</td>
+<td><p class="first last">0.438</p>
+</td>
+<td><p class="first last">1.445</p>
+</td>
+<td><p class="first last">0.225</p>
+</td>
+<td><p class="first last">0.366</p>
+</td>
+<td><p class="first last">0.727</p>
+</td>
+<td><p class="first last">0.959</p>
+</td>
+</tr>
+<tr><td><p class="first last">130</p>
+</td>
+<td><p class="first last">0.994</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">169</p>
+</td>
+<td><p class="first last">169</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.168</p>
+</td>
+<td><p class="first last">0.492</p>
+</td>
+<td><p class="first last">2.054</p>
+</td>
+<td><p class="first last">0.220</p>
+</td>
+<td><p class="first last">0.390</p>
+</td>
+<td><p class="first last">0.932</p>
+</td>
+<td><p class="first last">1.155</p>
+</td>
+</tr>
+<tr><td><p class="first last">140</p>
+</td>
+<td><p class="first last">0.997</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">177</p>
+</td>
+<td><p class="first last">177</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.116</p>
+</td>
+<td><p class="first last">0.518</p>
+</td>
+<td><p class="first last">1.634</p>
+</td>
+<td><p class="first last">0.237</p>
+</td>
+<td><p class="first last">0.460</p>
+</td>
+<td><p class="first last">0.937</p>
+</td>
+<td><p class="first last">1.230</p>
+</td>
+</tr>
+<tr><td><p class="first last">150</p>
+</td>
+<td><p class="first last">1.000</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">187</p>
+</td>
+<td><p class="first last">187</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.124</p>
+</td>
+<td><p class="first last">0.462</p>
+</td>
+<td><p class="first last">1.206</p>
+</td>
+<td><p class="first last">0.222</p>
+</td>
+<td><p class="first last">0.447</p>
+</td>
+<td><p class="first last">0.719</p>
+</td>
+<td><p class="first last">0.804</p>
+</td>
+</tr>
+<tr><td><p class="first last">160</p>
+</td>
+<td><p class="first last">0.995</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">183</p>
+</td>
+<td><p class="first last">183</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.135</p>
+</td>
+<td><p class="first last">0.513</p>
+</td>
+<td><p class="first last">3.134</p>
+</td>
+<td><p class="first last">0.230</p>
+</td>
+<td><p class="first last">0.440</p>
+</td>
+<td><p class="first last">0.857</p>
+</td>
+<td><p class="first last">1.097</p>
+</td>
+</tr>
+<tr><td><p class="first last">170</p>
+</td>
+<td><p class="first last">0.992</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">186</p>
+</td>
+<td><p class="first last">186</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.106</p>
+</td>
+<td><p class="first last">0.548</p>
+</td>
+<td><p class="first last">3.919</p>
+</td>
+<td><p class="first last">0.216</p>
+</td>
+<td><p class="first last">0.467</p>
+</td>
+<td><p class="first last">0.950</p>
+</td>
+<td><p class="first last">1.091</p>
+</td>
+</tr>
+<tr><td><p class="first last">180</p>
+</td>
+<td><p class="first last">0.978</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">182</p>
+</td>
+<td><p class="first last">182</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.054</p>
+</td>
+<td><p class="first last">0.705</p>
+</td>
+<td><p class="first last">1.995</p>
+</td>
+<td><p class="first last">0.322</p>
+</td>
+<td><p class="first last">0.563</p>
+</td>
+<td><p class="first last">1.233</p>
+</td>
+<td><p class="first last">1.470</p>
+</td>
+</tr>
+<tr><td><p class="first last">190</p>
+</td>
+<td><p class="first last">0.952</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">177</p>
+</td>
+<td><p class="first last">177</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.207</p>
+</td>
+<td><p class="first last">0.777</p>
+</td>
+<td><p class="first last">5.288</p>
+</td>
+<td><p class="first last">0.315</p>
+</td>
+<td><p class="first last">0.577</p>
+</td>
+<td><p class="first last">1.424</p>
+</td>
+<td><p class="first last">2.080</p>
+</td>
+</tr>
+<tr><td><p class="first last">200</p>
+</td>
+<td><p class="first last">0.958</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">179</p>
+</td>
+<td><p class="first last">179</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.121</p>
+</td>
+<td><p class="first last">0.733</p>
+</td>
+<td><p class="first last">4.204</p>
+</td>
+<td><p class="first last">0.313</p>
+</td>
+<td><p class="first last">0.562</p>
+</td>
+<td><p class="first last">1.414</p>
+</td>
+<td><p class="first last">1.955</p>
+</td>
+</tr>
+<tr><td><p class="first last">210</p>
+</td>
+<td><p class="first last">0.955</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">167</p>
+</td>
+<td><p class="first last">167</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.203</p>
+</td>
+<td><p class="first last">0.796</p>
+</td>
+<td><p class="first last">3.613</p>
+</td>
+<td><p class="first last">0.336</p>
+</td>
+<td><p class="first last">0.601</p>
+</td>
+<td><p class="first last">1.449</p>
+</td>
+<td><p class="first last">1.767</p>
+</td>
+</tr>
+<tr><td><p class="first last">220</p>
+</td>
+<td><p class="first last">0.929</p>
+</td>
+<td><p class="first last">Good</p>
+</td>
+<td><p class="first last">197</p>
+</td>
+<td><p class="first last">197</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.198</p>
+</td>
+<td><p class="first last">0.930</p>
+</td>
+<td><p class="first last">3.103</p>
+</td>
+<td><p class="first last">0.360</p>
+</td>
+<td><p class="first last">0.836</p>
+</td>
+<td><p class="first last">1.682</p>
+</td>
+<td><p class="first last">2.025</p>
+</td>
+</tr>
+<tr><td><p class="first last">230</p>
+</td>
+<td><p class="first last">0.943</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">175</p>
+</td>
+<td><p class="first last">175</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.201</p>
+</td>
+<td><p class="first last">0.834</p>
+</td>
+<td><p class="first last">6.552</p>
+</td>
+<td><p class="first last">0.268</p>
+</td>
+<td><p class="first last">0.609</p>
+</td>
+<td><p class="first last">1.659</p>
+</td>
+<td><p class="first last">1.997</p>
+</td>
+</tr>
+<tr><td><p class="first last">240</p>
+</td>
+<td><p class="first last">0.959</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">181</p>
+</td>
+<td><p class="first last">181</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.133</p>
+</td>
+<td><p class="first last">0.711</p>
+</td>
+<td><p class="first last">2.171</p>
+</td>
+<td><p class="first last">0.228</p>
+</td>
+<td><p class="first last">0.589</p>
+</td>
+<td><p class="first last">1.314</p>
+</td>
+<td><p class="first last">1.712</p>
+</td>
+</tr>
+<tr><td><p class="first last">250</p>
+</td>
+<td><p class="first last">0.972</p>
+</td>
+<td><p class="first last">Excellent</p>
+</td>
+<td><p class="first last">195</p>
+</td>
+<td><p class="first last">195</p>
+</td>
+<td><p class="first last">0.00%</p>
+</td>
+<td><p class="first last">0.191</p>
+</td>
+<td><p class="first last">0.656</p>
+</td>
+<td><p class="first last">5.886</p>
+</td>
+<td><p class="first last">0.224</p>
+</td>
+<td><p class="first last">0.490</p>
+</td>
+<td><p class="first last">1.197</p>
+</td>
+<td><p class="first last">1.657</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>* Apdex <sub>1.5</sub></p>
+</blockquote>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="definitions">
+<h1><a class="toc-backref" href="#id10">8&nbsp;&nbsp;&nbsp;Definitions</a></h1>
+<ul>
+<li><p class="first">CUs: Concurrent users or number of concurrent threads executing tests.</p>
+</li>
+<li><p class="first">Request: a single GET/POST/redirect/xmlrpc request.</p>
+</li>
+<li><p class="first">Page: a request with redirects and resource links (image, css, js) for an html page.</p>
+</li>
+<li><p class="first">STPS: Successful tests per second.</p>
+</li>
+<li><p class="first">SPPS: Successful pages per second.</p>
+</li>
+<li><p class="first">RPS: Requests per second, successful or not.</p>
+</li>
+<li><p class="first">maxSPPS: Maximum SPPS during the cycle.</p>
+</li>
+<li><p class="first">maxRPS: Maximum RPS during the cycle.</p>
+</li>
+<li><p class="first">MIN: Minimum response time for a page or request.</p>
+</li>
+<li><p class="first">AVG: Average response time for a page or request.</p>
+</li>
+<li><p class="first">MAX: Maximmum response time for a page or request.</p>
+</li>
+<li><p class="first">P10: 10th percentile, response time where 10 percent of pages or requests are delivered.</p>
+</li>
+<li><p class="first">MED: Median or 50th percentile, response time where half of pages or requests are delivered.</p>
+</li>
+<li><p class="first">P90: 90th percentile, response time where 90 percent of pages or requests are delivered.</p>
+</li>
+<li><p class="first">P95: 95th percentile, response time where 95 percent of pages or requests are delivered.</p>
+</li>
+<li><p class="first">Apdex T: Application Performance Index,
+this is a numerical measure of user satisfaction, it is based
+on three zones of application responsiveness:</p>
+<ul>
+<li><p class="first">Satisfied: The user is fully productive. This represents the
+time value (T seconds) below which users are not impeded by
+application response time.</p>
+</li>
+<li><p class="first">Tolerating: The user notices performance lagging within
+responses greater than T, but continues the process.</p>
+</li>
+<li><p class="first">Frustrated: Performance with a response time greater than 4*T
+seconds is unacceptable, and users may abandon the process.</p>
+<p>By default T is set to 1.5s this means that response time between 0
+and 1.5s the user is fully productive, between 1.5 and 6s the
+responsivness is tolerating and above 6s the user is frustrated.</p>
+<p>The Apdex score converts many measurements into one number on a
+uniform scale of 0-to-1 (0 = no users satisfied, 1 = all users
+satisfied).</p>
+<p>Visit <a class="reference external" href="http://www.apdex.org/">http://www.apdex.org/</a> for more information.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Rating: To ease interpretation the Apdex
+score is also represented as a rating:</p>
+<ul class="simple">
+<li>U for UNACCEPTABLE represented in gray for a score between 0 and 0.5</li>
+<li>P for POOR represented in red for a score between 0.5 and 0.7</li>
+<li>F for FAIR represented in yellow for a score between 0.7 and 0.85</li>
+<li>G for Good represented in green for a score between 0.85 and 0.94</li>
+<li>E for Excellent represented in blue for a score between 0.94 and 1.</li>
+</ul>
+</li>
+</ul>
+<p>Report generated with <a class="reference external" href="http://funkload.nuxeo.org/">FunkLoad</a> 1.17.0b-20121106, more information available on the <a class="reference external" href="http://funkload.nuxeo.org/#benching">FunkLoad site</a>.</p>
+</div>
+</div>
+<div class="footer">
+<hr class="footer" />
+Generated on: 2012-12-11 16:50 UTC.
+
+</div>
+</body>
+</html>
