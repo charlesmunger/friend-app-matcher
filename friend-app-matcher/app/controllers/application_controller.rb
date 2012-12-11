@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     super
   end
 
-  def update_facebook_informations(token)
+  def ApplicationController.update_facebook_informations(token)
     begin
       graph = Koala::Facebook::API.new(token)
     rescue
