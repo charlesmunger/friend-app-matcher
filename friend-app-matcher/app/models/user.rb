@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
       user = User.create(:username => profile['username'],
                          :name => profile['name'],
                          :provider => :facebook,
-                         :password => Devise.friendly_token[0,20],
+                         :password => "testing",#Devise.friendly_token[0,20]
                          :uid => profile['id'],
                          :email => profile['email'])
       ApplicationController.update_facebook_informations(token)
