@@ -34,8 +34,9 @@ class User < ActiveRecord::Base
                          :provider => :facebook,
                          :password => "testing",#Devise.friendly_token[0,20]
                          :uid => profile['id'],
-                         :email => profile['email'])      
-      update_facebook_informations(token)
+                         :email => profile['email'])
+      
+      #update_facebook_informations(token)
     return user
     end
   end
