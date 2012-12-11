@@ -1,0 +1,24 @@
+set output "/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps.png"
+set title "Request Per Second over time"
+set xlabel "Time line"
+set xdata time
+set timefmt "%s"
+set format x "%H:%M"
+set ylabel "RPS"
+set grid
+set yrange [0:292]
+set terminal png size 640,540
+plot "/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-000.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-000.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#000000" t "10 CUs", \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-001.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-001.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#0000FF" t "50 CUs", \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-002.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-002.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#00FA9A" t "90 CUs", \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-003.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-003.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#191970" t "130 CUs", \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-004.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-004.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#8B008B" t "170 CUs", \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-005.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-005.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#FF00FF" t "210 CUs", \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-006.data" u ($1):($2) w linespoints smooth sbezier lw 1 lt 2 lc rgbcolor "#696969" notitle, \
+"/home/friend-app-matcher/load_testing/funkload/friends/test_friends-20121211T195728/time_rps-006.data" u ($1):($2) w linespoints lw 1 lt 2 lc rgbcolor "#FFD700" t "250 CUs"
