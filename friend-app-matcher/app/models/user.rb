@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
                          :uid => profile['id'],
                          :email => profile['email'])
       
-      update_facebook_informations(token)
+      #update_facebook_informations(token)
     return user
     end
   end
